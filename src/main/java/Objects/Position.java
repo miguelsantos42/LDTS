@@ -17,7 +17,7 @@ public class Position implements IPosition{
 
     @Override
     public int getyPos() {
-        return x;
+        return y;
     }
 
     @Override
