@@ -31,11 +31,41 @@ public class PositionTest {
     }
 
 
+    @ParameterizedTest
+    @MethodSource("streamPositionMove")
+    public void testYPositionMove(int x, int y, int xPos, int yPos){
+        this.position = new Position(x, y);
+
+        this.position.setyPos(yPos);
+
+        assertEquals(y - yPos, this.position.getyPos());
+    }
+
+    @ParameterizedTest
+    @MethodSource("streamPositionMove")
+    public void testXPositionMove(int x, int y, int xPos, int yPos){
+        this.position = new Position(x, y);
+
+        this.position.setxPos(xPos);
+
+        assertEquals(x - xPos, this.position.getxPos());
+    }
+
+
     private static Stream<Arguments> streamPositionConstructor() {
         return Stream.of(
                 arguments(1, 2),
                 arguments(2, 2),
                 arguments(10, 15)
+        );
+    }
+
+
+    private static Stream<Arguments> streamPositionMove() {
+        return Stream.of(
+                arguments(1, 2, 1, 2),
+                arguments(2, 2, 1, 1),
+                arguments(10, 15, 6, 5)
         );
     }
 }
