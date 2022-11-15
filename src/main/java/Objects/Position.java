@@ -17,7 +17,7 @@ public class Position{
 
 
     public int getyPos() {
-        return x;
+        return y;
     }
 
 
