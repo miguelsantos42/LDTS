@@ -1,6 +1,7 @@
 package Objects;
 
-public interface GameObject {
+public interface IGameObject {
+
     public void moveRight(int x);
     public void moveLeft(int x);
     public void moveUp(int y);
