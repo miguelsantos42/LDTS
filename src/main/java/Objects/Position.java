@@ -1,6 +1,6 @@
 package Objects;
 
-public class Position implements IPosition{
+public class Position{
 
     int x;
     int y;
@@ -10,22 +10,22 @@ public class Position implements IPosition{
         this.y = y;
     }
 
-    @Override
+
     public int getxPos() {
         return x;
     }
 
-    @Override
+
     public int getyPos() {
         return x;
     }
 
-    @Override
+
     public void setxPos(int xPos) {
         x = x - xPos;
     }
 
-    @Override
+
     public void setyPos(int yPos) {
         y = y - yPos;
     }
