@@ -51,8 +51,8 @@ abstract public class GameObject {
         }
     }
 
-    public void moveDown(int height){
-        if((this.position.getyPos() + this.size.getHeight()) < height && this.life.isAlive())
+    public void moveDown(){
+        if(this.position.getyPos() > 0 && this.life.isAlive())
             this.position.setyPos(-1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
@@ -61,8 +61,8 @@ abstract public class GameObject {
         }
     }
 
-    public void moveUp(){
-        if(this.position.getyPos() > 0 && this.life.isAlive())
+    public void moveUp(int height){
+        if((this.position.getyPos() + this.size.getHeight()) < height && this.life.isAlive())
             this.position.setyPos(+1);
         try {
             TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);

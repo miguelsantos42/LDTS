@@ -20,7 +20,7 @@ public class GameObjectTest {
     @MethodSource("streamDownMoveLimit")
     public void testDownPlayerMoveLimit(Player player, int height){
         int currentPosition = player.getPosition().getyPos();
-        player.moveDown(height);
+        player.moveDown());
         assertEquals(player.getPosition().getyPos(), currentPosition);
     }
 
@@ -28,7 +28,7 @@ public class GameObjectTest {
     @MethodSource("streamDownMoveChanged")
     public void testDownPlayerMoveChanged(Player player, int height){
         int currentPosition = player.getPosition().getyPos();
-        player.moveDown(height);
+        player.moveDown();
         assertEquals(player.getPosition().getyPos(), currentPosition-1);
     }
 

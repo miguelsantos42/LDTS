@@ -49,10 +49,10 @@ public class Level {
         this.player.moveRight(this.screenSize.getWidth());
     }
     public void movePlayerUp(){
-        this.player.moveUp();
+        this.player.moveUp(this.screenSize.getHeight());
     }
     public void movePlayerDown(){
-        this.player.moveDown(this.screenSize.getHeight());
+        this.player.moveDown();
     }
 
 
