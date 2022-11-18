@@ -1,4 +1,4 @@
-package Game.ScreenController;
+package LoZ.GameController.ScreenController;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -10,8 +10,10 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static Game.Game.font;
+import static LoZ.Game.font;
 
+
+//State
 abstract public class GameScreen {
     protected static TerminalScreen screen;
 
