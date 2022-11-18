@@ -1,4 +1,4 @@
-package Objects;
+package LoZ.Objects.Attributes;
 
 public class Position{
 
@@ -21,12 +21,14 @@ public class Position{
     }
 
 
-    public void setxPos(int xPos) {
-        x = x - xPos;
+    public void setxPos(int xBias) {
+
+        x = x + xBias;
     }
 
 
-    public void setyPos(int yPos) {
-        y = y - yPos;
+    public void setyPos(int yBias) {
+
+        y = y + yBias;
     }
 }

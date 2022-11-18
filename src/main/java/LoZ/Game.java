@@ -1,7 +1,7 @@
-package Game;
+package LoZ;
 
-import Game.LevelStateController.KeyBoardObserver;
-import Game.ScreenController.LevelController;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
+import LoZ.GameController.ScreenController.LevelController;
 import com.googlecode.lanterna.TextColor;
 
 import java.awt.*;
@@ -10,30 +10,31 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-
+//Game
 public class Game{
 
     private static KeyBoardObserver keyBoardObserver;
     public LevelController levelController;
 
     private static Game game = null;
-    protected static boolean exit;
+
     public static int state = 1;
     public static Font font;
 
     /*Constants*/
     public static final int refreshTime = 1000;
     public static final String fontPath = "square.ttf";
-    /*Colors of the Game*/
-    public static final TextColor colorPlayer =  new TextColor.RGB(255, 255, 255);
+    /*Colors of the LoZ.Game*/
     public static final TextColor colorScenario = new TextColor.RGB(15,20,45);
     private Game() throws URISyntaxException, FontFormatException, IOException {
         /*      Import font of the game     */
-        URL resource = getClass().getClassLoader().getResource("square.ttf");
+        URL resource = getClass().getClassLoader().getResource(fontPath);
         File fontFile = new File(resource.toURI());
-        this.levelController = new LevelController();
         font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
+        this.levelController = new LevelController();
+
+        keyBoardObserver = new KeyBoardObserver();
     }
 
 
@@ -51,7 +52,9 @@ public class Game{
 
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
-        levelController.run();
+        while (true){
+            levelController.run();
+        }
 
     }
 

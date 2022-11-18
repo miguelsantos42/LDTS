@@ -1,16 +1,15 @@
-package Game.ScreenController;
+package LoZ.GameController.ScreenController;
 
-import Game.LevelStateController.KeyBoardObserver;
-import Game.LevelStateController.Level;
-import Objects.Player;
-import Objects.Position;
+import LoZ.GameController.LevelStateController.Level;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
+//Console
 public class Console{
+
 
     public enum Action{
         UP,
@@ -18,7 +17,8 @@ public class Console{
         LEFT,
         RIGHT,
         ATTACK,
-        DEFFEND
+        DEFFEND,
+        QUIT
     }
 
     protected Level level;
@@ -27,9 +27,8 @@ public class Console{
 
     public Console(TextGraphics graphics) {
 
-        Player player = new Player(new Position(10,10));
 
-        this.level = new Level(graphics, player);
+        this.level = new Level(graphics);
 
     }
 
@@ -51,6 +50,8 @@ public class Console{
             case ATTACK:
                 break;
             case DEFFEND:
+                break;
+            case QUIT:
                 break;
         }
 
@@ -74,8 +75,6 @@ public class Console{
                 draw();
             }
         });
-
-
         DrawnThread.start();
 
     }
