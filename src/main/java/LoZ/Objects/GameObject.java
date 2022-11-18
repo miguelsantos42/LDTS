@@ -28,6 +28,13 @@ abstract public class GameObject {
 
     public void draw(TextGraphics screen) {
         screen.setForegroundColor(new TextColor.RGB(255, 255, 255));
+        for (int i = 0; i < size.getWidth(); i++) {
+            for (int j = 0; j < size.getHeight(); j++) {
+                screen.putString(position.getxPos()+i, position.getyPos()+j, "a");
+
+            }
+
+        }
         screen.putString(position.getxPos(), position.getyPos(), "a");
     }
 

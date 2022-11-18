@@ -25,7 +25,7 @@ public class Level {
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
 
         Position playerPosition = new Position(10,10);
-        Size playerSize = new Size(10,10);
+        Size playerSize = new Size(3,3);
         TextColor playerColor = new TextColor.RGB(255, 255, 255);
         Life playerLife = new Life(10);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
