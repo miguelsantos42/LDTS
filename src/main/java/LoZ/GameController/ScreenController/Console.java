@@ -54,7 +54,26 @@ public class Console{
             case QUIT:
                 break;
         }
-
+        switch (action) {
+            case LEFT:
+                level.moveEnemy();
+                break;
+            case RIGHT:
+                level.moveEnemy();
+                break;
+            case DOWN:
+                level.moveEnemy();
+                break;
+            case UP:
+                level.moveEnemy();
+                break;
+            case ATTACK:
+                break;
+            case DEFFEND:
+                break;
+            case QUIT:
+                break;
+        }
     }
 
     private void draw(){
