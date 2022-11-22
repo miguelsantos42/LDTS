@@ -4,6 +4,7 @@ package LoZ.GameController.LevelStateController;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
+import LoZ.Objects.Enemy;
 import LoZ.Objects.Player;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -17,6 +18,7 @@ public class Level {
 
     Size screenSize;
     private Player player;
+    private Enemy enemy;
 
     public static TextGraphics screen;
 
@@ -29,6 +31,12 @@ public class Level {
         TextColor playerColor = new TextColor.RGB(255, 255, 255);
         Life playerLife = new Life(10);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
+
+        Position enemyPosition = new Position(5,5);
+        Size enemySize = new Size(1,1);
+        TextColor enemyColor = new TextColor.RGB(135, 122, 56);
+        Life enemyLife = new Life(2);
+        this.enemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife);
     }
 
     public void draw() {
@@ -36,6 +44,7 @@ public class Level {
         screen.setBackgroundColor(colorScenario);
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
         player.draw(screen);
+        enemy.draw(screen);
 
     }
 
@@ -53,6 +62,34 @@ public class Level {
     }
     public void movePlayerDown(){
         this.player.moveDown();
+    }
+
+    public void moveEnemyLeft(){
+        this.enemy.moveLeft();
+    }
+    public void moveEnemyRight(){
+        this.enemy.moveRight(this.screenSize.getWidth());
+    }
+    public void moveEnemyUp(){
+        this.enemy.moveUp(this.screenSize.getHeight());
+    }
+    public void moveEnemyDown(){
+        this.enemy.moveDown();
+    }
+
+    public void moveEnemy() {
+        if ((Math.random() * (2000))>1500) {
+            moveEnemyLeft();
+        }
+        else if((Math.random() * (2000))>1000) {
+            moveEnemyRight();
+        }
+        else if((Math.random() * (2000))>500) {
+            moveEnemyUp();
+        }
+        else if((Math.random() * (2000))>0) {
+            moveEnemyDown();
+        }
     }
 
 
