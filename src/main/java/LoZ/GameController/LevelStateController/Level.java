@@ -13,6 +13,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import static LoZ.GameController.ScreenController.LevelController.colorScenario;
 
+
 public class Level {
 
     Size screenSize;
