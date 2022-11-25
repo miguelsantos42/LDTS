@@ -43,12 +43,10 @@ abstract public class GameScreen {
     }
 
     public void clear() {
-
         screen.clear();
     }
 
     public void refresh() throws IOException {
-
         screen.refresh();
         screen.doResizeIfNecessary();
     }
@@ -59,7 +57,6 @@ abstract public class GameScreen {
     }
 
     protected void draw(){
-
         try {
             clear();
             drawText();

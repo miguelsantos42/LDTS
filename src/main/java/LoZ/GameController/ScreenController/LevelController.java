@@ -2,6 +2,7 @@ package LoZ.GameController.ScreenController;
 
 import LoZ.Game;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
@@ -18,6 +19,7 @@ public class LevelController extends GameScreen{
     TerminalSize terminalSize = new TerminalSize(width, height);
     public Console console;
 
+    public static final TextColor colorScenario = new TextColor.RGB(15,20,45);
 
     public void run() throws IOException, URISyntaxException, FontFormatException {
         int sizeFont = 20;

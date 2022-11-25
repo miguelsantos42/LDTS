@@ -24,8 +24,7 @@ public class Game{
     /*Constants*/
     public static final int refreshTime = 1000;
     public static final String fontPath = "square.ttf";
-    /*Colors of the LoZ.Game*/
-    public static final TextColor colorScenario = new TextColor.RGB(15,20,45);
+
     private Game() throws URISyntaxException, FontFormatException, IOException {
         /*      Import font of the game     */
         URL resource = getClass().getClassLoader().getResource(fontPath);

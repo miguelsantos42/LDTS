@@ -11,9 +11,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import static LoZ.GameController.ScreenController.LevelController.colorScenario;
 
-import static LoZ.Game.colorScenario;
-//LEVEL
 public class Level {
 
     Size screenSize;
