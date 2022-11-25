@@ -30,3 +30,9 @@ This project was developed by João Alves (up202006281@fe.up.pt), Matias Vaz (up
 - **Game** - was used the singleton pattern to create a instance for the entire running game. The reason to choose that was because we only want one instance of game running. 
 - **GameScreen, level, menu(planned), help(planned)** - was used the abstract factory method (Game screen) to create several child classes to have common atributes and methods. 
 - **KeyboardObserver** - was used the observer pattern to create a class to listen keyboard pressed keys. The reason to choose that pattern was "When an object should be able to notify other objects without making assumptions about who those objects are."
+
+### UML for classes 
+**The following uml show the classes diagram**
+
+![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
+
