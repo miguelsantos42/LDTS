@@ -32,7 +32,7 @@ This project was developed by João Alves (up202006281@fe.up.pt), Matias Vaz (up
 - **KeyboardObserver** - was used the observer pattern to create a class to listen keyboard pressed keys. The reason to choose that pattern was "When an object should be able to notify other objects without making assumptions about who those objects are."
 
 ### UML for classes 
-**The following uml show the classes diagram**
+**The following UML show the classes diagram**
 
 ![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
 
