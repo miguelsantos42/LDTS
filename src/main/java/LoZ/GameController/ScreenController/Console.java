@@ -125,4 +125,13 @@ public class Console{
         LevelController.getScreen().doResizeIfNecessary();
     }
 
+    private void checkGameStatus() throws IOException {
+        if(!this.level.playerIsAlive()){
+            exitThread = true;
+        }
+        if(!this.level.EnemyAreDefetead()){
+            exitThread = true;
+        }
+    }
+
 }

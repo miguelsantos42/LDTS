@@ -76,5 +76,12 @@ public class Level {
         this.enemy.checkCollision(player);
     }
 
+    public boolean EnemyAreDefetead(){
+        return enemy.isAlive();
+    }
+
+    public boolean playerIsAlive(){
+        return player.isAlive();
+    }
 
 }

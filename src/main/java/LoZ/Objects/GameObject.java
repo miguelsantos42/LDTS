@@ -93,4 +93,8 @@ abstract public class GameObject {
     public Position getPosition() {
         return position;
     }
+
+    public boolean isAlive(){
+        return life.isAlive();
+    }
 }
