@@ -52,26 +52,7 @@ public class Console{
             case DEFFEND:
                 break;
             case QUIT:
-                break;
-        }
-        switch (action) {
-            case LEFT:
-                level.moveEnemy();
-                break;
-            case RIGHT:
-                level.moveEnemy();
-                break;
-            case DOWN:
-                level.moveEnemy();
-                break;
-            case UP:
-                level.moveEnemy();
-                break;
-            case ATTACK:
-                break;
-            case DEFFEND:
-                break;
-            case QUIT:
+                exitThread = true;
                 break;
         }
     }
@@ -94,11 +75,42 @@ public class Console{
                 draw();
             }
         });
-        DrawnThread.start();
 
+        Thread waveThread = new Thread(() -> {
+            while(!exitThread) {
+                enemyAction();
+            }
+        });
+
+        Thread bulletsThread = new Thread(() -> {
+            while(!exitThread){
+                bulletsAction();
+            }
+        });
+
+        DrawnThread.start();
+        bulletsThread.start();
+        waveThread.start();
+
+        new Thread(() -> {
+            try {
+                while (!exitThread){
+                    Thread.sleep(800);
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+        }).start();
     }
 
+    protected void enemyAction() {
+        level.enemyAction();
+    }
 
+    protected void bulletsAction() {
+        level.bulletsAction();
+    }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
         ((AWTTerminalFrame) LevelController.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);

@@ -32,8 +32,8 @@ public class Level {
         Life playerLife = new Life(10);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
 
-        Position enemyPosition = new Position(5,5);
-        Size enemySize = new Size(1,1);
+        Position enemyPosition = new Position(20,20);
+        Size enemySize = new Size(2,2);
         TextColor enemyColor = new TextColor.RGB(135, 122, 56);
         Life enemyLife = new Life(2);
         this.enemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife);
@@ -64,35 +64,17 @@ public class Level {
         this.player.moveDown();
     }
 
-    public void moveEnemyLeft(){
-        this.enemy.moveLeft();
-    }
-    public void moveEnemyRight(){
-        this.enemy.moveRight(this.screenSize.getWidth());
-    }
-    public void moveEnemyUp(){
-        this.enemy.moveUp(this.screenSize.getHeight());
-    }
-    public void moveEnemyDown(){
-        this.enemy.moveDown();
+    public void enemyAction(){
+        moveEnemy();
     }
 
+    public void bulletsAction(){
+
+    }
     public void moveEnemy() {
-        if ((Math.random() * (2000))>1500) {
-            moveEnemyLeft();
-        }
-        else if((Math.random() * (2000))>1000) {
-            moveEnemyRight();
-        }
-        else if((Math.random() * (2000))>500) {
-            moveEnemyUp();
-        }
-        else if((Math.random() * (2000))>0) {
-            moveEnemyDown();
-        }
+        this.enemy.moveRandom(this.screenSize.getWidth(),this.screenSize.getHeight());
+        this.enemy.checkCollision(player);
     }
-
-
 
 
 }

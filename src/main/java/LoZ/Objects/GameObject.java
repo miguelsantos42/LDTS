@@ -27,7 +27,10 @@ abstract public class GameObject {
     }
 
     public void draw(TextGraphics screen) {
-        screen.setForegroundColor(new TextColor.RGB(255, 255, 255));
+        if (!life.isAlive()){
+            return;
+        }
+        screen.setForegroundColor(this.color);
         for (int i = 0; i < size.getWidth(); i++) {
             for (int j = 0; j < size.getHeight(); j++) {
                 screen.putString(position.getxPos()+i, position.getyPos()+j, "a");
@@ -78,6 +81,15 @@ abstract public class GameObject {
         }
     }
 
+    public void checkCollision(GameObject otherObject){
+        if(!this.life.isAlive()  || !otherObject.life.isAlive()){
+            return;
+        }
+        if (this.position.hasCollision(otherObject.position, this.size)){
+            this.life.kill();
+            otherObject.life.kill();
+        }
+    }
     public Position getPosition() {
         return position;
     }

@@ -1,5 +1,7 @@
 package LoZ.Objects.Attributes;
 
+import LoZ.Objects.GameObject;
+
 public class Position{
 
     int x;
@@ -15,7 +17,6 @@ public class Position{
         return x;
     }
 
-
     public int getyPos() {
         return y;
     }
@@ -30,5 +31,15 @@ public class Position{
     public void setyPos(int yBias) {
 
         y = y + yBias;
+    }
+
+    public boolean hasCollision(Position otherPosition, Size size){
+        if ((otherPosition.getxPos() >= this.x && otherPosition.getxPos() <= this.x + size.getWidth()) &&
+                (otherPosition.getyPos() >= this.y && otherPosition.getyPos() <= this.y + size.getHeight())){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
