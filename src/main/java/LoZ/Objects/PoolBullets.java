@@ -11,8 +11,11 @@ public class PoolBullets{
         poolBullets = new ArrayList<>();
     }
 
-    public void moveBullets(int width, int height){
+    public void moveBullets(int width, int height, int time){
         for (Bullet bullet : this.poolBullets) {
+            if(bullet.speed%time!=0){
+                continue;
+            }
             if(bullet.isAlive()){
                 bullet.moveBullet(width, height);
             }

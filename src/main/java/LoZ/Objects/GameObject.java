@@ -19,7 +19,7 @@ abstract public class GameObject {
     int speed;
 
     public GameObject(Position position, Size size, TextColor color, Life life, int speed) {
-        this.speed = speed;
+        this.speed = 1000/speed;
         this.position = position;
         this.size = size;
         this.color = color;
