@@ -1,13 +1,10 @@
 package LoZ.GameController.LevelStateController;
 
 
+import LoZ.Objects.*;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
-import LoZ.Objects.Enemy;
-import LoZ.Objects.Player;
-import LoZ.Objects.PoolBullets;
-import LoZ.Objects.PoolEnemies;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -42,9 +39,11 @@ public class Level {
         Size enemySize = new Size(2,2);
         TextColor enemyColor = new TextColor.RGB(135, 122, 56);
         Life enemyLife = new Life(2);
+        Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1));
 
         this.enemies = new PoolEnemies();
-        this.enemies.addEnemy(new Enemy(enemyPosition, enemySize, enemyColor, enemyLife));
+        this.enemies.addEnemy(new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet));
+
         bullets = new PoolBullets();
 
     }
@@ -53,10 +52,8 @@ public class Level {
 
         screen.setBackgroundColor(colorScenario);
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
-        player.draw(screen);
-        enemies.drawEnemies(screen);
-        bullets.drawBullets(screen);
 
+        player.draw(screen);
     }
 
     private void drawInfo(){
@@ -77,14 +74,18 @@ public class Level {
 
     public void enemyAction(){
         moveEnemy();
+        enemies.drawEnemies(screen);
     }
 
     public void bulletsAction(){
         moveBullet();
 
+
+        bullets.drawBullets(screen);
+
     }
     public void moveEnemy() {
-        this.enemies.move(this.screenSize.getWidth(),this.screenSize.getHeight());
+        this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         this.enemies.checkCollision(bullets, player);
     }
 
@@ -93,8 +94,8 @@ public class Level {
         this.bullets.checkCollision(enemies, player);
     }
 
-    public boolean EnemyAreDefetead(){
-        return enemy.isAlive();
+    public boolean EnemiesAreDefetead(){
+        return !enemies.leftAtLeastOneEnemy();
     }
 
     public boolean playerIsAlive(){

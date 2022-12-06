@@ -49,5 +49,12 @@ public class Bullet extends GameObject{
         return isEnemyBullet;
     }
 
-
+    public Bullet returnCopy(){
+        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life);
+        bullet.sprite = this.sprite;
+        bullet.valid = this.valid;
+        bullet.isEnemyBullet = this.isEnemyBullet;
+        bullet.moveDirection = this.moveDirection;
+        return bullet;
+    }
 }

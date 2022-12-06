@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 abstract public class GameObject {
     Position position;
     Size size;
-    private final TextColor color;
+    final TextColor color;
     Life life;
 
     int speed;

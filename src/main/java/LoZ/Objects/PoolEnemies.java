@@ -59,11 +59,20 @@ public class PoolEnemies {
         }
     }
 
-    public void moveEnemiesToPlayer(Player player){
+    public void moveEnemiesToPlayer(int width, int height, Player player, PoolBullets poolBullets){
         for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
-                enemy.moveTowardsPlayer(player);
+                enemy.moveTowardsPlayer(width, height, player, poolBullets);
             }
         }
+    }
+
+    public boolean leftAtLeastOneEnemy(){
+        for (Enemy enemy : this.poolEnemy) {
+            if(enemy.isAlive()){
+                return true;
+            }
+        }
+        return false;
     }
 }

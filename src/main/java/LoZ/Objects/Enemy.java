@@ -7,44 +7,44 @@ import com.googlecode.lanterna.TextColor;
 
 public class Enemy extends GameObject{
 
-    public Enemy(Position position, Size size, TextColor textColor, Life life) {
+    Bullet bulletType;
+    public Enemy(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
         super(position, size, textColor, life, 50);
+        this.bulletType = bulletType;
     }
-    public void moveTowardsPlayer(int widht, int height, Player player){
-        double rand = Math.random() * 20;
-
+    public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets){
+        double rand = Math.random() * 4;
+        doAttack(poolBullets);
         if (rand>3) {
-            moveRandom(width, heigth);
+            moveRandom(width, height);
         }
         else if(rand>2) {
-            moveRight(widht);
+            if(player.getPosition().getxPos() > this.position.getxPos()){
+                this.moveRight(height);
+            }
+            else if(player.getPosition().getxPos() < this.position.getxPos()){
+                this.moveLeft();
+            }
         }
         else if(rand > 1 ) {
-            moveUp(height);
+            if(player.getPosition().getyPos() > this.position.getyPos()){
+                this.moveRight(width);
+            }
+            else if(player.getPosition().getyPos() < this.position.getyPos()){
+                this.moveLeft();
+            }
         }
         else{
-            moveDown();
-        }
-        if(playerX > this.position.getxPos()){
-            this.moveRight(100);
-        }
-        else if(playerX < this.position.getxPos()){
-            this.moveLeft();
-        }
-        if(playerY > this.position.getyPos()){
-            this.moveDown();
-        }
-        else if(playerY < this.position.getyPos()){
-            this.moveUp(100);
+            doAttack(poolBullets);
         }
     }
-    public void moveRandom(int widht, int height){
+    public void moveRandom(int width, int height){
         double rand = Math.random() * 4;
         if (rand>3) {
             moveLeft();
         }
         else if(rand>2) {
-            moveRight(widht);
+            moveRight(width);
         }
         else if(rand > 1 ) {
             moveUp(height);
@@ -52,5 +52,12 @@ public class Enemy extends GameObject{
         else{
             moveDown();
         }
+    }
+
+    public void doAttack(PoolBullets poolBullets){
+        Bullet bullet = bulletType.returnCopy();
+        bullet.position.setxPos(this.position.getxPos());
+        bullet.position.setyPos(this.position.getyPos());
+        poolBullets.addBullet(bullet);
     }
 }
