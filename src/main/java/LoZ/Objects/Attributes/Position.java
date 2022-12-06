@@ -33,9 +33,13 @@ public class Position{
         y = y + yBias;
     }
 
-    public boolean hasCollision(Position otherPosition, Size size){
+    public boolean hasCollision(Position otherPosition, Size otherSize, Size size){
         if ((otherPosition.getxPos() >= this.x && otherPosition.getxPos() <= this.x + size.getWidth()) &&
                 (otherPosition.getyPos() >= this.y && otherPosition.getyPos() <= this.y + size.getHeight())){
+            return true;
+        }
+        else if ((otherPosition.getxPos() + otherSize.getWidth() >= this.x && otherPosition.getxPos() + otherSize.getWidth() <= this.x + size.getWidth()) &&
+                (otherPosition.getyPos() + otherSize.getHeight() >= this.y && otherPosition.getyPos() + otherSize.getHeight() <= this.y + size.getHeight())){
             return true;
         }
         else{

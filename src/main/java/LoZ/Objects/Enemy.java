@@ -12,16 +12,17 @@ public class Enemy extends GameObject{
     }
 
     public void moveRandom(int widht, int height){
-        if ((Math.random() * (2000))>1500) {
+        double rand = Math.random() * 20;
+        if (rand>15) {
             moveLeft();
         }
-        else if((Math.random() * (2000))>1000) {
+        else if(rand>10) {
             moveRight(widht);
         }
-        else if((Math.random() * (2000))>500) {
+        else if(rand > 5 ) {
             moveUp(height);
         }
-        else if((Math.random() * (2000))>0) {
+        else{
             moveDown();
         }
     }
