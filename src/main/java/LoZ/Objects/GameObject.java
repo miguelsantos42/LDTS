@@ -85,7 +85,7 @@ abstract public class GameObject {
         if(!this.life.isAlive()  || !otherObject.life.isAlive()){
             return;
         }
-        if (this.position.hasCollision(otherObject.position, this.size)){
+        if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
             this.life.kill();
             otherObject.life.kill();
         }
