@@ -17,7 +17,11 @@ public class Life {
             this.current = this.current - 1;
             updateStatus();
         }
+    }
 
+    public void instantKill(){
+        this.current = 0;
+        updateStatus();
     }
 
     private void updateStatus(){

@@ -14,7 +14,7 @@ abstract public class GameObject {
     Position position;
     Size size;
     private final TextColor color;
-    private  Life life;
+    Life life;
 
     int speed;
 
@@ -97,4 +97,9 @@ abstract public class GameObject {
     public boolean isAlive(){
         return life.isAlive();
     }
+
+    public void instantKill(){
+        this.life.instantKill();
+    }
+
 }

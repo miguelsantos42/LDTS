@@ -8,29 +8,37 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bullet extends GameObject{
-    public static final int LEFT = 1, RIGHT = 2, STOP = 3, UP = 4, DOWN = 5;
+
+    public enum Direction{
+        LEFT, RIGHT, STOP, UP, DOWN
+    }
 
     private String sprite;
     private boolean valid;
     private boolean isEnemyBullet;
 
     protected static final int SHOT_VELOCITY = 700;
-    protected boolean move = false;
-    //protected int direção = 3;
+
+    protected Direction moveDirection = Direction.STOP;
 
 
     public Bullet(Position position, Size size, TextColor textColor, Life life) {
         super(position, size, textColor, life, SHOT_VELOCITY);
     }
 
-    public void moveBullet(){
-        if(valid && isEnemyBullet){
-            this.position.setyPos(this.position.getyPos() + 1);
+    public void moveBullet(int widht, int height){
+        if(moveDirection == Direction.LEFT){
+            moveLeft();
         }
-        else {
-            this.position.setyPos(this.position.getyPos() - 1);
+        else if(moveDirection == Direction.RIGHT){
+            moveRight(height);
         }
-
+        else if(moveDirection == Direction.UP){
+            moveUp(height);
+        }
+        else if(moveDirection == Direction.DOWN){
+            moveDown();
+        }
     }
 
     public boolean isValid() {
@@ -40,5 +48,6 @@ public class Bullet extends GameObject{
     public boolean isEnemy() {
         return isEnemyBullet;
     }
+
 
 }
