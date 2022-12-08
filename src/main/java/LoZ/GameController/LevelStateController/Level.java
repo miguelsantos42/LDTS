@@ -6,6 +6,7 @@ import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
 import LoZ.Objects.Enemy;
 import LoZ.Objects.Player;
+import LoZ.Objects.PowerUp;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -19,6 +20,8 @@ public class Level {
     Size screenSize;
     private Player player;
     private Enemy enemy;
+
+    private PowerUp powerup;
 
     public static TextGraphics screen;
 
@@ -37,6 +40,12 @@ public class Level {
         TextColor enemyColor = new TextColor.RGB(135, 122, 56);
         Life enemyLife = new Life(2);
         this.enemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife);
+
+        Position powerupPosition = new Position(5,5);
+        Size powerupSize = new Size(1,1);
+        TextColor powerupColor = new TextColor.RGB(50, 205, 50);
+        Life powerupLife = new Life(1);
+        this.powerup = new PowerUp(powerupPosition, powerupSize, powerupColor, powerupLife);
     }
 
     public void draw() {
@@ -45,6 +54,8 @@ public class Level {
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
         player.draw(screen);
         enemy.draw(screen);
+        powerup.draw(screen);
+
 
     }
 
@@ -76,7 +87,7 @@ public class Level {
         this.enemy.checkCollision(player);
     }
 
-    public boolean EnemyAreDefetead(){
+    public boolean EnemyAreDefeated(){
         return enemy.isAlive();
     }
 

@@ -11,13 +11,13 @@ public class Enemy extends GameObject{
         super(position, size, textColor, life, 50);
     }
 
-    public void moveRandom(int widht, int height){
+    public void moveRandom(int width, int height){
         double rand = Math.random() * 20;
         if (rand>15) {
             moveLeft();
         }
         else if(rand>10) {
-            moveRight(widht);
+            moveRight(width);
         }
         else if(rand > 5 ) {
             moveUp(height);

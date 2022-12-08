@@ -129,7 +129,7 @@ public class Console{
         if(!this.level.playerIsAlive()){
             exitThread = true;
         }
-        if(!this.level.EnemyAreDefetead()){
+        if(!this.level.EnemyAreDefeated()){
             exitThread = true;
         }
     }

@@ -20,6 +20,14 @@ public class Life {
 
     }
 
+    public void lifeBonus(){
+        if(this.current > 0){
+            this.current = this.current + 3;
+            updateStatus();
+        }
+
+    }
+
     private void updateStatus(){
         if(current >= 1)
             isAlive = true;

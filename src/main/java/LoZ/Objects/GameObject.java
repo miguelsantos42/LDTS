@@ -86,8 +86,14 @@ abstract public class GameObject {
             return;
         }
         if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
-            this.life.kill();
-            otherObject.life.kill();
+            if (otherObject instanceof PowerUp)
+            {
+                otherObject.life.kill();
+            }
+            else {
+                this.life.kill();
+                otherObject.life.kill();
+            }
         }
     }
     public Position getPosition() {
