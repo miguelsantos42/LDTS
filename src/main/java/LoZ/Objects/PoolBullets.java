@@ -60,10 +60,13 @@ public class PoolBullets{
             if(bullet.isAlive() && bullet.isEnemy()){
                 player.checkCollision(bullet);
             }
-            if (bullet.isAlive() && !bullet.isEnemy()) {
+            else if (bullet.isAlive() && !bullet.isEnemy()) {
                 for (Enemy enemy : poolEnemies.getPoolEnemy()) {
                     enemy.checkCollision(bullet);
                 }
+            }
+            if(!bullet.isAlive()){
+                bullet.setValid(false);
             }
         }
     }
