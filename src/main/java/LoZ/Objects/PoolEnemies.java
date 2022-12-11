@@ -59,11 +59,8 @@ public class PoolEnemies {
         }
     }
 
-    public void moveEnemiesToPlayer(int width, int height, Player player, PoolBullets poolBullets, int time){
+    public void moveEnemiesToPlayer(int width, int height, Player player, PoolBullets poolBullets){
         for (Enemy enemy : this.poolEnemy) {
-            if(enemy.speed%time!=0){
-                continue;
-            }
             if(enemy.isAlive()){
                 enemy.moveTowardsPlayer(width, height, player, poolBullets);
             }

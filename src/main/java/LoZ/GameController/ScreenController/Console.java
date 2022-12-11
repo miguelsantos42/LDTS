@@ -76,14 +76,21 @@ public class Console{
             }
         });
 
-        Thread waveThread = new Thread(() -> {
+        Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
                 level.enemyAction();
             }
         });
 
+        Thread bulletsThread = new Thread(() -> {
+            while(!exitThread) {
+                level.bulletsAction();
+            }
+        });
+
         DrawnThread.start();
-        waveThread.start();
+        enemyThread.start();
+        bulletsThread.start();
 
         new Thread(() -> {
             try {

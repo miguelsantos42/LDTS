@@ -22,11 +22,8 @@ public class PoolBullets{
         }
     }
 
-    public void moveBullets(int width, int height, int time){
+    public void moveBullets(int width, int height){
         for (Bullet bullet : this.poolBullets) {
-            if(bullet.speed%time!=0){
-                continue;
-            }
             if(bullet.isAlive()){
                 bullet.moveBullet(width, height);
             }
