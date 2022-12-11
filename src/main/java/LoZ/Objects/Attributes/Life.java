@@ -9,6 +9,7 @@ public class Life {
     public Life(int hearth){
         this.hearth = hearth;
         this.current = hearth;
+        isAlive = true;
         updateStatus();
     }
 

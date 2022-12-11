@@ -1,5 +1,9 @@
 package LoZ.Objects;
 
+import LoZ.Objects.Attributes.Life;
+import LoZ.Objects.Attributes.Position;
+import LoZ.Objects.Attributes.Size;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
@@ -9,6 +13,13 @@ public class PoolBullets{
 
     public PoolBullets() {
         poolBullets = new ArrayList<>();
+        Position outside = new Position(-1, -1);
+        Size size = new Size(1, 1);
+        TextColor color = TextColor.ANSI.BLACK;
+        Life life = new Life(1);
+        for (int i = 0; i < 100; i++) {
+            poolBullets.add(new Bullet(outside, size, color, life, false));
+        }
     }
 
     public void moveBullets(int width, int height, int time){
@@ -34,13 +45,21 @@ public class PoolBullets{
         }
     }
 
-    public void addBullet(Bullet bullet){
-        poolBullets.add(bullet);
+    public void addBullet(Bullet bulletCopy){
+        for (Bullet bullet : this.poolBullets) {
+            if(!bullet.isValid()){
+                bullet = bulletCopy;
+                bullet.setValid(true);
+                break;
+            }
+        }
     }
 
     public void checkCollision(PoolEnemies poolEnemies, Player player){
         for (Bullet bullet : this.poolBullets) {
-
+            if (!bullet.isValid()){
+                continue;
+            }
             if(bullet.isAlive() && bullet.isEnemy()){
                 player.checkCollision(bullet);
             }
@@ -54,7 +73,7 @@ public class PoolBullets{
 
     public void drawBullets(TextGraphics graphics){
         for (Bullet bullet : this.poolBullets) {
-            if(bullet.isAlive()){
+            if (bullet.isValid() && bullet.isAlive()){
                 bullet.draw(graphics);
             }
         }

@@ -7,10 +7,10 @@ import com.googlecode.lanterna.TextColor;
 
 public class Enemy extends GameObject{
 
-    Bullet bulletType;
+    Bullet attackType;
     public Enemy(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
-        super(position, size, textColor, life, 50);
-        this.bulletType = bulletType;
+        super(position, size, textColor, life, 20);
+        this.attackType = bulletType;
     }
     public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets){
         double rand = Math.random() * 4;
@@ -36,6 +36,7 @@ public class Enemy extends GameObject{
         }
         else{
             doAttack(poolBullets);
+            System.out.println("Attack");
         }
     }
     public void moveRandom(int width, int height){
@@ -55,7 +56,7 @@ public class Enemy extends GameObject{
     }
 
     public void doAttack(PoolBullets poolBullets){
-        Bullet bullet = bulletType.returnCopy();
+        Bullet bullet = attackType.returnCopy();
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
         poolBullets.addBullet(bullet);
