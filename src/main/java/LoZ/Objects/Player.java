@@ -11,7 +11,7 @@ public class Player extends GameObject{
     Bullet attackType;
     public Player(Position position, Size size, TextColor textColor, Life life) {
 
-        super(position, size, textColor, life, 1000);
+        super(position, size, textColor, life, 10);
     }
 
 }

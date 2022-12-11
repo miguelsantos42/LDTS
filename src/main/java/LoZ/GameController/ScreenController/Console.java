@@ -27,7 +27,6 @@ public class Console{
 
     public Console(TextGraphics graphics) {
 
-
         this.level = new Level(graphics);
 
     }

@@ -9,7 +9,7 @@ public class Enemy extends GameObject{
 
     Bullet attackType;
     public Enemy(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
-        super(position, size, textColor, life, 20);
+        super(position, size, textColor, life, 100);
         this.attackType = bulletType;
     }
     public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets){
