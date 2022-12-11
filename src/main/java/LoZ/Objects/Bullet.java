@@ -9,6 +9,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bullet extends GameObject{
 
+
+
     public enum Direction{
         LEFT, RIGHT, STOP, UP, DOWN
     }
@@ -22,8 +24,10 @@ public class Bullet extends GameObject{
     protected Direction moveDirection = Direction.STOP;
 
 
-    public Bullet(Position position, Size size, TextColor textColor, Life life) {
+    public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet) {
         super(position, size, textColor, life, SHOT_VELOCITY);
+        valid = false;
+        this.isEnemyBullet = isEnemyBullet;
     }
 
     public void moveBullet(int widht, int height){
@@ -39,10 +43,17 @@ public class Bullet extends GameObject{
         else if(moveDirection == Direction.DOWN){
             moveDown();
         }
+        if (position.getxPos() < 0 || position.getxPos() > widht || position.getyPos() < 0 || position.getyPos() > height){
+            valid = false;
+        }
     }
 
     public boolean isValid() {
         return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     public boolean isEnemy() {
@@ -50,7 +61,7 @@ public class Bullet extends GameObject{
     }
 
     public Bullet returnCopy(){
-        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life);
+        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life, this.isEnemyBullet);
         bullet.sprite = this.sprite;
         bullet.valid = this.valid;
         bullet.isEnemyBullet = this.isEnemyBullet;
