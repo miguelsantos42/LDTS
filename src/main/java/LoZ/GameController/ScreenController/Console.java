@@ -70,18 +70,33 @@ public class Console{
 
 
     public void run() {
-
-        Thread objectsThread = new Thread(() -> {
-            int counter = 1;
+        Thread DrawnThread = new Thread(() -> {
             while(!exitThread) {
                 draw();
-                level.enemyAction(counter);
-                level.bulletsAction(counter);
-                counter ++;
             }
         });
-        objectsThread.start();
+
+        Thread waveThread = new Thread(() -> {
+            while(!exitThread) {
+                level.enemyAction();
+            }
+        });
+
+        DrawnThread.start();
+        waveThread.start();
+
+        new Thread(() -> {
+            try {
+                while (!exitThread){
+                    Thread.sleep(800);
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+        }).start();
     }
+
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
         ((AWTTerminalFrame) LevelController.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);

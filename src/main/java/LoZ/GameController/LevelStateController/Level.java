@@ -52,10 +52,9 @@ public class Level {
 
         screen.setBackgroundColor(colorScenario);
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
+
         player.draw(screen);
         enemies.drawEnemies(screen);
-        bullets.drawBullets(screen);
-
     }
 
     private void drawInfo(){
@@ -74,18 +73,24 @@ public class Level {
         this.player.moveDown();
     }
 
-    public void enemyAction(int time){
-        this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets, time);
+    public void enemyAction(){
+        moveEnemy();
+
+    }
+
+    public void bulletsAction(){
+        moveBullet();
+
+    }
+    public void moveEnemy() {
+        this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         this.enemies.checkCollision(bullets, player);
     }
 
-    public void bulletsAction(int time){
-
-        this.bullets.moveBullets(this.screenSize.getWidth(),this.screenSize.getHeight(), time);
+    public void moveBullet() {
+        this.bullets.moveBullets(this.screenSize.getWidth(),this.screenSize.getHeight());
         this.bullets.checkCollision(enemies, player);
-
     }
-
 
     public boolean EnemiesAreDefetead(){
         return !enemies.leftAtLeastOneEnemy();
