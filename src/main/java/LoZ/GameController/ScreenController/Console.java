@@ -78,18 +78,11 @@ public class Console{
 
         Thread waveThread = new Thread(() -> {
             while(!exitThread) {
-                enemyAction();
-            }
-        });
-
-        Thread bulletsThread = new Thread(() -> {
-            while(!exitThread){
-                bulletsAction();
+                level.enemyAction();
             }
         });
 
         DrawnThread.start();
-        bulletsThread.start();
         waveThread.start();
 
         new Thread(() -> {
@@ -104,13 +97,6 @@ public class Console{
         }).start();
     }
 
-    protected void enemyAction() {
-        level.enemyAction();
-    }
-
-    protected void bulletsAction() {
-        level.bulletsAction();
-    }
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
         ((AWTTerminalFrame) LevelController.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);

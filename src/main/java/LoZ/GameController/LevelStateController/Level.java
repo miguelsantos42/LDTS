@@ -54,6 +54,7 @@ public class Level {
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
 
         player.draw(screen);
+        enemies.drawEnemies(screen);
     }
 
     private void drawInfo(){
@@ -74,14 +75,11 @@ public class Level {
 
     public void enemyAction(){
         moveEnemy();
-        enemies.drawEnemies(screen);
+
     }
 
     public void bulletsAction(){
         moveBullet();
-
-
-        bullets.drawBullets(screen);
 
     }
     public void moveEnemy() {
