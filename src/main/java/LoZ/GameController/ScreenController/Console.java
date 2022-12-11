@@ -82,14 +82,7 @@ public class Console{
             }
         });
 
-        Thread bulletsThread = new Thread(() -> {
-            while(!exitThread){
-                level.bulletsAction();
-            }
-        });
-
         DrawnThread.start();
-        bulletsThread.start();
         waveThread.start();
 
         new Thread(() -> {
