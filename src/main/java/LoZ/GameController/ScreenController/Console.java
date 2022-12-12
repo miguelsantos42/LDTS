@@ -61,7 +61,7 @@ public class Console{
             clear();
             this.level.draw();
             refresh();
-            TimeUnit.MILLISECONDS.sleep(60);
+            TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
@@ -69,25 +69,21 @@ public class Console{
 
 
     public void run() {
-        Thread DrawnThread = new Thread(() -> {
-            while(!exitThread) {
-                draw();
-            }
-        });
 
         Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
                 level.enemyAction();
+                draw();
             }
         });
 
         Thread bulletsThread = new Thread(() -> {
             while(!exitThread) {
                 level.bulletsAction();
+                draw();
             }
         });
 
-        DrawnThread.start();
         enemyThread.start();
         bulletsThread.start();
 

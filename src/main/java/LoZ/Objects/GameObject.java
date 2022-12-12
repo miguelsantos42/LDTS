@@ -88,6 +88,7 @@ abstract public class GameObject {
         if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
             this.life.kill();
             otherObject.life.kill();
+            System.out.println("Collision");
         }
     }
     public Position getPosition() {

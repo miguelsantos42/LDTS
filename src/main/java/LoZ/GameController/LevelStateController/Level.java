@@ -77,13 +77,11 @@ public class Level {
     public void enemyAction(){
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         this.enemies.checkCollision(bullets, player);
-
     }
 
     public void bulletsAction() {
         this.bullets.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
         this.bullets.checkCollision(enemies, player);
-
     }
 
     public boolean EnemiesAreDefetead(){

@@ -14,9 +14,9 @@ public class PoolBullets{
     public PoolBullets() {
         poolBullets = new ArrayList<>();
         Position outside = new Position(-1, -1);
-        Size size = new Size(1, 1);
+        Size size = new Size(2, 2);
         TextColor color = new TextColor.RGB(135, 122, 56);
-        Life life = new Life(1);
+        Life life = new Life(2);
         for (int i = 0; i < 100; i++) {
             poolBullets.add(new Bullet(outside, size, color, life, false,Bullet.Direction.STOP));
         }
@@ -24,20 +24,24 @@ public class PoolBullets{
 
     public void moveBullets(int width, int height){
         for (Bullet bullet : this.poolBullets) {
-            if(bullet.isAlive()){
+            if(bullet.isAlive() && bullet.isValid()){
                 bullet.moveBullet(width, height);
             }
             if(bullet.position.getyPos()<0){
                 bullet.instantKill();
+                bullet.setValid(false);
             }
             else if(bullet.position.getyPos()>height){
                 bullet.instantKill();
+                bullet.setValid(false);
             }
             else if(bullet.position.getxPos()>width){
                 bullet.instantKill();
+                bullet.setValid(false);
             }
             else if(bullet.position.getxPos()<0){
                 bullet.instantKill();
+                bullet.setValid(false);
             }
         }
     }
@@ -46,7 +50,9 @@ public class PoolBullets{
         for (Bullet bullet : this.poolBullets) {
             if(!bullet.isValid()){
                 bullet.copy(bulletCopy);
+                bullet.setValid(true);
                 System.out.println(bullet.isAlive());
+                System.out.println(bullet.isValid());
                 break;
             }
         }
