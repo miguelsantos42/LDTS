@@ -55,6 +55,7 @@ public class Level {
 
         player.draw(screen);
         enemies.drawEnemies(screen);
+        bullets.drawBullets(screen);
     }
 
     private void drawInfo(){

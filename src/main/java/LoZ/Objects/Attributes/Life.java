@@ -33,7 +33,7 @@ public class Life {
     }
 
 
-    public int getLives(){
+    public int getMaximumLives(){
         return hearth;
     }
 

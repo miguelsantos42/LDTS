@@ -102,4 +102,7 @@ abstract public class GameObject {
         this.life.instantKill();
     }
 
+    public Life getLife() {
+        return life;
+    }
 }

@@ -14,13 +14,12 @@ public class Enemy extends GameObject{
     }
     public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets){
         double rand = Math.random() * 4;
-        doAttack(poolBullets);
         if (rand>3) {
             moveRandom(width, height);
         }
         else if(rand>2) {
             if(player.getPosition().getxPos() > this.position.getxPos()){
-                this.moveRight(height);
+                this.moveRight(width);
             }
             else if(player.getPosition().getxPos() < this.position.getxPos()){
                 this.moveLeft();
@@ -28,10 +27,10 @@ public class Enemy extends GameObject{
         }
         else if(rand > 1 ) {
             if(player.getPosition().getyPos() > this.position.getyPos()){
-                this.moveRight(width);
+                this.moveUp(height);
             }
             else if(player.getPosition().getyPos() < this.position.getyPos()){
-                this.moveLeft();
+                this.moveDown();
             }
         }
         else{

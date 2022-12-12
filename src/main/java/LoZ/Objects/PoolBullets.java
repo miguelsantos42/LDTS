@@ -47,6 +47,7 @@ public class PoolBullets{
             if(!bullet.isValid()){
                 bullet = bulletCopy;
                 bullet.setValid(true);
+                System.out.println(bullet.position.getxPos());
                 break;
             }
         }
