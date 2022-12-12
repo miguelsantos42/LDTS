@@ -200,7 +200,7 @@ public class GameObjectTest {
     private static Stream<Arguments> streamCheckCollision() {
         Player gameObject = new Player(new Position(0, 0), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1));
 
-        Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true);
+        Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.STOP);
 
         Enemy enemy1 = new Enemy(new Position(100, 200), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);
         Enemy enemy2 = new Enemy(new Position(300, 300), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);

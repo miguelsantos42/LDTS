@@ -18,7 +18,7 @@ public class PoolBullets{
         TextColor color = TextColor.ANSI.BLACK;
         Life life = new Life(1);
         for (int i = 0; i < 100; i++) {
-            poolBullets.add(new Bullet(outside, size, color, life, false));
+            poolBullets.add(new Bullet(outside, size, color, life, false,Bullet.Direction.STOP));
         }
     }
 

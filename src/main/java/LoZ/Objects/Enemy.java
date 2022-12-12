@@ -34,7 +34,7 @@ public class Enemy extends GameObject{
             }
         }
         else{
-            doAttack(poolBullets);
+            doAttack(poolBullets, player);
             System.out.println("Attack");
         }
     }
@@ -54,10 +54,27 @@ public class Enemy extends GameObject{
         }
     }
 
-    public void doAttack(PoolBullets poolBullets){
+    public void doAttack(PoolBullets poolBullets, Player player){
         Bullet bullet = attackType.returnCopy();
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
+        Size distance = calculateDistance(player);
+        if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
+            if (distance.getHeight() > 0){
+                bullet.direction = Bullet.Direction.DOWN;
+            }
+            else{
+                bullet.direction = Bullet.Direction.UP;
+            }
+        }
+        else{
+            if (distance.getWidth() > 0){
+                bullet.direction = Bullet.Direction.LEFT;
+            }
+            else{
+                bullet.direction = Bullet.Direction.RIGHT;
+            }
+        }
         poolBullets.addBullet(bullet);
     }
 }

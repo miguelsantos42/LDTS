@@ -105,4 +105,8 @@ abstract public class GameObject {
     public Life getLife() {
         return life;
     }
+
+    public Size calculateDistance(GameObject otherObject){
+        return this.position.calculateDistance(otherObject.position);
+    }
 }

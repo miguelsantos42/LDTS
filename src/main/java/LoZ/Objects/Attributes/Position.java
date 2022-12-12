@@ -46,4 +46,10 @@ public class Position{
             return false;
         }
     }
+
+    public Size calculateDistance(Position position) {
+        int xDistance = this.x - position.getxPos();
+        int yDistance = this.y - position.getyPos();
+        return new Size(xDistance, yDistance);
+    }
 }

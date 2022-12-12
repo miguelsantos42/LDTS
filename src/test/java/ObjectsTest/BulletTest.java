@@ -24,14 +24,6 @@ public class BulletTest {
         assertEquals(player.getPosition().getyPos(), currentPosition);
     }
 
-    @ParameterizedTest
-    @MethodSource("streamDownMoveChanged")
-    public void testDownPlayerMoveChanged(Player player, int height){
-        int currentPosition = player.getPosition().getyPos();
-        player.moveDown();
-        assertEquals(player.getPosition().getyPos(), currentPosition-1);
-    }
-
 
     private static Stream<Arguments> streamDownMoveLimit() {
         Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
@@ -46,19 +38,3 @@ public class BulletTest {
         );
     }
 
-
-    private static Stream<Arguments> streamDownMoveChanged() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-
-
-        return Stream.of(
-                arguments(gameObject1,  100),
-                arguments(gameObject2,  100),
-                arguments(gameObject3,  100)
-        );
-    }
-
-
-}

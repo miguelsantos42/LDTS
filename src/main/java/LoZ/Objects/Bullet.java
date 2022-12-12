@@ -1,11 +1,9 @@
 package LoZ.Objects;
 
-import LoZ.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bullet extends GameObject{
 
@@ -21,26 +19,27 @@ public class Bullet extends GameObject{
 
     protected static final int SHOT_VELOCITY = 700;
 
-    protected Direction moveDirection = Direction.STOP;
+    public Direction direction = Direction.STOP;
 
 
-    public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet) {
+    public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet, Direction direction) {
         super(position, size, textColor, life, SHOT_VELOCITY);
         valid = false;
         this.isEnemyBullet = isEnemyBullet;
+        this.direction = direction;
     }
 
     public void moveBullet(int widht, int height){
-        if(moveDirection == Direction.LEFT){
+        if(direction == Direction.LEFT){
             moveLeft();
         }
-        else if(moveDirection == Direction.RIGHT){
+        else if(direction == Direction.RIGHT){
             moveRight(height);
         }
-        else if(moveDirection == Direction.UP){
+        else if(direction == Direction.UP){
             moveUp(height);
         }
-        else if(moveDirection == Direction.DOWN){
+        else if(direction == Direction.DOWN){
             moveDown();
         }
         if (position.getxPos() < 0 || position.getxPos() > widht || position.getyPos() < 0 || position.getyPos() > height){
@@ -61,11 +60,11 @@ public class Bullet extends GameObject{
     }
 
     public Bullet returnCopy(){
-        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life, this.isEnemyBullet);
+        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life, this.isEnemyBullet, Bullet.Direction.STOP);
         bullet.sprite = this.sprite;
         bullet.valid = this.valid;
         bullet.isEnemyBullet = this.isEnemyBullet;
-        bullet.moveDirection = this.moveDirection;
+        bullet.direction = this.direction;
         return bullet;
     }
 }
