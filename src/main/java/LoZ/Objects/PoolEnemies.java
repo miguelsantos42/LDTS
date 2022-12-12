@@ -12,25 +12,6 @@ public class PoolEnemies {
          poolEnemy = new ArrayList<>();
     }
 
-    public void moveEnemies(int width, int height){
-        for (Enemy enemy : this.poolEnemy) {
-            if(enemy.isAlive()){
-                enemy.moveRandom(width, height);
-            }
-            if(enemy.position.getyPos()<0){
-                enemy.instantKill();
-            }
-            else if(enemy.position.getyPos()>height){
-                enemy.instantKill();
-            }
-            else if(enemy.position.getxPos()>width){
-                enemy.instantKill();
-            }
-            else if(enemy.position.getxPos()<0){
-                enemy.instantKill();
-            }
-        }
-    }
 
     public void addEnemy(Enemy enemy){
         poolEnemy.add(enemy);
@@ -60,9 +41,11 @@ public class PoolEnemies {
     }
 
     public void moveEnemiesToPlayer(int width, int height, Player player, PoolBullets poolBullets){
+        double randomState;
         for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
-                enemy.moveTowardsPlayer(width, height, player, poolBullets);
+                randomState = (Math.random() * 4);
+                enemy.moveTowardsPlayer(width, height, player, poolBullets, randomState);
             }
         }
     }

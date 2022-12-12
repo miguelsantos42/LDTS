@@ -12,12 +12,12 @@ public class Enemy extends GameObject{
         super(position, size, textColor, life, 100);
         this.attackType = bulletType;
     }
-    public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets){
-        double rand = Math.random() * 4;
-        if (rand>3) {
+    public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
+
+        if (randomState>3.5) {
             moveRandom(width, height);
         }
-        else if(rand>2) {
+        else if(randomState>2) {
             if(player.getPosition().getxPos() > this.position.getxPos()){
                 this.moveRight(width);
             }
@@ -25,7 +25,7 @@ public class Enemy extends GameObject{
                 this.moveLeft();
             }
         }
-        else if(rand > 1 ) {
+        else if(randomState > 0.5) {
             if(player.getPosition().getyPos() > this.position.getyPos()){
                 this.moveUp(height);
             }

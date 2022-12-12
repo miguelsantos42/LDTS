@@ -75,7 +75,7 @@ public class Level {
     }
 
     public void enemyAction(){
-        moveEnemy();
+        moveEnemies();
 
     }
 
@@ -83,7 +83,7 @@ public class Level {
         moveBullet();
 
     }
-    public void moveEnemy() {
+    public void moveEnemies() {
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         this.enemies.checkCollision(bullets, player);
     }

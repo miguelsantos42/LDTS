@@ -20,14 +20,14 @@ public class BulletTest {
 
     @ParameterizedTest
     @MethodSource("streamCopyBullet")
-    public void streamCopyBulletYPos(Bullet bullet) {
+    public void testCopyBulletYPos(Bullet bullet) {
         Bullet newBullet = bullet.returnCopy();
         assertEquals(newBullet.getPosition().getyPos(), bullet.getPosition().getyPos());
     }
 
     @ParameterizedTest
     @MethodSource("streamCopyBullet")
-    public void streamCopyBulletPosition(Bullet bullet) {
+    public void testCopyBulletPosition(Bullet bullet) {
         Bullet newBullet = bullet.returnCopy();
         assertNotEquals(newBullet.getPosition(), bullet.getPosition());
     }
@@ -38,6 +38,36 @@ public class BulletTest {
 
         return Stream.of(
                 arguments(enemyBullet)
+        );
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("streamMoveBullet")
+    public void testMoveYBullet(Bullet bullet, Position position) {
+        bullet.moveBullet(100, 100);
+        assertEquals(bullet.getPosition().getyPos(), position.getyPos());
+    }
+
+    @ParameterizedTest
+    @MethodSource("streamMoveBullet")
+    public void testMoveXBullet(Bullet bullet, Position position) {
+        bullet.moveBullet(100, 100);
+        assertEquals(bullet.getPosition().getxPos(), position.getxPos());
+    }
+
+    private static Stream<Arguments> streamMoveBullet() {
+        Bullet enemyBullet1 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.LEFT);
+        Bullet enemyBullet2 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.RIGHT);
+        Bullet enemyBullet3 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.DOWN);
+        Bullet enemyBullet4 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.UP);
+
+        return Stream.of(
+                arguments(enemyBullet1, new Position(9,10)),
+                arguments(enemyBullet2, new Position(11,10)),
+                arguments(enemyBullet3, new Position(10,9)),
+                arguments(enemyBullet4, new Position(10,11))
+
         );
     }
 }

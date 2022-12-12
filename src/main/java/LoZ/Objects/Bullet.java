@@ -15,7 +15,7 @@ public class Bullet extends GameObject{
     private boolean valid;
     private boolean isEnemyBullet;
 
-    protected static final int SHOT_VELOCITY = 700;
+    protected static final int SHOT_VELOCITY = 20;
 
     public Direction direction = Direction.STOP;
 
@@ -40,7 +40,7 @@ public class Bullet extends GameObject{
         else if(direction == Direction.DOWN){
             moveDown();
         }
-        if (position.getxPos() < 0 || position.getxPos() > widht || position.getyPos() < 0 || position.getyPos() > height){
+        if (position.getxPos() == 0 || position.getxPos() == widht || position.getyPos() == 0 || position.getyPos() == height){
             valid = false;
         }
     }
