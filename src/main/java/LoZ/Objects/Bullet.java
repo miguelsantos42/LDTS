@@ -7,8 +7,6 @@ import com.googlecode.lanterna.TextColor;
 
 public class Bullet extends GameObject{
 
-
-
     public enum Direction{
         LEFT, RIGHT, STOP, UP, DOWN
     }
@@ -60,7 +58,13 @@ public class Bullet extends GameObject{
     }
 
     public Bullet returnCopy(){
-        Bullet bullet = new Bullet(new Position(this.position.getxPos(), this.position.getyPos()), this.size, super.color, this.life, this.isEnemyBullet, Bullet.Direction.STOP);
+        Position newPosition = new Position(position.getxPos(), position.getyPos());
+        Size newSize = new Size(size.getWidth(), size.getHeight());
+        TextColor newTextColor = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
+        Life newLife = new Life(life.getMaximumLives());
+
+        Bullet bullet = new Bullet(newPosition, newSize, newTextColor, newLife, this.isEnemyBullet, Bullet.Direction.STOP);
+
         bullet.sprite = this.sprite;
         bullet.valid = this.valid;
         bullet.isEnemyBullet = this.isEnemyBullet;
