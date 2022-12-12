@@ -15,7 +15,7 @@ public class PoolBullets{
         poolBullets = new ArrayList<>();
         Position outside = new Position(-1, -1);
         Size size = new Size(1, 1);
-        TextColor color = TextColor.ANSI.BLACK;
+        TextColor color = new TextColor.RGB(135, 122, 56);
         Life life = new Life(1);
         for (int i = 0; i < 100; i++) {
             poolBullets.add(new Bullet(outside, size, color, life, false,Bullet.Direction.STOP));
@@ -45,8 +45,7 @@ public class PoolBullets{
     public void addBullet(Bullet bulletCopy){
         for (Bullet bullet : this.poolBullets) {
             if(!bullet.isValid()){
-                bullet = bulletCopy;
-                bullet.setValid(true);
+                bullet.copy(bulletCopy);
                 System.out.println(bullet.isAlive());
                 break;
             }
@@ -76,6 +75,8 @@ public class PoolBullets{
         for (Bullet bullet : this.poolBullets) {
             if (bullet.isValid() && bullet.isAlive()){
                 bullet.draw(graphics);
+                System.out.println(bullet.getPosition().getyPos());
+                System.out.println(bullet.getPosition().getxPos());
             }
         }
     }

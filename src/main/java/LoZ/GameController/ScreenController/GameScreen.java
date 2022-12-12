@@ -61,7 +61,7 @@ abstract public class GameScreen {
             clear();
             drawText();
             refresh();
-            TimeUnit.MILLISECONDS.sleep(20);
+            TimeUnit.MILLISECONDS.sleep(10);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }

@@ -71,4 +71,19 @@ public class Bullet extends GameObject{
         bullet.direction = this.direction;
         return bullet;
     }
+
+
+    public void copy(Bullet bullet){
+        this.position = new Position(bullet.position.getxPos(), bullet.position.getyPos());
+        this.size = new Size(bullet.size.getWidth(), bullet.size.getHeight());
+        super.color = new TextColor.RGB(bullet.color.toColor().getRed(),
+                bullet.color.toColor().getGreen(),
+                bullet.color.toColor().getBlue());
+        this.life = new Life(bullet.life.getMaximumLives());
+
+        this.isEnemyBullet = bullet.isEnemyBullet;
+        this.direction = Bullet.Direction.STOP;
+        this.sprite = bullet.sprite;
+        this.valid = valid;
+    }
 }

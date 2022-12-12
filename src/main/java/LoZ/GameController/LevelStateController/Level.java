@@ -75,22 +75,15 @@ public class Level {
     }
 
     public void enemyAction(){
-        moveEnemies();
-
-    }
-
-    public void bulletsAction(){
-        moveBullet();
-
-    }
-    public void moveEnemies() {
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         this.enemies.checkCollision(bullets, player);
+
     }
 
-    public void moveBullet() {
-        this.bullets.moveBullets(this.screenSize.getWidth(),this.screenSize.getHeight());
+    public void bulletsAction() {
+        this.bullets.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
         this.bullets.checkCollision(enemies, player);
+
     }
 
     public boolean EnemiesAreDefetead(){
