@@ -41,7 +41,6 @@ public class BulletTest {
         );
     }
 
-
     @ParameterizedTest
     @MethodSource("streamMoveBullet")
     public void testMoveYBullet(Bullet bullet, Position position) {
@@ -70,4 +69,6 @@ public class BulletTest {
 
         );
     }
+
+
 }

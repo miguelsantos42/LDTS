@@ -218,29 +218,29 @@ public class GameObjectTest {
 
     @ParameterizedTest
     @MethodSource("streamCalculateDistance")
-    public void testCalculateDistance(Player player, Enemy enemy, boolean expected){
-        int lifePlayer = player.getLife().getCurrentLives();
-        player.checkCollision(enemy);
-        assertEquals(expected, player.getLife().getCurrentLives() == lifePlayer);
+    public void testCalculateYDistance(Bullet player, Bullet enemy, Size size){
+        Size distance = player.calculateDistance(enemy);
+        assertEquals(size.getHeight(), distance.getHeight());
+    }
+
+    @ParameterizedTest
+    @MethodSource("streamCalculateDistance")
+    public void testCalculateXDistance(Bullet player, Bullet enemy, Size size){
+        Size distance = player.calculateDistance(enemy);
+        assertEquals(size.getWidth(), distance.getWidth());
     }
 
 
     private static Stream<Arguments> streamCalculateDistance() {
-        Player gameObject = new Player(new Position(0, 0), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1));
-
-        Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.STOP);
-
-        Enemy enemy1 = new Enemy(new Position(100, 200), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);
-        Enemy enemy2 = new Enemy(new Position(300, 300), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);
-        Enemy enemy3 = new Enemy(new Position(2, 1), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);
-        Enemy enemy4 = new Enemy(new Position(300, 200), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), enemyBullet);
-
+        Bullet enemyBullet1 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.LEFT);
+        Bullet enemyBullet2 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.RIGHT);
+        Bullet enemyBullet3 = new Bullet(new Position(20,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.DOWN);
+        Bullet enemyBullet4 = new Bullet(new Position(0,20), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.UP);
 
         return Stream.of(
-                arguments(gameObject,  enemy1, true),
-                arguments(gameObject,  enemy2, true),
-                arguments(gameObject,  enemy3, false),
-                arguments(gameObject,  enemy4, true)
+                arguments(enemyBullet1, enemyBullet2, new Size(0, 0)),
+                arguments(enemyBullet1, enemyBullet3, new Size(-10, 10)),
+                arguments(enemyBullet1, enemyBullet4, new Size(10, -10))
         );
     }
 
