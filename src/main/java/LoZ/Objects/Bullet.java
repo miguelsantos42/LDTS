@@ -60,7 +60,7 @@ public class Bullet extends GameObject{
     }
 
     public Bullet returnCopy(){
-        Bullet bullet = new Bullet(this.position, this.size, super.color, this.life, this.isEnemyBullet, Bullet.Direction.STOP);
+        Bullet bullet = new Bullet(new Position(this.position.getxPos(), this.position.getyPos()), this.size, super.color, this.life, this.isEnemyBullet, Bullet.Direction.STOP);
         bullet.sprite = this.sprite;
         bullet.valid = this.valid;
         bullet.isEnemyBullet = this.isEnemyBullet;

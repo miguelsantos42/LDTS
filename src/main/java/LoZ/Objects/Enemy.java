@@ -35,7 +35,6 @@ public class Enemy extends GameObject{
         }
         else{
             doAttack(poolBullets, player);
-            System.out.println("Attack");
         }
     }
     public void moveRandom(int width, int height){
@@ -58,6 +57,7 @@ public class Enemy extends GameObject{
         Bullet bullet = attackType.returnCopy();
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
+        bullet.setValid(true);
         Size distance = calculateDistance(player);
         if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
             if (distance.getHeight() > 0){
