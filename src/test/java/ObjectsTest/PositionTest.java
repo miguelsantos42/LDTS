@@ -37,7 +37,7 @@ public class PositionTest {
 
         this.position.setyPos(yPos);
 
-        assertEquals(y - yPos, this.position.getyPos());
+        assertEquals(y + yPos, this.position.getyPos());
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ public class PositionTest {
 
         this.position.setxPos(xPos);
 
-        assertEquals(x - xPos, this.position.getxPos());
+        assertEquals(x + xPos, this.position.getxPos());
     }
 
 
