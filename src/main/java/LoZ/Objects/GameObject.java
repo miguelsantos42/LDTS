@@ -11,7 +11,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.concurrent.TimeUnit;
 
 abstract public class GameObject {
-    Position position;
+    public Position position;
     Size size;
     private final TextColor color;
     private  Life life;

@@ -53,8 +53,16 @@ public class Bullet extends GameObject{
         }
     }*/
 
+    public void notUsed() {
+        this.position = outside;
+        this.valid = false;
+    }
+
     public boolean isEnemy() {
         return isEnemyBullet;
     }
 
+    public void used(Position position, String z, boolean b) {
+
+    }
 }
