@@ -24,65 +24,27 @@ public class PoolBullets{
 
     public void moveBullets(int width, int height){
         for (Bullet bullet : this.poolBullets) {
-            if(bullet.isAlive() && bullet.isValid()){
+            if(bullet.isAlive()){
                 bullet.moveBullet(width, height);
-            }
-            if(bullet.position.getyPos()<0){
-                bullet.instantKill();
-                bullet.setValid(false);
-            }
-            else if(bullet.position.getyPos()>height){
-                bullet.instantKill();
-                bullet.setValid(false);
-            }
-            else if(bullet.position.getxPos()>width){
-                bullet.instantKill();
-                bullet.setValid(false);
-            }
-            else if(bullet.position.getxPos()<0){
-                bullet.instantKill();
-                bullet.setValid(false);
             }
         }
     }
 
     public void addBullet(Bullet bulletCopy){
         for (Bullet bullet : this.poolBullets) {
-            if(!bullet.isValid()){
+            if(!bullet.isAlive()){
                 bullet.copy(bulletCopy);
-                bullet.setValid(true);
-                System.out.println(bullet.isAlive());
-                System.out.println(bullet.isValid());
                 break;
             }
         }
     }
 
-    public void checkCollision(PoolEnemies poolEnemies, Player player){
-        for (Bullet bullet : this.poolBullets) {
-            if (!bullet.isValid()){
-                continue;
-            }
-            if(bullet.isAlive() && bullet.isEnemy()){
-                player.checkCollision(bullet);
-            }
-            else if (bullet.isAlive() && !bullet.isEnemy()) {
-                for (Enemy enemy : poolEnemies.getPoolEnemy()) {
-                    enemy.checkCollision(bullet);
-                }
-            }
-            if(!bullet.isAlive()){
-                bullet.setValid(false);
-            }
-        }
-    }
+
 
     public void drawBullets(TextGraphics graphics){
         for (Bullet bullet : this.poolBullets) {
-            if (bullet.isValid() && bullet.isAlive()){
+            if (bullet.isAlive()){
                 bullet.draw(graphics);
-                System.out.println(bullet.getPosition().getyPos());
-                System.out.println(bullet.getPosition().getxPos());
             }
         }
     }

@@ -63,23 +63,50 @@ public class Level {
 
     public void movePlayerLeft(){
         this.player.moveLeft();
+        checkPlayerCollisions();
     }
     public void movePlayerRight(){
         this.player.moveRight(this.screenSize.getWidth());
+        checkPlayerCollisions();
     }
     public void movePlayerUp(){
         this.player.moveUp(this.screenSize.getHeight());
+        checkPlayerCollisions();
     }
     public void movePlayerDown(){
         this.player.moveDown();
+        checkPlayerCollisions();
     }
 
     public void enemyAction(){
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
+        checkAllCollisions();
     }
 
     public void bulletsAction() {
         this.bullets.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
+        checkAllCollisions();
+    }
+
+    public void checkAllCollisions(){
+        for (Enemy enemy : this.enemies.getPoolEnemy()) {
+            for(Bullet bullet : this.bullets.getPoolBullets()){
+                bullet.checkCollision(enemy);
+
+            }
+            enemy.checkCollision(this.player);
+        }
+        for (Bullet bullet : this.bullets.getPoolBullets()) {
+            bullet.checkCollision(this.player);
+        }
+    }
+    public void checkPlayerCollisions(){
+        for (Enemy enemy : this.enemies.getPoolEnemy()) {
+            enemy.checkCollision(this.player);
+        }
+        for (Bullet bullet : this.bullets.getPoolBullets()) {
+            bullet.checkCollision(this.player);
+        }
     }
 
     public boolean EnemiesAreDefetead(){

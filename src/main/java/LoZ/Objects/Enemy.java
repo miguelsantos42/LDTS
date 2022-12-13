@@ -1,9 +1,12 @@
 package LoZ.Objects;
 
+import LoZ.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
+
+import java.util.concurrent.TimeUnit;
 
 public class Enemy extends GameObject{
 
@@ -35,6 +38,11 @@ public class Enemy extends GameObject{
         }
         else{
             doAttack(poolBullets, player);
+            try {
+                TimeUnit.MILLISECONDS.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void moveRandom(int width, int height, double randomState){
@@ -57,10 +65,9 @@ public class Enemy extends GameObject{
         Bullet bullet = attackType.returnCopy();
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
-        bullet.setValid(true);
         Size distance = calculateDistance(player);
-        if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
-            if (distance.getHeight() > 0){
+        if (Math.abs(distance.getHeight()) < Math.abs(distance.getWidth())){
+            if (distance.getHeight() < 0){
                 bullet.direction = Bullet.Direction.DOWN;
             }
             else{
@@ -68,13 +75,16 @@ public class Enemy extends GameObject{
             }
         }
         else{
-            if (distance.getWidth() > 0){
+            if (distance.getWidth() < 0){
                 bullet.direction = Bullet.Direction.LEFT;
+                bullet.position.setxPos(- 1);
             }
             else{
                 bullet.direction = Bullet.Direction.RIGHT;
             }
         }
         poolBullets.addBullet(bullet);
+
+
     }
 }

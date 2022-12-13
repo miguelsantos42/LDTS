@@ -86,9 +86,10 @@ abstract public class GameObject {
             return;
         }
         if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
+
             this.life.kill();
             otherObject.life.kill();
-            System.out.println("Collision");
+            System.out.println("Enemy: " + this.isAlive() + " Bullet: " + otherObject.isAlive());
         }
     }
     public Position getPosition() {
@@ -110,4 +111,5 @@ abstract public class GameObject {
     public Size calculateDistance(GameObject otherObject){
         return this.position.calculateDistance(otherObject.position);
     }
+
 }

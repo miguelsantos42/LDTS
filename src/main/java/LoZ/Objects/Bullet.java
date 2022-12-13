@@ -12,7 +12,7 @@ public class Bullet extends GameObject{
     }
 
     private String sprite;
-    private boolean valid;
+
     private boolean isEnemyBullet;
 
     protected static final int SHOT_VELOCITY = 20;
@@ -22,17 +22,22 @@ public class Bullet extends GameObject{
 
     public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet, Direction direction) {
         super(position, size, textColor, life, SHOT_VELOCITY);
-        valid = false;
+        this.instantKill();
         this.isEnemyBullet = isEnemyBullet;
         this.direction = direction;
     }
 
     public void moveBullet(int widht, int height){
+        if (position.getxPos() <= 0 || position.getxPos() + size.getWidth() >= widht
+                || position.getyPos() <= 0 || position.getyPos() + size.getHeight() >= height){
+            life.instantKill();
+            return;
+        }
         if(direction == Direction.LEFT){
             moveLeft();
         }
         else if(direction == Direction.RIGHT){
-            moveRight(height);
+            moveRight(widht);
         }
         else if(direction == Direction.UP){
             moveUp(height);
@@ -40,18 +45,9 @@ public class Bullet extends GameObject{
         else if(direction == Direction.DOWN){
             moveDown();
         }
-        if (position.getxPos() == 0 || position.getxPos() == widht || position.getyPos() == 0 || position.getyPos() == height){
-            valid = false;
-        }
     }
 
-    public boolean isValid() {
-        return valid;
-    }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
 
     public boolean isEnemy() {
         return isEnemyBullet;
@@ -66,7 +62,6 @@ public class Bullet extends GameObject{
         Bullet bullet = new Bullet(newPosition, newSize, newTextColor, newLife, this.isEnemyBullet, Bullet.Direction.STOP);
 
         bullet.sprite = this.sprite;
-        bullet.valid = this.valid;
         bullet.isEnemyBullet = this.isEnemyBullet;
         bullet.direction = this.direction;
         return bullet;
@@ -82,8 +77,7 @@ public class Bullet extends GameObject{
         this.life = new Life(bullet.life.getMaximumLives());
 
         this.isEnemyBullet = bullet.isEnemyBullet;
-        this.direction = Bullet.Direction.STOP;
+        this.direction = bullet.direction;
         this.sprite = bullet.sprite;
-        this.valid = valid;
     }
 }
