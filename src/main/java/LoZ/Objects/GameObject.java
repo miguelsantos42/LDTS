@@ -39,6 +39,7 @@ abstract public class GameObject {
 
         }
         screen.putString(position.getxPos(), position.getyPos(), "a");
+        screen.putString(0, 0, "a");
     }
 
     public void moveRight(int width){

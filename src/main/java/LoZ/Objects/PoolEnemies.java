@@ -21,16 +21,6 @@ public class PoolEnemies {
         return poolEnemy;
     }
 
-    public void checkCollision(PoolBullets poolBullets, Player player){
-        for (Enemy enemy : this.poolEnemy) {
-            if(enemy.isAlive()){
-                for (Bullet bullet : poolBullets.getPoolBullets()) {
-                    enemy.checkCollision(bullet);
-                }
-            }
-            enemy.checkCollision(player);
-        }
-    }
 
     public void drawEnemies(TextGraphics graphics){
         for (Enemy enemy : this.poolEnemy) {
