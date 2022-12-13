@@ -42,9 +42,23 @@ public class Position{
                 (otherPosition.getyPos() + otherSize.getHeight() >= this.y && otherPosition.getyPos() + otherSize.getHeight() <= this.y + size.getHeight())){
             return true;
         }
-        else{
+        //Possibilidade de como verificar se há colisão (não está a funcionar neste momento)
+        /*int xmin=this.getxPos();
+        int xmax=this.getxPos()+size.getWidth();
+        int ymin=this.getyPos();
+        int ymax=this.getyPos()+size.getHeight();
+        for (int i=0; i<(otherSize.getWidth()); i++)
+        {
+            for (int j=0; j<(otherSize.getHeight()); j++) {
+                if((otherPosition.getxPos()+i)>xmin & (otherPosition.getxPos()+i)<xmax & (otherPosition.getyPos()+j)>ymin & (otherPosition.getyPos()+j)<ymax)
+                    return true;
+            }
+
+        }*/
+        else
             return false;
-        }
+
+
     }
 
     public Size calculateDistance(Position position) {

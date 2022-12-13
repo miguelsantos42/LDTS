@@ -41,8 +41,15 @@ public class Level {
         Life enemyLife = new Life(2);
         Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
 
+        Position enemyPosition1 = new Position(15,15);
+        Size enemySize1 = new Size(2,2);
+        TextColor enemyColor1 = new TextColor.RGB(135, 122, 56);
+        Life enemyLife1 = new Life(2);
+        Bullet enemyBullet1 = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
+
         this.enemies = new PoolEnemies();
         this.enemies.addEnemy(new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet));
+        this.enemies.addEnemy(new Enemy(enemyPosition1, enemySize1, enemyColor1, enemyLife1, enemyBullet1));
 
         bullets = new PoolBullets();
 
