@@ -67,18 +67,8 @@ public class Enemy extends GameObject{
         bullet.position.setyPos(this.position.getyPos());
         Size distance = calculateDistance(player);
         //Nao Funciona completamente
-        if (Math.abs(distance.getHeight()) < Math.abs(distance.getWidth())){
+        if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
             if (distance.getHeight() > 0){
-                bullet.direction = Bullet.Direction.DOWN;
-                bullet.position.setxPos(this.size.getHeight());
-            }
-            else{
-                bullet.direction = Bullet.Direction.UP;
-                bullet.position.setxPos(-1);
-            }
-        }
-        else{
-            if (distance.getWidth() > 0){
                 bullet.direction = Bullet.Direction.LEFT;
                 bullet.position.setyPos(this.size.getWidth());
             }
@@ -87,6 +77,18 @@ public class Enemy extends GameObject{
                 bullet.position.setyPos(-1);
             }
         }
+
+        else if ((Math.abs(distance.getHeight()) < Math.abs(distance.getWidth())) || (Math.abs(distance.getHeight()) == Math.abs(distance.getWidth()))){
+            if (distance.getWidth() > 0){
+                bullet.direction = Bullet.Direction.DOWN;
+                bullet.position.setxPos(this.size.getHeight());
+            }
+            else{
+                bullet.direction = Bullet.Direction.UP;
+                bullet.position.setxPos(-1);
+            }
+        }
+
         poolBullets.addBullet(bullet);
 
 
