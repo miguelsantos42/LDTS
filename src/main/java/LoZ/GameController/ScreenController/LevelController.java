@@ -30,11 +30,15 @@ public class LevelController extends GameScreen{
         console.addKeyBoardListener(Game.getInstance().getKeyBoardObserver());
         console.run();
 
-        while(true){
+        while(gameStatus()){
             Game.getInstance().getKeyBoardObserver().setConsole(console);
         }
 
 
+    }
+
+    public boolean gameStatus(){
+        return console.gameStatus();
     }
 
     public static TerminalScreen getScreen(){return screen;}

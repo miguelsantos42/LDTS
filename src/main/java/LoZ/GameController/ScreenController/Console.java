@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 public class Console{
 
 
+
+
     public enum Action{
         UP,
         DOWN,
@@ -141,5 +143,9 @@ public class Console{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean gameStatus() {
+        return !exitThread;
     }
 }

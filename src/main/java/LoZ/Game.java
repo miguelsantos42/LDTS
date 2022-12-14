@@ -53,6 +53,9 @@ public class Game{
     public void start() throws IOException, URISyntaxException, FontFormatException {
         while (true){
             levelController.run();
+            if (!levelController.gameStatus()){
+                break;
+            }
         }
     }
 
