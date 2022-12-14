@@ -22,11 +22,16 @@ public class Level {
     private PoolEnemies enemies;
 
     private PoolBullets bullets;
+    private PoolBullets bulletsP;
 
     public static TextGraphics screen;
 
     private final TextColor playerColor = new TextColor.RGB(255, 255, 255);
     private final TextColor enemyColor = new TextColor.RGB(135, 122, 56);
+
+    private final TextColor bulletEnemyColor = new TextColor.RGB(255, 0, 0);
+
+    private final TextColor bulletPlayerColor = new TextColor.RGB(148, 0, 211);
 
     Enemy typeEnemy;
 
@@ -47,12 +52,16 @@ public class Level {
         Size enemySize = new Size(2,2);
 
         Life enemyLife = new Life(2);
-        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
+        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), bulletEnemyColor, new Life(1), true, Bullet.Direction.STOP);
         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
-        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), playerColor, new Life(1), true, Bullet.Direction.STOP);
+        //enemyBullet = new Bullet(new Position(0,0), new Size(1,1), playerColor, new Life(1), true, Bullet.Direction.STOP);
+
+        playerBullet = new Bullet(new Position(0,0), new Size(1,1), bulletPlayerColor, new Life(1), false, Bullet.Direction.STOP);
 
         this.enemies = new PoolEnemies(typeEnemy);
         bullets = new PoolBullets(enemyBullet);
+        bulletsP = new PoolBullets(playerBullet);
+
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
 
@@ -89,6 +98,11 @@ public class Level {
         checkPlayerCollisions();
     }
 
+    public void playerAttack(){
+        this.player.doAttackPlayer(bulletsP);
+    }
+
+
     public void enemyAction(){
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         maybeAddEnemy();
@@ -97,6 +111,7 @@ public class Level {
 
     public void bulletsAction() {
         this.bullets.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
+        this.bulletsP.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
         checkAllCollisions();
     }
 

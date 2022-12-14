@@ -47,6 +47,7 @@ public class Console{
                 level.movePlayerUp();
                 break;
             case ATTACK:
+                level.playerAttack();
                 break;
             case DEFFEND:
                 break;

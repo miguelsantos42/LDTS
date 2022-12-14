@@ -15,7 +15,7 @@ public class Bullet extends GameObject{
 
     private boolean isEnemyBullet;
 
-    protected static final int SHOT_VELOCITY = 6;
+    protected static final int SHOT_VELOCITY = 5;
 
     public Direction direction = Direction.STOP;
 
