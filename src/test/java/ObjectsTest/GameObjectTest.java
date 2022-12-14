@@ -27,9 +27,9 @@ public class GameObjectTest {
     }
 
     private static Stream<Arguments> streamDownMoveLimit() {
-        Player gameObject1 = new Player(new Position(1, 0), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, -10), new Size(3,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(3, -1), new Size(10,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 0), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, -10), new Size(3,20), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(3, -1), new Size(10,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -48,9 +48,9 @@ public class GameObjectTest {
 
 
     private static Stream<Arguments> streamDownMoveChanged() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -69,9 +69,9 @@ public class GameObjectTest {
     }
 
     private static Stream<Arguments> streamUpMoveLimit() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(3, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(3, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -90,9 +90,9 @@ public class GameObjectTest {
 
 
     private static Stream<Arguments> streamUpMoveChanged() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -112,9 +112,9 @@ public class GameObjectTest {
     }
 
     private static Stream<Arguments> streamLeftMoveLimit() {
-        Player gameObject1 = new Player(new Position(0, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(-1, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(-10, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(0, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(-1, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(-10, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -133,9 +133,9 @@ public class GameObjectTest {
 
 
     private static Stream<Arguments> streamLeftMoveChanged() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -154,9 +154,9 @@ public class GameObjectTest {
     }
 
     private static Stream<Arguments> streamRightMoveLimit() {
-        Player gameObject1 = new Player(new Position(0, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(-1, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(-10, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(0, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(-1, 1), new Size(3,3), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(-10, 1), new Size(20,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -175,9 +175,9 @@ public class GameObjectTest {
 
 
     private static Stream<Arguments> streamRightMoveChanged() {
-        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
-        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject1 = new Player(new Position(1, 2), new Size(1,2), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject2 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
+        Player gameObject3 = new Player(new Position(2, 1), new Size(1,20), new TextColor.RGB(255, 255, 255), new Life(1), );
 
 
         return Stream.of(
@@ -198,7 +198,7 @@ public class GameObjectTest {
 
 
     private static Stream<Arguments> streamCheckCollision() {
-        Player gameObject = new Player(new Position(0, 0), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1));
+        Player gameObject = new Player(new Position(0, 0), new Size(100,200), new TextColor.RGB(255, 255, 255), new Life(1), );
 
         Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.STOP);
 
