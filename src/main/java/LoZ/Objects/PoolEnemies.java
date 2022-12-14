@@ -18,13 +18,12 @@ public class PoolEnemies {
             poolEnemy.add(new Enemy(typeEnemy));
             poolEnemy.get(i).instantKill();
         }
+
     }
     public void addEnemy(Enemy enemyCopy, Player player,int width,int height){
-        for (Enemy enemy : this.poolEnemy) {
-            if(!enemy.isAlive()) {
-                enemy = new Enemy(enemyCopy);
-                enemy.position.randomizePosition(player, enemy.getSize(), width, height);
-                System.out.println(enemy.isAlive());
+        for (int i = 0; i < 25; i++) {
+            if(!poolEnemy.get(i).isAlive()) {
+                poolEnemy.get(i).copy(enemyCopy);
                 break;
             }
         }
@@ -35,6 +34,9 @@ public class PoolEnemies {
 
 
     public void drawEnemies(TextGraphics graphics){
+        for (Enemy enemy : this.poolEnemy) {
+            System.out.println(enemy.isAlive());
+        }
         for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
                 enemy.draw(graphics);

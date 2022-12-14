@@ -51,6 +51,8 @@ public class Level {
         this.enemies = new PoolEnemies(typeEnemy);
         bullets = new PoolBullets(enemyBullet1);
 
+        this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
+
 
     }
 
