@@ -118,4 +118,16 @@ public class Enemy extends GameObject{
         this.attackType = new Bullet(enemy.attackType);
     }
 
+    public void copy(Enemy enemy){
+        this.position = new Position(enemy.position.getxPos(), enemy.position.getyPos());
+        this.size = new Size(enemy.size.getWidth(), enemy.size.getHeight());
+        super.color = new TextColor.RGB(enemy.color.toColor().getRed(),
+                enemy.color.toColor().getGreen(),
+                enemy.color.toColor().getBlue());
+        this.life = new Life(enemy.life.getMaximumLives());
+        this.speed = enemy.speed;
+        this.attackType = new Bullet(enemy.attackType);
+
+    }
+
 }

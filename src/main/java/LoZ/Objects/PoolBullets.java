@@ -28,9 +28,9 @@ public class PoolBullets{
     }
 
     public void addBullet(Bullet bulletCopy){
-        for (Bullet bullet : this.poolBullets) {
-            if(!bullet.isAlive()){
-                bullet = new Bullet(bulletCopy);
+        for (int i = 0; i < 25; i++) {
+            if(!poolBullets.get(i).isAlive()) {
+                poolBullets.get(i).copy(bulletCopy);
                 break;
             }
         }
