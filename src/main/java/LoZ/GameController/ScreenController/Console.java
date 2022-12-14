@@ -60,7 +60,8 @@ public class Console{
             case DEFFEND:
                 break;
             case QUIT:
-                exitThread = true;
+                close();
+
                 break;
         }
     }
@@ -98,10 +99,12 @@ public class Console{
 
         new Thread(() -> {
             try {
+
                 while (!exitThread){
                     Thread.sleep(800);
+                    checkGameStatus();
                 }
-            }catch (InterruptedException e){
+            }catch (InterruptedException | IOException e){
                 e.printStackTrace();
             }
 
@@ -124,11 +127,19 @@ public class Console{
 
     private void checkGameStatus() throws IOException {
         if(!this.level.playerIsAlive()){
-            exitThread = true;
+            close();
         }
-        if(!this.level.EnemiesAreDefetead()){
+        if(this.level.EnemiesAreDefetead()){
             exitThread = true;
         }
     }
 
+    void close() {
+        exitThread = true;
+        try {
+            LevelController.getScreen().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
