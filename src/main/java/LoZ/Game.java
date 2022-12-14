@@ -48,7 +48,7 @@ public class Game{
         return keyBoardObserver;
     }
 
-
+    //
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
         while (true){

@@ -1,6 +1,7 @@
 package LoZ.GameController.LevelStateController;
 
 
+import LoZ.GameController.ScreenController.Console;
 import LoZ.Objects.*;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
@@ -22,7 +23,6 @@ public class Level {
     private PoolEnemies enemies;
 
     private PoolBullets bullets;
-    private PoolBullets bulletsP;
 
     public static TextGraphics screen;
 
@@ -46,7 +46,8 @@ public class Level {
         Size playerSize = new Size(3,3);
 
         Life playerLife = new Life(2);
-        this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
+        playerBullet = new Bullet(new Position(0,0), new Size(1,1), bulletPlayerColor, new Life(1), false, Bullet.Direction.STOP);
+        this.player = new Player(playerPosition, playerSize, playerColor, playerLife, playerBullet);
 
         Position enemyPosition = new Position(20,20);
         Size enemySize = new Size(2,2);
@@ -54,13 +55,9 @@ public class Level {
         Life enemyLife = new Life(2);
         enemyBullet = new Bullet(new Position(0,0), new Size(1,1), bulletEnemyColor, new Life(1), true, Bullet.Direction.STOP);
         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
-        //enemyBullet = new Bullet(new Position(0,0), new Size(1,1), playerColor, new Life(1), true, Bullet.Direction.STOP);
-
-        playerBullet = new Bullet(new Position(0,0), new Size(1,1), bulletPlayerColor, new Life(1), false, Bullet.Direction.STOP);
 
         this.enemies = new PoolEnemies(typeEnemy);
         bullets = new PoolBullets(enemyBullet);
-        bulletsP = new PoolBullets(playerBullet);
 
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
@@ -99,8 +96,8 @@ public class Level {
         checkPlayerCollisions();
     }
 
-    public void playerAttack(){
-        this.player.doAttackPlayer(bulletsP);
+    public void playerAttack(Console.Action lastAction){
+        this.player.doAttack(bullets, lastAction);
     }
 
 
@@ -112,7 +109,6 @@ public class Level {
 
     public void bulletsAction() {
         this.bullets.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
-        this.bulletsP.moveBullets(this.screenSize.getWidth(), this.screenSize.getHeight());
         checkAllCollisions();
     }
 
@@ -136,7 +132,9 @@ public class Level {
             enemy.checkCollision(this.player);
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
-            bullet.checkCollision(this.player);
+            if (bullet.isEnemy()) {
+                bullet.checkCollision(this.player);
+            }
         }
     }
 

@@ -36,28 +36,25 @@ public class Console{
 
     }
 
-    public static TerminalPosition lastMovement = new TerminalPosition(0, 0);
+    public static Action lastMovement = Action.LEFT;
 
     public void keyPressed(Action action) {
+
         switch (action) {
             case LEFT:
                 level.movePlayerLeft();
-                lastMovement = lastMovement.withRelativeColumn(-1);
                 break;
             case RIGHT:
                 level.movePlayerRight();
-                lastMovement = lastMovement.withRelativeColumn(1);
                 break;
             case DOWN:
                 level.movePlayerDown();
-                lastMovement = lastMovement.withRelativeRow(1);
                 break;
             case UP:
                 level.movePlayerUp();
-                lastMovement = lastMovement.withRelativeRow(-1);
                 break;
             case ATTACK:
-                level.playerAttack();
+                level.playerAttack(lastMovement);
                 break;
             case DEFFEND:
                 break;
@@ -65,6 +62,9 @@ public class Console{
                 close();
 
                 break;
+        }
+        if (action != Action.QUIT && action != Action.DEFFEND && action != Action.ATTACK) {
+            lastMovement = action;
         }
     }
 

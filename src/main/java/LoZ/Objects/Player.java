@@ -12,13 +12,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Player extends GameObject{
 
     Bullet attackType;
-    TerminalPosition lastMovement = Console.lastMovement;
-
     int score;
+
     public Player(Position position, Size size, TextColor textColor, Life life) {
 
         super(position, size, textColor, life, 10);
-        score = 0;
     }
 
     public void doAttackPlayer(PoolBullets poolBullets){
