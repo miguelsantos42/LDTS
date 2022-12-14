@@ -34,29 +34,26 @@ public class Position{
     }
 
     public boolean hasCollision(Position otherPosition, Size otherSize, Size size){
-        if ((otherPosition.getxPos() >= this.x && otherPosition.getxPos() <= this.x + size.getWidth()) &&
-                (otherPosition.getyPos() >= this.y && otherPosition.getyPos() <= this.y + size.getHeight())){
-            return true;
-        }
-        else if ((otherPosition.getxPos() + otherSize.getWidth() >= this.x && otherPosition.getxPos() + otherSize.getWidth() <= this.x + size.getWidth()) &&
-                (otherPosition.getyPos() + otherSize.getHeight() >= this.y && otherPosition.getyPos() + otherSize.getHeight() <= this.y + size.getHeight())){
-            return true;
-        }
-        //Possibilidade de como verificar se há colisão (não está a funcionar neste momento)
-        /*int xmin=this.getxPos();
-        int xmax=this.getxPos()+size.getWidth();
-        int ymin=this.getyPos();
-        int ymax=this.getyPos()+size.getHeight();
+        int xmin=this.x;
+        int xmax=this.x+size.getWidth();
+        int ymin=this.y;
+        int ymax=this.y+size.getHeight();
+        int count=0;
         for (int i=0; i<(otherSize.getWidth()); i++)
         {
             for (int j=0; j<(otherSize.getHeight()); j++) {
-                if((otherPosition.getxPos()+i)>xmin & (otherPosition.getxPos()+i)<xmax & (otherPosition.getyPos()+j)>ymin & (otherPosition.getyPos()+j)<ymax)
-                    return true;
+                if((otherPosition.getxPos()+i)>=xmin & (otherPosition.getxPos()+i)<=xmax & (otherPosition.getyPos()+j)>=ymin & (otherPosition.getyPos()+j)<=ymax)
+                    count++;
             }
 
-        }*/
-        else
+        }
+        if (count!=0) {
+            return true;
+        }
+
+        else {
             return false;
+        }
 
 
     }
