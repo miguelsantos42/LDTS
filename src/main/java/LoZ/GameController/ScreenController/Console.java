@@ -2,7 +2,10 @@ package LoZ.GameController.ScreenController;
 
 import LoZ.GameController.LevelStateController.Level;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.io.IOException;
@@ -31,20 +34,25 @@ public class Console{
 
     }
 
+    public static TerminalPosition lastMovement = new TerminalPosition(0, 0);
 
     public void keyPressed(Action action) {
         switch (action) {
             case LEFT:
                 level.movePlayerLeft();
+                lastMovement = lastMovement.withRelativeColumn(-1);
                 break;
             case RIGHT:
                 level.movePlayerRight();
+                lastMovement = lastMovement.withRelativeColumn(1);
                 break;
             case DOWN:
                 level.movePlayerDown();
+                lastMovement = lastMovement.withRelativeRow(1);
                 break;
             case UP:
                 level.movePlayerUp();
+                lastMovement = lastMovement.withRelativeRow(-1);
                 break;
             case ATTACK:
                 level.playerAttack();
