@@ -25,31 +25,31 @@ public class Level {
 
     public static TextGraphics screen;
 
+    private final TextColor playerColor = new TextColor.RGB(255, 255, 255);
+    private final TextColor enemyColor = new TextColor.RGB(135, 122, 56);
+
     Enemy typeEnemy;
 
     Bullet enemyBullet;
+    Bullet playerBullet;
+
     public Level(TextGraphics screen){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
 
         Position playerPosition = new Position(10,10);
         Size playerSize = new Size(3,3);
-        TextColor playerColor = new TextColor.RGB(255, 255, 255);
+
         Life playerLife = new Life(2);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
 
         Position enemyPosition = new Position(20,20);
         Size enemySize = new Size(2,2);
-        TextColor enemyColor = new TextColor.RGB(135, 122, 56);
-        Life enemyLife = new Life(2);
-        Bullet enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
 
-        Position enemyPosition1 = new Position(15,15);
-        Size enemySize1 = new Size(2,2);
-        TextColor enemyColor1 = new TextColor.RGB(135, 122, 56);
-        Life enemyLife1 = new Life(2);
-         enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
-         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
+        Life enemyLife = new Life(2);
+        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
+        typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
+        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), playerColor, new Life(1), true, Bullet.Direction.STOP);
 
         this.enemies = new PoolEnemies(typeEnemy);
         bullets = new PoolBullets(enemyBullet);
@@ -103,13 +103,16 @@ public class Level {
     public void checkAllCollisions(){
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
             for(Bullet bullet : this.bullets.getPoolBullets()){
-                bullet.checkCollision(enemy);
-
+                if (!bullet.isEnemy()) {
+                    bullet.checkCollision(enemy);
+                }
             }
             enemy.checkCollision(this.player);
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
-            bullet.checkCollision(this.player);
+            if (bullet.isEnemy()) {
+                bullet.checkCollision(this.player);
+            }
         }
     }
     public void checkPlayerCollisions(){

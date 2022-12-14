@@ -39,7 +39,6 @@ abstract public class GameObject {
 
         }
         screen.putString(position.getxPos(), position.getyPos(), "a");
-        screen.putString(0, 0, "a");
     }
 
     public void moveRight(int width){
@@ -90,7 +89,6 @@ abstract public class GameObject {
 
             this.life.kill();
             otherObject.life.kill();
-            System.out.println("Enemy: " + this.isAlive() + " Bullet: " + otherObject.isAlive());
         }
     }
     public Position getPosition() {
