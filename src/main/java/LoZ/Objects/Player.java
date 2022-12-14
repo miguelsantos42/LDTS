@@ -7,14 +7,18 @@ import LoZ.Objects.Attributes.Size;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Player extends GameObject{
 
     Bullet attackType;
     TerminalPosition lastMovement = Console.lastMovement;
+
+    int score;
     public Player(Position position, Size size, TextColor textColor, Life life) {
 
         super(position, size, textColor, life, 10);
+        score = 0;
     }
 
     public void doAttackPlayer(PoolBullets poolBullets){
@@ -45,5 +49,17 @@ public class Player extends GameObject{
         }
 
         poolBullets.addBullet(bullet);
+    }
+
+    public void drawInfo(TextGraphics screen) {
+        screen.setForegroundColor(TextColor.ANSI.RED);
+        screen.putString(1 , 1, String.valueOf(life.getCurrentLives()));
+        screen.putString(1+1 , 1,"/");
+        screen.putString(1+2 , 1, String.valueOf(life.getMaximumLives()));
+        screen.putString(1+3 , 1, " lifes");
+
+        screen.putString(15 , 1, String.valueOf(score));
+        screen.putString(16 , 1, " score");
+
     }
 }
