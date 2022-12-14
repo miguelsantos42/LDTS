@@ -11,14 +11,11 @@ import java.util.ArrayList;
 public class PoolBullets{
     private ArrayList<Bullet> poolBullets;
 
-    public PoolBullets() {
+    public PoolBullets(Bullet typeBullet) {
         poolBullets = new ArrayList<>();
-        Position outside = new Position(-1, -1);
-        Size size = new Size(2, 2);
-        TextColor color = new TextColor.RGB(135, 122, 56);
-        Life life = new Life(2);
         for (int i = 0; i < 100; i++) {
-            poolBullets.add(new Bullet(outside, size, color, life, false,Bullet.Direction.STOP));
+            poolBullets.add(new Bullet(typeBullet));
+            poolBullets.get(i).instantKill();
         }
     }
 
@@ -33,7 +30,7 @@ public class PoolBullets{
     public void addBullet(Bullet bulletCopy){
         for (Bullet bullet : this.poolBullets) {
             if(!bullet.isAlive()){
-                bullet.copy(bulletCopy);
+                bullet = new Bullet(bulletCopy);
                 break;
             }
         }

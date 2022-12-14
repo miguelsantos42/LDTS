@@ -90,7 +90,32 @@ public class Enemy extends GameObject{
         }
 
         poolBullets.addBullet(bullet);
-
-
     }
+
+    public Enemy returnCopy(){
+        Position newPosition = new Position(position.getxPos(), position.getyPos());
+        Size newSize = new Size(size.getWidth(), size.getHeight());
+        TextColor newTextColor = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
+        Life newLife = new Life(life.getMaximumLives());
+
+        Enemy Enemy = new Enemy(newPosition, newSize, newTextColor, newLife, this.attackType.returnCopy());
+
+
+
+        return Enemy;
+    }
+
+
+
+
+    public Enemy(Enemy enemy){
+        super(new Position(enemy.position.getxPos(), enemy.position.getyPos()),
+                new Size(enemy.size.getWidth(), enemy.size.getHeight()),
+                new TextColor.RGB(enemy.color.toColor().getRed(),
+                        enemy.color.toColor().getGreen(),
+                        enemy.color.toColor().getBlue()),
+                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
+        this.attackType = new Bullet(enemy.attackType);
+    }
+
 }

@@ -1,6 +1,7 @@
 package LoZ.Objects.Attributes;
 
 import LoZ.Objects.GameObject;
+import LoZ.Objects.Player;
 
 public class Position{
 
@@ -65,5 +66,15 @@ public class Position{
         int xDistance = this.x - position.getxPos();
         int yDistance = this.y - position.getyPos();
         return new Size(xDistance, yDistance);
+    }
+
+
+    public void randomizePosition(Player player, Size thisSize, int width, int height){
+        this.x = (int) (Math.random() * width);
+        this.y = (int) (Math.random() * height);
+        if (this.hasCollision(player.getPosition(), player.getSize(), thisSize)){
+            this.setxPos(player.getSize().getWidth());
+            this.setyPos(player.getSize().getHeight());
+        }
     }
 }

@@ -1,5 +1,9 @@
 package LoZ.Objects;
 
+import LoZ.Objects.Attributes.Life;
+import LoZ.Objects.Attributes.Position;
+import LoZ.Objects.Attributes.Size;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
@@ -8,15 +12,23 @@ public class PoolEnemies {
 
     private ArrayList<Enemy> poolEnemy;
 
-    public PoolEnemies() {
-         poolEnemy = new ArrayList<>();
+    public PoolEnemies(Enemy typeEnemy) {
+        poolEnemy = new ArrayList<>();
+        for (int i = 0; i < 25; i++) {
+            poolEnemy.add(new Enemy(typeEnemy));
+            poolEnemy.get(i).instantKill();
+        }
     }
-
-
-    public void addEnemy(Enemy enemy){
-        poolEnemy.add(enemy);
+    public void addEnemy(Enemy enemyCopy, Player player,int width,int height){
+        for (Enemy enemy : this.poolEnemy) {
+            if(!enemy.isAlive()) {
+                enemy = new Enemy(enemyCopy);
+                enemy.position.randomizePosition(player, enemy.getSize(), width, height);
+                System.out.println(enemy.isAlive());
+                break;
+            }
+        }
     }
-
     public ArrayList<Enemy> getPoolEnemy() {
         return poolEnemy;
     }
@@ -26,6 +38,7 @@ public class PoolEnemies {
         for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
                 enemy.draw(graphics);
+                System.out.println("draw");
             }
         }
     }
