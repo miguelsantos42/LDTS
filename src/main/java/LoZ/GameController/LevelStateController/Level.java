@@ -10,7 +10,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import static LoZ.GameController.ScreenController.LevelController.colorScenario;
+import static LoZ.GameController.ScreenController.LevelController.*;
 
 
 public class Level {
@@ -32,7 +32,7 @@ public class Level {
         Position playerPosition = new Position(10,10);
         Size playerSize = new Size(3,3);
         TextColor playerColor = new TextColor.RGB(255, 255, 255);
-        Life playerLife = new Life(10);
+        Life playerLife = new Life(2);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife);
 
         Position enemyPosition = new Position(20,20);
@@ -46,12 +46,11 @@ public class Level {
         TextColor enemyColor1 = new TextColor.RGB(135, 122, 56);
         Life enemyLife1 = new Life(2);
         Bullet enemyBullet1 = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
+        Enemy typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
 
-        this.enemies = new PoolEnemies();
-        this.enemies.addEnemy(new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet));
-        this.enemies.addEnemy(new Enemy(enemyPosition1, enemySize1, enemyColor1, enemyLife1, enemyBullet1));
+        this.enemies = new PoolEnemies(typeEnemy);
+        bullets = new PoolBullets(enemyBullet1);
 
-        bullets = new PoolBullets();
 
     }
 
