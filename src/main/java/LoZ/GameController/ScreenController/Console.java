@@ -79,6 +79,7 @@ public class Console{
         Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
                 level.enemyAction();
+                level.playerAttack();
                 draw();
             }
         });
