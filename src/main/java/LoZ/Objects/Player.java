@@ -9,44 +9,59 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import static java.lang.System.nanoTime;
+
 public class Player extends GameObject{
 
     Bullet attackType;
     int score;
 
-    public Player(Position position, Size size, TextColor textColor, Life life) {
+    double time;
+
+    public Player(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
 
         super(position, size, textColor, life, 10);
+        this.attackType = bulletType;
     }
 
-    public void doAttackPlayer(PoolBullets poolBullets){
-        Bullet bullet = attackType.returnCopy();
+    public void doAttack(PoolBullets poolBullets, Console.Action action){
+        double currentTime = (nanoTime()/1000000000);
+        if (currentTime - time < (double) speed/250){
+            return;
+        }
+        time = currentTime;
+        Bullet bullet = new Bullet(attackType);
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
-        if (lastMovement.getColumn()==-1)
+        if (action==Console.Action.LEFT)
         {
             bullet.direction = Bullet.Direction.LEFT;
-            bullet.position.setyPos(this.size.getWidth());
+            bullet.position.setxPos(-1);
+            bullet.position.setyPos(size.getHeight()/2);
         }
-        else if (lastMovement.getColumn()==1)
+        else if (action==Console.Action.RIGHT)
         {
             bullet.direction = Bullet.Direction.RIGHT;
-            bullet.position.setyPos(-1);
+            bullet.position.setxPos(this.size.getWidth());
+            bullet.position.setyPos(size.getHeight()/2);
         }
 
-        else if (lastMovement.getRow()==1)
+        else if (action==Console.Action.DOWN)
         {
             bullet.direction = Bullet.Direction.DOWN;
-            bullet.position.setxPos(this.size.getHeight());
+            bullet.position.setyPos(-1);
+            bullet.position.setxPos(size.getWidth()/2);
         }
 
-        else if (lastMovement.getRow()==-1)
+        else if (action==Console.Action.UP)
         {
             bullet.direction = Bullet.Direction.UP;
-            bullet.position.setxPos(-1);
+            bullet.position.setyPos(this.size.getHeight());
+            bullet.position.setxPos(size.getWidth()/2);
         }
 
         poolBullets.addBullet(bullet);
+
     }
 
     public void drawInfo(TextGraphics screen) {
