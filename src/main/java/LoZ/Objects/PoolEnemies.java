@@ -11,19 +11,21 @@ import java.util.ArrayList;
 public class PoolEnemies {
 
     private ArrayList<Enemy> poolEnemy;
-
+    private int size = 25;
     public PoolEnemies(Enemy typeEnemy) {
         poolEnemy = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i <  size; i++) {
             poolEnemy.add(new Enemy(typeEnemy));
             poolEnemy.get(i).instantKill();
         }
 
     }
     public void addEnemy(Enemy enemyCopy, Player player,int width,int height){
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i <  size; i++) {
             if(!poolEnemy.get(i).isAlive()) {
                 poolEnemy.get(i).copy(enemyCopy);
+                poolEnemy.get(i).getPosition().randomizePosition(player,
+                        poolEnemy.get(i).size,width,height);
                 break;
             }
         }
