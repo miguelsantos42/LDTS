@@ -25,6 +25,9 @@ public class Level {
 
     public static TextGraphics screen;
 
+    Enemy typeEnemy;
+
+    Bullet enemyBullet;
     public Level(TextGraphics screen){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
@@ -45,11 +48,11 @@ public class Level {
         Size enemySize1 = new Size(2,2);
         TextColor enemyColor1 = new TextColor.RGB(135, 122, 56);
         Life enemyLife1 = new Life(2);
-        Bullet enemyBullet1 = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
-        Enemy typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
+         enemyBullet = new Bullet(new Position(0,0), new Size(1,1), enemyColor, new Life(1), true, Bullet.Direction.STOP);
+         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
 
         this.enemies = new PoolEnemies(typeEnemy);
-        bullets = new PoolBullets(enemyBullet1);
+        bullets = new PoolBullets(enemyBullet);
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
 
@@ -88,6 +91,7 @@ public class Level {
 
     public void enemyAction(){
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
+        maybeAddEnemy();
         checkAllCollisions();
     }
 
@@ -115,6 +119,12 @@ public class Level {
         for (Bullet bullet : this.bullets.getPoolBullets()) {
             bullet.checkCollision(this.player);
         }
+    }
+
+    public void maybeAddEnemy(){
+        if (Math.random()*100 >95){
+            this.enemies.addEnemy(this.typeEnemy, this.player, this.screenSize.getWidth(), this.screenSize.getHeight());
+        };
     }
 
     public boolean EnemiesAreDefetead(){
