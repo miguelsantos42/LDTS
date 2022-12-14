@@ -34,9 +34,10 @@ public class Console{
 
     }
 
-    public static Action lastMovement;
+    public static Action lastMovement = Action.LEFT;
 
     public void keyPressed(Action action) {
+
         switch (action) {
             case LEFT:
                 level.movePlayerLeft();
@@ -51,7 +52,7 @@ public class Console{
                 level.movePlayerUp();
                 break;
             case ATTACK:
-                level.playerAttack();
+                level.playerAttack(lastMovement);
                 break;
             case DEFFEND:
                 break;
@@ -59,7 +60,9 @@ public class Console{
                 exitThread = true;
                 break;
         }
-        lastMovement = action;
+        if (action != Action.QUIT && action != Action.DEFFEND && action != Action.ATTACK) {
+            lastMovement = action;
+        }
     }
 
     private void draw(){
@@ -79,7 +82,6 @@ public class Console{
         Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
                 level.enemyAction();
-                level.playerAttack();
                 draw();
             }
         });

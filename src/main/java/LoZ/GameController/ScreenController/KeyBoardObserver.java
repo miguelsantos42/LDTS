@@ -21,6 +21,7 @@ public class KeyBoardObserver extends KeyAdapter {
             case KeyEvent.VK_UP -> console.keyPressed(Console.Action.DOWN);
             case KeyEvent.VK_DOWN -> console.keyPressed(Console.Action.UP);
             case KeyEvent.VK_Z -> console.keyPressed(Console.Action.ATTACK);
+            case KeyEvent.VK_SPACE -> console.keyPressed(Console.Action.ATTACK);
             case KeyEvent.VK_X ->  console.keyPressed(Console.Action.DEFFEND);
             case KeyEvent.VK_Q ->  console.keyPressed(Console.Action.QUIT);
         }

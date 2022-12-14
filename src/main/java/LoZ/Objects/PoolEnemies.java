@@ -37,12 +37,8 @@ public class PoolEnemies {
 
     public void drawEnemies(TextGraphics graphics){
         for (Enemy enemy : this.poolEnemy) {
-            System.out.println(enemy.isAlive());
-        }
-        for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
                 enemy.draw(graphics);
-                System.out.println("draw");
             }
         }
     }
