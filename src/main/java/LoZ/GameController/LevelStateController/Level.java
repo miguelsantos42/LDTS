@@ -135,9 +135,14 @@ public class Level {
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
             for(Bullet bullet : this.bullets.getPoolBullets()){
                 if (!bullet.isEnemy()) {
-                    bullet.checkCollision(enemy, 0);
-                    if (!enemy.getLife().isAlive()){
-                        positionPowerUpFinal=enemy.getPosition();
+                    if (enemy.getLife().isAlive())
+                    {
+                        bullet.checkCollision(enemy, 0);
+                        if (!enemy.getLife().isAlive())
+                        {
+                            positionPowerUpFinal=enemy.getPosition();
+                            this.powerups.addPowerUp(typePowerUp, positionPowerUpFinal);
+                        }
                     }
                 }
             }

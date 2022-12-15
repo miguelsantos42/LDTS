@@ -26,8 +26,7 @@ public class PoolPowerUps {
         for (int i = 0; i <  size; i++) {
             if(!poolPowerUps.get(i).isAlive()) {
                     poolPowerUps.get(i).copy(powerupCopy);
-                    poolPowerUps.get(i).position.setxPos(positionPowerUpFinal.getxPos());
-                    poolPowerUps.get(i).position.setyPos(positionPowerUpFinal.getyPos());
+                    poolPowerUps.get(i).position=positionPowerUpFinal;
                     break;
             }
         }
