@@ -74,6 +74,7 @@ public class Level {
 
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
+        //this.powerups.addPowerUp(typePowerUp, player, screenSize.getWidth(), screenSize.getHeight());
 
 
     }

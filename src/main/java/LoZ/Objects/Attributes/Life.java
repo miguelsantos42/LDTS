@@ -25,6 +25,13 @@ public class Life {
         updateStatus();
     }
 
+    public void heal(){
+        if(this.current < this.hearth){
+            this.current = this.current + 1;
+            updateStatus();
+        }
+    }
+
     private void updateStatus(){
         if(current >= 1)
             isAlive = true;

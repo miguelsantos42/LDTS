@@ -101,6 +101,7 @@ abstract public class GameObject {
             if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
 
                 this.life.kill();
+                otherObject.life.heal();
             }
         }
     }
