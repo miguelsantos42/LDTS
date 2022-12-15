@@ -192,7 +192,7 @@ public class GameObjectTest {
     @MethodSource("streamCheckCollision")
     public void testCheckCollision(Player player, Enemy enemy, boolean expected){
         int lifePlayer = player.getLife().getCurrentLives();
-        player.checkCollision(enemy, 0);
+        player.checkCollision(enemy);
         assertEquals(expected, player.getLife().getCurrentLives() == lifePlayer);
     }
 

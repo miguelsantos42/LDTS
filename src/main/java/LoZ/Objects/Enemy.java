@@ -78,7 +78,7 @@ public class Enemy extends GameObject{
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
         Size distance = calculateDistance(player);
-        //Nao Funciona completamente
+
         if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
             if (distance.getHeight() > 0){
                 bullet.direction = Bullet.Direction.LEFT;
@@ -105,25 +105,17 @@ public class Enemy extends GameObject{
     }
 
     public Enemy returnCopy(){
-        Position newPosition = new Position(position.getxPos(), position.getyPos());
-        Size newSize = new Size(size.getWidth(), size.getHeight());
-        TextColor newTextColor = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
-        Life newLife = new Life(life.getMaximumLives());
-
-        Enemy Enemy = new Enemy(newPosition, newSize, newTextColor, newLife, this.attackType.returnCopy());
-
-
-
+        Enemy Enemy = new Enemy(this);
         return Enemy;
     }
 
     public void copy(Enemy enemy){
-        this.position = new Position(enemy.position.getxPos(), enemy.position.getyPos());
-        this.size = new Size(enemy.size.getWidth(), enemy.size.getHeight());
+        this.position = new Position(enemy.position);
+        this.size = new Size(enemy.size);
         super.color = new TextColor.RGB(enemy.color.toColor().getRed(),
                 enemy.color.toColor().getGreen(),
                 enemy.color.toColor().getBlue());
-        this.life = new Life(enemy.life.getMaximumLives());
+        this.life = new Life(enemy.life);
         this.speed = enemy.speed;
         this.attackType = new Bullet(enemy.attackType);
 

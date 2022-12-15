@@ -11,7 +11,9 @@ import java.util.ArrayList;
 public class PoolEnemies {
 
     private ArrayList<Enemy> poolEnemy;
+
     private int size = 25;
+
     public PoolEnemies(Enemy typeEnemy) {
         poolEnemy = new ArrayList<>();
         for (int i = 0; i <  size; i++) {
@@ -20,6 +22,7 @@ public class PoolEnemies {
         }
 
     }
+
     public void addEnemy(Enemy enemyCopy, Player player,int width,int height){
         for (int i = 0; i <  size; i++) {
             if(!poolEnemy.get(i).isAlive()) {
@@ -30,6 +33,7 @@ public class PoolEnemies {
             }
         }
     }
+
     public ArrayList<Enemy> getPoolEnemy() {
         return poolEnemy;
     }
