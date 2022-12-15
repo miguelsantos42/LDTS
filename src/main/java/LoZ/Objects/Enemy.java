@@ -11,10 +11,22 @@ import java.util.concurrent.TimeUnit;
 public class Enemy extends GameObject{
 
     Bullet attackType;
+
     public Enemy(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
         super(position, size, textColor, life, 100);
         this.attackType = bulletType;
     }
+
+    public Enemy(Enemy enemy){
+        super(new Position(enemy.position.getxPos(), enemy.position.getyPos()),
+                new Size(enemy.size.getWidth(), enemy.size.getHeight()),
+                new TextColor.RGB(enemy.color.toColor().getRed(),
+                        enemy.color.toColor().getGreen(),
+                        enemy.color.toColor().getBlue()),
+                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
+        this.attackType = new Bullet(enemy.attackType);
+    }
+
     public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
         if (randomState>3.5) {
             double rand = Math.random() * 4;
@@ -103,19 +115,6 @@ public class Enemy extends GameObject{
 
 
         return Enemy;
-    }
-
-
-
-
-    public Enemy(Enemy enemy){
-        super(new Position(enemy.position.getxPos(), enemy.position.getyPos()),
-                new Size(enemy.size.getWidth(), enemy.size.getHeight()),
-                new TextColor.RGB(enemy.color.toColor().getRed(),
-                        enemy.color.toColor().getGreen(),
-                        enemy.color.toColor().getBlue()),
-                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
-        this.attackType = new Bullet(enemy.attackType);
     }
 
     public void copy(Enemy enemy){

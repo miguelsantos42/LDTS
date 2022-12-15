@@ -8,6 +8,7 @@ import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 abstract public class GameObject {
@@ -24,6 +25,14 @@ abstract public class GameObject {
         this.size = size;
         this.color = color;
         this.life = life;
+    }
+
+    public GameObject(GameObject other) {
+        this.speed = other.speed;
+        this.position = new Position(other.position);
+        this.size = new Size(other.size);
+        this.color = new TextColor.RGB(other.color.toColor().getRed(), other.color.toColor().getGreen(), other.color.toColor().getBlue());
+        this.life = new Life(other.life);
     }
 
     public void draw(TextGraphics screen) {

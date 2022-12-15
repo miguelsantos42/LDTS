@@ -9,7 +9,12 @@ public class Life {
     public Life(int hearth){
         this.hearth = hearth;
         this.current = hearth;
-        isAlive = true;
+        updateStatus();
+    }
+
+    public Life(Life otherLife){
+        this.hearth = otherLife.hearth;
+        this.current = otherLife.current;
         updateStatus();
     }
 
@@ -30,6 +35,10 @@ public class Life {
             this.current = this.current + 1;
             updateStatus();
         }
+    }
+
+    public void allHeal(){
+        this.current = this.hearth;
     }
 
     private void updateStatus(){
