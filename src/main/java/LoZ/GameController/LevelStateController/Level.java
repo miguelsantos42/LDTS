@@ -186,7 +186,7 @@ public class Level {
     }
 
     public void maybeAddEnemy(){
-        if (Math.random()*100 > 98){
+        if (Math.random()*100 > 96){
             this.enemies.addEnemy(this.typeEnemy, this.player, this.screenSize.getWidth(), this.screenSize.getHeight());
         };
     }
