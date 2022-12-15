@@ -90,29 +90,11 @@ abstract public class GameObject {
         }
     }
 
-    public void checkCollision(GameObject otherObject, int i){
+    public boolean checkCollision(GameObject otherObject){
         if(!this.life.isAlive()  || !otherObject.life.isAlive()){
-            return;
+            return false;
         }
-
-        //doesn't involve PowerUp so it kills both Objects. !!Never use when checking PowerUp and Player collisions!!
-        if (i==0) {
-            if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
-
-                this.life.kill();
-                otherObject.life.kill();
-            }
-        }
-
-        //involves PowerUp so it doesn't kill the object. Heals the player and kills powerup !!Only use when checking PowerUp and Player collisions!!
-        if (i==1)
-        {
-            if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
-
-                this.life.kill();
-                otherObject.life.heal();
-            }
-        }
+        return this.position.hasCollision(otherObject.position, otherObject.size, this.size);
     }
     public Position getPosition() {
         return position;
@@ -124,6 +106,14 @@ abstract public class GameObject {
 
     public void instantKill(){
         this.life.instantKill();
+    }
+
+    public void kill(){
+        this.life.kill();
+    }
+
+    public void heal(){
+        this.life.heal();
     }
 
     public Life getLife() {

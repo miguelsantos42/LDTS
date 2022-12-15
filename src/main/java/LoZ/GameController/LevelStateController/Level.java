@@ -137,7 +137,10 @@ public class Level {
                 if (!bullet.isEnemy()) {
                     if (enemy.getLife().isAlive())
                     {
-                        bullet.checkCollision(enemy, 0);
+                        if(enemy.checkCollision(bullet)){
+                            bullet.kill();
+                            enemy.kill();
+                        }
                         if (!enemy.getLife().isAlive())
                         {
                             positionPowerUpFinal=enemy.getPosition();
@@ -146,30 +149,45 @@ public class Level {
                     }
                 }
             }
-            enemy.checkCollision(this.player, 0);
+            if(enemy.checkCollision(this.player)){
+                this.player.kill();
+                enemy.kill();
+            }
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
             if (bullet.isEnemy()) {
-                bullet.checkCollision(this.player, 0);
+                if(bullet.checkCollision(this.player)){
+                    this.player.kill();
+                    bullet.kill();
+                }
             }
         }
     }
     public void checkPlayerCollisions(){
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
-            enemy.checkCollision(this.player, 0);
+            if(enemy.checkCollision(this.player)){
+                this.player.kill();
+                enemy.kill();
+            }
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
             if (bullet.isEnemy()) {
-                bullet.checkCollision(this.player, 0);
+                if(bullet.checkCollision(this.player)){
+                    this.player.kill();
+                    bullet.kill();
+                }
             }
         }
         for (PowerUp powerup : this.powerups.getPoolPowerUps()) {
-            powerup.checkCollision(this.player, 1);
+            if(powerup.checkCollision(this.player)){
+                this.player.heal();
+                powerup.kill();
+            }
         }
     }
 
     public void maybeAddEnemy(){
-        if (Math.random()*100 >95){
+        if (Math.random()*100 > 98){
             this.enemies.addEnemy(this.typeEnemy, this.player, this.screenSize.getWidth(), this.screenSize.getHeight());
         };
     }
