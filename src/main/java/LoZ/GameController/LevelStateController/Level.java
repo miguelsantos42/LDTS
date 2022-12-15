@@ -24,6 +24,8 @@ public class Level {
 
     private PoolBullets bullets;
 
+    private PoolPowerUps powerups;
+
     public static TextGraphics screen;
 
     private final TextColor playerColor = new TextColor.RGB(255, 255, 255);
@@ -116,25 +118,28 @@ public class Level {
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
             for(Bullet bullet : this.bullets.getPoolBullets()){
                 if (!bullet.isEnemy()) {
-                    bullet.checkCollision(enemy);
+                    bullet.checkCollision(enemy, 0);
                 }
             }
-            enemy.checkCollision(this.player);
+            enemy.checkCollision(this.player, 0);
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
             if (bullet.isEnemy()) {
-                bullet.checkCollision(this.player);
+                bullet.checkCollision(this.player, 0);
             }
         }
     }
     public void checkPlayerCollisions(){
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
-            enemy.checkCollision(this.player);
+            enemy.checkCollision(this.player, 0);
         }
         for (Bullet bullet : this.bullets.getPoolBullets()) {
             if (bullet.isEnemy()) {
-                bullet.checkCollision(this.player);
+                bullet.checkCollision(this.player, 0);
             }
+        }
+        for (PowerUp powerup : this.powerups.getPoolPowerUps()) {
+            powerup.checkCollision(this.player, 1);
         }
     }
 

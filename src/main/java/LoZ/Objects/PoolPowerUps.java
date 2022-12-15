@@ -7,9 +7,9 @@ import static LoZ.GameController.ScreenController.LevelController.width;
 
 public class PoolPowerUps {
 
-    private ArrayList<Enemy> poolPowerUps;
+    private ArrayList<PowerUp> poolPowerUps;
 
-    /*private int size = 25;
+    private int size = 25;
     public PoolPowerUps(PowerUp typePowerUp) {
         poolPowerUps = new ArrayList<>();
         for (int i = 0; i <  size; i++) {
@@ -17,9 +17,9 @@ public class PoolPowerUps {
             poolPowerUps.get(i).instantKill();
         }
 
-    }*/
+    }
 
-    /*public void addPowerUp(PowerUp powerupCopy){
+    public void addPowerUp(PowerUp powerupCopy){
         for (int i = 0; i <  size; i++) {
             if(!poolPowerUps.get(i).isAlive()) {
                 poolPowerUps.get(i).copy(powerupCopy);
@@ -28,6 +28,14 @@ public class PoolPowerUps {
                 break;
             }
         }
-    }*/
+    }
+
+
+
+
+
+    public ArrayList<PowerUp> getPoolPowerUps(){
+        return poolPowerUps;
+    }
 
 }
