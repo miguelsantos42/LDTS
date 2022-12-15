@@ -25,13 +25,14 @@ public class PoolPowerUps {
     public void addPowerUp(PowerUp powerupCopy, Position positionPowerUpFinal){
         for (int i = 0; i <  size; i++) {
             if(!poolPowerUps.get(i).isAlive()) {
-                poolPowerUps.get(i).copy(powerupCopy);
-                poolPowerUps.get(i).position.setxPos(positionPowerUpFinal.getxPos());
-                poolPowerUps.get(i).position.setyPos(positionPowerUpFinal.getyPos());
-                break;
+                    poolPowerUps.get(i).copy(powerupCopy);
+                    poolPowerUps.get(i).position.setxPos(positionPowerUpFinal.getxPos());
+                    poolPowerUps.get(i).position.setyPos(positionPowerUpFinal.getyPos());
+                    break;
             }
         }
     }
+
 
     public void drawPowerUps(TextGraphics graphics){
         for (PowerUp powerup : this.poolPowerUps) {

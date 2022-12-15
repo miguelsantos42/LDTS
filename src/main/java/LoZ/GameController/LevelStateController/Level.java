@@ -49,13 +49,14 @@ public class Level {
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
 
+        //player
         Position playerPosition = new Position(10,10);
         Size playerSize = new Size(3,3);
-
         Life playerLife = new Life(2);
         playerBullet = new Bullet(new Position(0,0), new Size(1,1), bulletPlayerColor, new Life(1), false, Bullet.Direction.STOP);
         this.player = new Player(playerPosition, playerSize, playerColor, playerLife, playerBullet);
 
+        //enemytype
         Position enemyPosition = new Position(20,20);
         Size enemySize = new Size(2,2);
         Life enemyLife = new Life(2);
@@ -63,6 +64,7 @@ public class Level {
 
         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
 
+        //poweruptype
         Position powerupPosition = new Position(20,20);
         Size powerupSize = new Size(1,1);
         Life powerupLife = new Life(1);
@@ -71,8 +73,8 @@ public class Level {
         typePowerUp = new PowerUp(powerupPosition, powerupSize, powerupColor, powerupLife);
 
         this.enemies = new PoolEnemies(typeEnemy);
-        bullets = new PoolBullets(enemyBullet);
-        powerups = new PoolPowerUps(typePowerUp);
+        this.bullets = new PoolBullets(enemyBullet);
+        this.powerups = new PoolPowerUps(typePowerUp);
 
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
