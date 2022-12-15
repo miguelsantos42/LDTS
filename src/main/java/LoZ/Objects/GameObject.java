@@ -8,6 +8,7 @@ import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 abstract public class GameObject {
@@ -20,10 +21,18 @@ abstract public class GameObject {
 
     public GameObject(Position position, Size size, TextColor color, Life life, int speed) {
         this.speed = 1000/speed;
-        this.position = position;
-        this.size = size;
-        this.color = color;
-        this.life = life;
+        this.position = new Position(position);
+        this.size = new Size(size);
+        this.color = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
+        this.life = new Life(life);
+    }
+
+    public GameObject(GameObject other) {
+        this.speed = other.speed;
+        this.position = new Position(other.position);
+        this.size = new Size(other.size);
+        this.color = new TextColor.RGB(other.color.toColor().getRed(), other.color.toColor().getGreen(), other.color.toColor().getBlue());
+        this.life = new Life(other.life);
     }
 
     public void draw(TextGraphics screen) {
@@ -81,15 +90,11 @@ abstract public class GameObject {
         }
     }
 
-    public void checkCollision(GameObject otherObject){
+    public boolean checkCollision(GameObject otherObject){
         if(!this.life.isAlive()  || !otherObject.life.isAlive()){
-            return;
+            return false;
         }
-        if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){
-
-            this.life.kill();
-            otherObject.life.kill();
-        }
+        return this.position.hasCollision(otherObject.position, otherObject.size, this.size);
     }
     public Position getPosition() {
         return position;
@@ -101,6 +106,14 @@ abstract public class GameObject {
 
     public void instantKill(){
         this.life.instantKill();
+    }
+
+    public void kill(){
+        this.life.kill();
+    }
+
+    public void heal(){
+        this.life.heal();
     }
 
     public Life getLife() {

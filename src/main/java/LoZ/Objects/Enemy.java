@@ -1,6 +1,5 @@
 package LoZ.Objects;
 
-import LoZ.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -11,11 +10,23 @@ import java.util.concurrent.TimeUnit;
 public class Enemy extends GameObject{
 
     Bullet attackType;
+
     public Enemy(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
         super(position, size, textColor, life, 100);
         this.attackType = bulletType;
     }
-    public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
+
+    public Enemy(Enemy enemy){
+        super(new Position(enemy.position.getxPos(), enemy.position.getyPos()),
+                new Size(enemy.size.getWidth(), enemy.size.getHeight()),
+                new TextColor.RGB(enemy.color.toColor().getRed(),
+                        enemy.color.toColor().getGreen(),
+                        enemy.color.toColor().getBlue()),
+                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
+        this.attackType = new Bullet(enemy.attackType);
+    }
+
+    public void ActionAgainstPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
         if (randomState>3.5) {
             double rand = Math.random() * 4;
             moveRandom(width, height, rand);
@@ -62,19 +73,20 @@ public class Enemy extends GameObject{
     }
 
     public void doAttack(PoolBullets poolBullets, Player player){
-        Bullet bullet = attackType.returnCopy();
+        Bullet bullet = new Bullet(attackType);
+        Size distance = calculateDistance(player);
+
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
-        Size distance = calculateDistance(player);
-        //Nao Funciona completamente
+
         if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
             if (distance.getHeight() > 0){
                 bullet.direction = Bullet.Direction.LEFT;
-                bullet.position.setyPos(this.size.getWidth());
+                bullet.position.setyPos(-1);
             }
             else{
                 bullet.direction = Bullet.Direction.RIGHT;
-                bullet.position.setyPos(-1);
+                bullet.position.setxPos(this.size.getWidth());
             }
         }
 
@@ -93,38 +105,17 @@ public class Enemy extends GameObject{
     }
 
     public Enemy returnCopy(){
-        Position newPosition = new Position(position.getxPos(), position.getyPos());
-        Size newSize = new Size(size.getWidth(), size.getHeight());
-        TextColor newTextColor = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
-        Life newLife = new Life(life.getMaximumLives());
-
-        Enemy Enemy = new Enemy(newPosition, newSize, newTextColor, newLife, this.attackType.returnCopy());
-
-
-
+        Enemy Enemy = new Enemy(this);
         return Enemy;
     }
 
-
-
-
-    public Enemy(Enemy enemy){
-        super(new Position(enemy.position.getxPos(), enemy.position.getyPos()),
-                new Size(enemy.size.getWidth(), enemy.size.getHeight()),
-                new TextColor.RGB(enemy.color.toColor().getRed(),
-                        enemy.color.toColor().getGreen(),
-                        enemy.color.toColor().getBlue()),
-                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
-        this.attackType = new Bullet(enemy.attackType);
-    }
-
     public void copy(Enemy enemy){
-        this.position = new Position(enemy.position.getxPos(), enemy.position.getyPos());
-        this.size = new Size(enemy.size.getWidth(), enemy.size.getHeight());
+        this.position = new Position(enemy.position);
+        this.size = new Size(enemy.size);
         super.color = new TextColor.RGB(enemy.color.toColor().getRed(),
                 enemy.color.toColor().getGreen(),
                 enemy.color.toColor().getBlue());
-        this.life = new Life(enemy.life.getMaximumLives());
+        this.life = new Life(enemy.life);
         this.speed = enemy.speed;
         this.attackType = new Bullet(enemy.attackType);
 

@@ -9,6 +9,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.ArrayList;
 
 public class PoolBullets{
+
     private ArrayList<Bullet> poolBullets;
 
     public PoolBullets(Bullet typeBullet) {
