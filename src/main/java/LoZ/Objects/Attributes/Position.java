@@ -13,6 +13,11 @@ public class Position{
         this.y = y;
     }
 
+    public Position(Position position) {
+        this.x = position.getxPos();
+        this.y = position.getyPos();
+    }
+
 
     public int getxPos() {
         return x;
