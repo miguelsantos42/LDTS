@@ -40,28 +40,26 @@ public class Position{
     }
 
     public boolean hasCollision(Position otherPosition, Size otherSize, Size size){
-        int xmin=this.x;
-        int xmax=this.x+size.getWidth();
-        int ymin=this.y;
-        int ymax=this.y+size.getHeight();
-        int count=0;
-        for (int i=0; i<(otherSize.getWidth()); i++)
-        {
-            for (int j=0; j<(otherSize.getHeight()); j++) {
-                if((otherPosition.getxPos()+i)>=xmin & (otherPosition.getxPos()+i)<=xmax & (otherPosition.getyPos()+j)>=ymin & (otherPosition.getyPos()+j)<=ymax)
-                    count++;
-            }
 
-        }
-        if (count!=0) {
+        if (otherPosition.getyPos() >= this.getyPos() && otherPosition.getyPos() < this.getyPos() + size.getHeight() &&
+                otherPosition.getxPos() >= this.getxPos() && otherPosition.getxPos() < this.getxPos() + size.getWidth()) {
             return true;
         }
-
-        else {
+        else if (otherPosition.getyPos() + otherSize.getHeight()  > this.getyPos() && otherPosition.getyPos() + otherSize.getHeight() <= this.getyPos() + size.getHeight() &&
+                otherPosition.getxPos() + otherSize.getWidth() > this.getxPos() && otherPosition.getxPos() + otherSize.getWidth() <= this.getxPos() + size.getWidth()) {
+            return true;
+        }
+        else if (this.getyPos() >= otherPosition.getyPos() && this.getyPos() < otherPosition.getyPos() + otherSize.getHeight() &&
+                this.getxPos() >= otherPosition.getxPos() && this.getxPos() < otherPosition.getxPos() + otherSize.getWidth()) {
+            return true;
+        }
+        else if (this.getyPos() + size.getHeight()  > otherPosition.getyPos() && this.getyPos() + size.getHeight() <= otherPosition.getyPos() + otherSize.getHeight() &&
+                this.getxPos() + size.getWidth() > otherPosition.getxPos() && this.getxPos() + size.getWidth() <= otherPosition.getxPos() + otherSize.getWidth()) {
+            return true;
+        }
+        else{
             return false;
         }
-
-
     }
 
     public Size calculateDistance(Position position) {
