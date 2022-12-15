@@ -95,7 +95,7 @@ abstract public class GameObject {
             }
         }
 
-        //involves PowerUp so it doesn't kill the object. !!Only use when checking PowerUp and Player collisions!!
+        //involves PowerUp so it doesn't kill the object. Heals the player and kills powerup !!Only use when checking PowerUp and Player collisions!!
         if (i==1)
         {
             if (this.position.hasCollision(otherObject.position, otherObject.size, this.size)){

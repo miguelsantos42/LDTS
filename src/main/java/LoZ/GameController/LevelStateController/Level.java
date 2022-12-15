@@ -43,6 +43,8 @@ public class Level {
     Bullet enemyBullet;
     Bullet playerBullet;
 
+    Position positionPowerUpFinal= new Position(0,0);
+
     public Level(TextGraphics screen){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
@@ -74,7 +76,7 @@ public class Level {
 
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
-        //this.powerups.addPowerUp(typePowerUp, player, screenSize.getWidth(), screenSize.getHeight());
+        this.powerups.addPowerUp(typePowerUp, positionPowerUpFinal);
 
 
     }
@@ -88,6 +90,7 @@ public class Level {
         enemies.drawEnemies(screen);
         bullets.drawBullets(screen);
         player.drawInfo(screen);
+        powerups.drawPowerUps(screen);
     }
 
     private void drawInfo(){
@@ -131,6 +134,9 @@ public class Level {
             for(Bullet bullet : this.bullets.getPoolBullets()){
                 if (!bullet.isEnemy()) {
                     bullet.checkCollision(enemy, 0);
+                    if (!enemy.getLife().isAlive()){
+                        positionPowerUpFinal=enemy.getPosition();
+                    }
                 }
             }
             enemy.checkCollision(this.player, 0);
