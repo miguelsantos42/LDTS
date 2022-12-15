@@ -38,6 +38,10 @@ public class Level {
     Bullet enemyBullet;
     Bullet playerBullet;
 
+    Life enemyLife = new Life(2);
+
+    int counter = 0;
+
     public Level(TextGraphics screen){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
@@ -52,7 +56,7 @@ public class Level {
         Position enemyPosition = new Position(20,20);
         Size enemySize = new Size(2,2);
 
-        Life enemyLife = new Life(2);
+        //Life enemyLife = new Life(2);
         enemyBullet = new Bullet(new Position(0,0), new Size(1,1), bulletEnemyColor, new Life(1), true, Bullet.Direction.STOP);
         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
 
@@ -105,6 +109,7 @@ public class Level {
         this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         maybeAddEnemy();
         checkAllCollisions();
+        //nextLevel();
     }
 
     public void bulletsAction() {
@@ -151,5 +156,16 @@ public class Level {
     public boolean playerIsAlive(){
         return player.isAlive();
     }
+
+    /*public void nextLevel(){
+        switch (counter){
+            case 0:
+                enemyLife = 2;
+            case 5:
+                enemyLife = 3;
+            case 10:
+                enemyLife = 4;
+        }
+    }*/
 
 }
