@@ -69,7 +69,7 @@ public class Bullet extends GameObject{
 
 
     public Bullet(Bullet bullet){
-        super(new Position(bullet.position.getxPos(), bullet.position.getyPos()),
+        super(new Position(bullet.position),
                 new Size(bullet.size.getWidth(), bullet.size.getHeight()),
                 new TextColor.RGB(bullet.color.toColor().getRed(),
                         bullet.color.toColor().getGreen(),

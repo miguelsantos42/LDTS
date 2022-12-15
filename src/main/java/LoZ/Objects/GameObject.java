@@ -21,10 +21,10 @@ abstract public class GameObject {
 
     public GameObject(Position position, Size size, TextColor color, Life life, int speed) {
         this.speed = 1000/speed;
-        this.position = position;
-        this.size = size;
-        this.color = color;
-        this.life = life;
+        this.position = new Position(position);
+        this.size = new Size(size);
+        this.color = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
+        this.life = new Life(life);
     }
 
     public GameObject(GameObject other) {

@@ -13,9 +13,6 @@ import java.util.concurrent.TimeUnit;
 //Console
 public class Console{
 
-
-
-
     public enum Action{
         UP,
         DOWN,

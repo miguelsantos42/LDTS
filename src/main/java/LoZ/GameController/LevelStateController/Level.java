@@ -120,7 +120,7 @@ public class Level {
 
 
     public void enemyAction(){
-        this.enemies.moveEnemiesToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
+        this.enemies.enemiesActionToPlayer(this.screenSize.getWidth(),this.screenSize.getHeight(), player, bullets);
         maybeAddEnemy();
         checkAllCollisions();
     }

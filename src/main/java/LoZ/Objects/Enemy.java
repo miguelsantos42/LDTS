@@ -1,6 +1,5 @@
 package LoZ.Objects;
 
-import LoZ.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -27,7 +26,7 @@ public class Enemy extends GameObject{
         this.attackType = new Bullet(enemy.attackType);
     }
 
-    public void moveTowardsPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
+    public void ActionAgainstPlayer(int width, int height, Player player, PoolBullets poolBullets, double randomState){
         if (randomState>3.5) {
             double rand = Math.random() * 4;
             moveRandom(width, height, rand);
@@ -74,19 +73,20 @@ public class Enemy extends GameObject{
     }
 
     public void doAttack(PoolBullets poolBullets, Player player){
-        Bullet bullet = attackType.returnCopy();
+        Bullet bullet = new Bullet(attackType);
+        Size distance = calculateDistance(player);
+
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
-        Size distance = calculateDistance(player);
 
         if (Math.abs(distance.getHeight()) > Math.abs(distance.getWidth())){
             if (distance.getHeight() > 0){
                 bullet.direction = Bullet.Direction.LEFT;
-                bullet.position.setyPos(this.size.getWidth());
+                bullet.position.setyPos(-1);
             }
             else{
                 bullet.direction = Bullet.Direction.RIGHT;
-                bullet.position.setyPos(-1);
+                bullet.position.setxPos(this.size.getWidth());
             }
         }
 

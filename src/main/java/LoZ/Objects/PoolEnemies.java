@@ -1,9 +1,5 @@
 package LoZ.Objects;
 
-import LoZ.Objects.Attributes.Life;
-import LoZ.Objects.Attributes.Position;
-import LoZ.Objects.Attributes.Size;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
@@ -47,12 +43,12 @@ public class PoolEnemies {
         }
     }
 
-    public void moveEnemiesToPlayer(int width, int height, Player player, PoolBullets poolBullets){
+    public void enemiesActionToPlayer(int width, int height, Player player, PoolBullets poolBullets){
         double randomState;
         for (Enemy enemy : this.poolEnemy) {
             if(enemy.isAlive()){
                 randomState = (Math.random() * 4);
-                enemy.moveTowardsPlayer(width, height, player, poolBullets, randomState);
+                enemy.ActionAgainstPlayer(width, height, player, poolBullets, randomState);
             }
         }
     }
