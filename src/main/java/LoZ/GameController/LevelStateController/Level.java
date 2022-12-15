@@ -35,7 +35,10 @@ public class Level {
 
     private final TextColor bulletPlayerColor = new TextColor.RGB(148, 0, 211);
 
+    private final TextColor powerupColor = new TextColor.RGB(50, 205, 50);
+
     Enemy typeEnemy;
+    PowerUp typePowerUp;
 
     Bullet enemyBullet;
     Bullet playerBullet;
@@ -53,13 +56,21 @@ public class Level {
 
         Position enemyPosition = new Position(20,20);
         Size enemySize = new Size(2,2);
-
         Life enemyLife = new Life(2);
         enemyBullet = new Bullet(new Position(0,0), new Size(1,1), bulletEnemyColor, new Life(1), true, Bullet.Direction.STOP);
+
         typeEnemy = new Enemy(enemyPosition, enemySize, enemyColor, enemyLife, enemyBullet);
+
+        Position powerupPosition = new Position(20,20);
+        Size powerupSize = new Size(1,1);
+        Life powerupLife = new Life(1);
+        enemyBullet = new Bullet(new Position(0,0), new Size(1,1), bulletEnemyColor, new Life(1), true, Bullet.Direction.STOP);
+
+        typePowerUp = new PowerUp(powerupPosition, powerupSize, powerupColor, powerupLife);
 
         this.enemies = new PoolEnemies(typeEnemy);
         bullets = new PoolBullets(enemyBullet);
+        powerups = new PoolPowerUps(typePowerUp);
 
 
         this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());

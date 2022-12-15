@@ -8,7 +8,7 @@ import com.googlecode.lanterna.TextColor;
 public class PowerUp extends GameObject{
 
     public PowerUp(Position position, Size size, TextColor textColor, Life life) {
-        super(position, size, textColor, life, 0);
+        super(position, size, textColor, life, 1);
     }
 
     public PowerUp(PowerUp powerup){
@@ -17,7 +17,7 @@ public class PowerUp extends GameObject{
                 new TextColor.RGB(powerup.color.toColor().getRed(),
                         powerup.color.toColor().getGreen(),
                         powerup.color.toColor().getBlue()),
-                new Life(powerup.life.getMaximumLives()), 0);
+                new Life(powerup.life.getMaximumLives()), 1);
     }
 
     public void copy(PowerUp powerup){
