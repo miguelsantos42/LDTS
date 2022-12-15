@@ -14,8 +14,8 @@ import java.net.URISyntaxException;
 public class LevelController extends GameScreen{
 
     TextGraphics graphics;
-    public static final int width = 64;
-    public static final int height = 36;
+    public static final int width = 100;
+    public static final int height = 50;
     TerminalSize terminalSize = new TerminalSize(width, height);
     public Console console;
 

@@ -15,13 +15,13 @@ public class Bullet extends GameObject{
 
     private boolean isEnemyBullet;
 
-    protected static final int SHOT_VELOCITY = 5;
+
 
     public Direction direction = Direction.STOP;
 
 
-    public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet, Direction direction) {
-        super(position, size, textColor, life, SHOT_VELOCITY);
+    public Bullet(Position position, Size size, TextColor textColor, Life life, Boolean isEnemyBullet, Direction direction, int speed) {
+        super(position, size, textColor, life, speed);
         this.instantKill();
         this.isEnemyBullet = isEnemyBullet;
         this.direction = direction;
@@ -59,7 +59,7 @@ public class Bullet extends GameObject{
         TextColor newTextColor = new TextColor.RGB(color.toColor().getRed(), color.toColor().getGreen(), color.toColor().getBlue());
         Life newLife = new Life(life.getMaximumLives());
 
-        Bullet bullet = new Bullet(newPosition, newSize, newTextColor, newLife, this.isEnemyBullet, Bullet.Direction.STOP);
+        Bullet bullet = new Bullet(newPosition, newSize, newTextColor, newLife, this.isEnemyBullet, Bullet.Direction.STOP, this.speed);
 
         bullet.sprite = this.sprite;
         bullet.isEnemyBullet = this.isEnemyBullet;
@@ -74,7 +74,7 @@ public class Bullet extends GameObject{
                 new TextColor.RGB(bullet.color.toColor().getRed(),
                         bullet.color.toColor().getGreen(),
                         bullet.color.toColor().getBlue()),
-                new Life(bullet.life.getMaximumLives()), SHOT_VELOCITY);
+                new Life(bullet.life.getMaximumLives()), bullet.speed);
 
         this.isEnemyBullet = bullet.isEnemyBullet;
         this.direction = bullet.direction;
