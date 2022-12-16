@@ -21,7 +21,7 @@ public class Console{
         QUIT
     }
 
-    protected Level level;
+    public Level level;
     protected boolean exitThread = false;
 
 
@@ -32,40 +32,6 @@ public class Console{
     }
 
     public static Action lastMovement = Action.LEFT;
-
-
-    public void run(Game levelController) {
-
-        Thread enemyThread = new Thread(() -> {
-            while(!exitThread) {
-                level.enemyAction();
-                level.draw(this);
-            }
-        });
-
-        Thread bulletsThread = new Thread(() -> {
-            while(!exitThread) {
-                level.bulletsAction();
-                level.draw(this);
-            }
-        });
-
-        enemyThread.start();
-        bulletsThread.start();
-
-        new Thread(() -> {
-            try {
-
-                while (!exitThread){
-                    Thread.sleep(800);
-                    checkGameStatus();
-                }
-            }catch (InterruptedException | IOException e){
-                e.printStackTrace();
-            }
-
-        }).start();
-    }
 
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
@@ -81,17 +47,8 @@ public class Console{
         Game.getScreen().doResizeIfNecessary();
     }
 
-    private void checkGameStatus() throws IOException {
-        if(!this.level.playerIsAlive()){
-            close();
-        }
-        if(this.level.EnemiesAreDefetead()){
-            exitThread = true;
-        }
-    }
-
     public void close() {
-        exitThread = true;
+
         try {
             Game.getScreen().close();
         } catch (IOException e) {

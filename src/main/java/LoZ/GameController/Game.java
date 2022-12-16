@@ -76,7 +76,7 @@ public class Game {
     //
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
-        console.run(game);
+        console.level.run(game, console);
     }
 
     public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {

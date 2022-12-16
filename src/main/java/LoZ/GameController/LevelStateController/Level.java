@@ -1,6 +1,7 @@
 package LoZ.GameController.LevelStateController;
 
 
+import LoZ.GameController.Game;
 import LoZ.GameController.ScreenController.Console;
 import LoZ.Objects.*;
 import LoZ.Objects.Attributes.Life;
@@ -47,6 +48,8 @@ public class Level {
     Bullet playerBullet;
 
     Position positionPowerUpFinal= new Position(0,0);
+
+    Boolean exitThread = false;
 
     public Level(TextGraphics screen, Console con){
         Level.screen = screen;
@@ -165,6 +168,7 @@ public class Level {
             }
         }
     }
+
     public void checkPlayerCollisions(){
         for (Enemy enemy : this.enemies.getPoolEnemy()) {
             if(enemy.checkCollision(this.player)){
@@ -240,6 +244,50 @@ public class Level {
             TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void run(Game levelController, Console console) {
+
+        Thread enemyThread = new Thread(() -> {
+            while(!exitThread) {
+                enemyAction();
+                draw(console);
+            }
+        });
+
+        Thread bulletsThread = new Thread(() -> {
+            while(!exitThread) {
+                bulletsAction();
+                draw(console);
+            }
+        });
+
+        enemyThread.start();
+        bulletsThread.start();
+
+        new Thread(() -> {
+            try {
+
+                while (!exitThread){
+                    Thread.sleep(800);
+                    checkGameStatus(console);
+                }
+            }catch (InterruptedException | IOException e){
+                e.printStackTrace();
+            }
+
+        }).start();
+    }
+
+    private void checkGameStatus(Console console) throws IOException {
+        if(!playerIsAlive()){
+            exitThread = true;
+            console.close();
+        }
+        else if(EnemiesAreDefetead()){
+            exitThread = true;
+            console.close();
         }
     }
 }
