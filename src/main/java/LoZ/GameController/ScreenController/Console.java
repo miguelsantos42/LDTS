@@ -2,10 +2,7 @@ package LoZ.GameController.ScreenController;
 
 import LoZ.GameController.LevelStateController.Level;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.io.IOException;
@@ -29,41 +26,11 @@ public class Console{
 
     public Console(TextGraphics graphics) {
 
-        this.level = new Level(graphics);
+        this.level = new Level(graphics, this);
 
     }
 
     public static Action lastMovement = Action.LEFT;
-
-    public void keyPressed(Action action) {
-
-        switch (action) {
-            case LEFT:
-                level.movePlayerLeft();
-                break;
-            case RIGHT:
-                level.movePlayerRight();
-                break;
-            case DOWN:
-                level.movePlayerDown();
-                break;
-            case UP:
-                level.movePlayerUp();
-                break;
-            case ATTACK:
-                level.playerAttack(lastMovement);
-                break;
-            case DEFFEND:
-                break;
-            case QUIT:
-                close();
-
-                break;
-        }
-        if (action != Action.QUIT && action != Action.DEFFEND && action != Action.ATTACK) {
-            lastMovement = action;
-        }
-    }
 
     private void draw(){
         try {
@@ -77,7 +44,7 @@ public class Console{
     }
 
 
-    public void run() {
+    public void run(LevelController levelController) {
 
         Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
@@ -133,7 +100,7 @@ public class Console{
         }
     }
 
-    void close() {
+    public void close() {
         exitThread = true;
         try {
             LevelController.getScreen().close();

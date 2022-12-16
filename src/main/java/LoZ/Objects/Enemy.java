@@ -22,7 +22,7 @@ public class Enemy extends GameObject{
                 new TextColor.RGB(enemy.color.toColor().getRed(),
                         enemy.color.toColor().getGreen(),
                         enemy.color.toColor().getBlue()),
-                new Life(enemy.life.getMaximumLives()), 1000/enemy.speed);
+                new Life(enemy.life.getMaximumLives()), enemy.speed);
         this.attackType = new Bullet(enemy.attackType);
     }
 

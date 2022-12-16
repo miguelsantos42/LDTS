@@ -1,13 +1,10 @@
 package LoZ.GameController.ScreenController;
 
-import LoZ.GameController.ScreenController.Console;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 //KeyBoardObserver
 public class KeyBoardObserver extends KeyAdapter {
 
-    private Console console;
     public KeyBoardObserver() {}
 
     @Override
@@ -16,18 +13,15 @@ public class KeyBoardObserver extends KeyAdapter {
         super.keyPressed(e);
 
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> console.keyPressed(Console.Action.LEFT);
-            case KeyEvent.VK_RIGHT -> console.keyPressed(Console.Action.RIGHT);
-            case KeyEvent.VK_UP -> console.keyPressed(Console.Action.DOWN);
-            case KeyEvent.VK_DOWN -> console.keyPressed(Console.Action.UP);
-            case KeyEvent.VK_Z -> console.keyPressed(Console.Action.ATTACK);
-            case KeyEvent.VK_SPACE -> console.keyPressed(Console.Action.ATTACK);
-            case KeyEvent.VK_X ->  console.keyPressed(Console.Action.DEFFEND);
-            case KeyEvent.VK_Q ->  console.keyPressed(Console.Action.QUIT);
+            case KeyEvent.VK_LEFT -> LevelController.console.level.keyPressed(Console.Action.LEFT, LevelController.console);
+            case KeyEvent.VK_RIGHT -> LevelController.console.level.keyPressed(Console.Action.RIGHT, LevelController.console);
+            case KeyEvent.VK_UP -> LevelController.console.level.keyPressed(Console.Action.DOWN, LevelController.console);
+            case KeyEvent.VK_DOWN -> LevelController.console.level.keyPressed(Console.Action.UP, LevelController.console);
+            case KeyEvent.VK_Z -> LevelController.console.level.keyPressed(Console.Action.ATTACK, LevelController.console);
+            case KeyEvent.VK_SPACE -> LevelController.console.level.keyPressed(Console.Action.ATTACK, LevelController.console);
+            case KeyEvent.VK_X ->  LevelController.console.level.keyPressed(Console.Action.DEFFEND, LevelController.console);
+            case KeyEvent.VK_Q ->  LevelController.console.level.keyPressed(Console.Action.QUIT, LevelController.console);
         }
     }
 
-    public void setConsole(Console console) {
-        this.console = console;
-    }
 }

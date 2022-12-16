@@ -45,7 +45,7 @@ public class Level {
 
     Position positionPowerUpFinal= new Position(0,0);
 
-    public Level(TextGraphics screen){
+    public Level(TextGraphics screen, Console con){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
 
@@ -199,4 +199,33 @@ public class Level {
         return player.isAlive();
     }
 
+    public void keyPressed(Console.Action action, Console console) {
+
+        switch (action) {
+            case LEFT:
+                movePlayerLeft();
+                break;
+            case RIGHT:
+                movePlayerRight();
+                break;
+            case DOWN:
+                movePlayerDown();
+                break;
+            case UP:
+                movePlayerUp();
+                break;
+            case ATTACK:
+                playerAttack(Console.lastMovement);
+                break;
+            case DEFFEND:
+                break;
+            case QUIT:
+                console.close();
+
+                break;
+        }
+        if (action != Console.Action.QUIT && action != Console.Action.DEFFEND && action != Console.Action.ATTACK) {
+            Console.lastMovement = action;
+        }
+    }
 }
