@@ -11,7 +11,10 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import static LoZ.GameController.ScreenController.LevelController.*;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import static LoZ.GameController.Game.*;
 
 
 public class Level {
@@ -226,6 +229,17 @@ public class Level {
         }
         if (action != Console.Action.QUIT && action != Console.Action.DEFFEND && action != Console.Action.ATTACK) {
             Console.lastMovement = action;
+        }
+    }
+
+    public void draw(Console console){
+        try {
+            console.clear();
+            draw();
+            console.refresh();
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
         }
     }
 }

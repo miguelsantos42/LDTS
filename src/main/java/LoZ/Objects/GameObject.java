@@ -1,6 +1,6 @@
 package LoZ.Objects;
 
-import LoZ.GameController.ScreenController.LevelController;
+import LoZ.GameController.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -8,7 +8,6 @@ import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 abstract public class GameObject {
@@ -54,7 +53,7 @@ abstract public class GameObject {
         if((this.position.getxPos() + this.size.getWidth()) < width && life.isAlive())
             this.position.setxPos(+1);
         try {
-            TimeUnit.MILLISECONDS.sleep(LevelController.refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -64,7 +63,7 @@ abstract public class GameObject {
         if(this.position.getxPos() > 0 && this.life.isAlive())
             this.position.setxPos(-1);
         try {
-            TimeUnit.MILLISECONDS.sleep(LevelController.refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -74,7 +73,7 @@ abstract public class GameObject {
         if(this.position.getyPos() > 0 && this.life.isAlive())
             this.position.setyPos(-1);
         try {
-            TimeUnit.MILLISECONDS.sleep(LevelController.refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -84,7 +83,7 @@ abstract public class GameObject {
         if((this.position.getyPos() + this.size.getHeight()) < height && this.life.isAlive())
             this.position.setyPos(+1);
         try {
-            TimeUnit.MILLISECONDS.sleep(LevelController.refreshTime/speed);
+            TimeUnit.MILLISECONDS.sleep(Game.refreshTime/speed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

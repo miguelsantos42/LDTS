@@ -1,5 +1,7 @@
-package LoZ.GameController.ScreenController;
+package LoZ.GameController;
 
+import LoZ.GameController.ScreenController.Console;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -16,7 +18,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 //Play
-public class LevelController{
+public class Game {
 
 
     public static final int width = 64;
@@ -35,9 +37,8 @@ public class LevelController{
 
 
     private static KeyBoardObserver keyBoardObserver;
-    public LevelController levelController;
 
-    private static LevelController game = null;
+    private static Game game = null;
 
     public static int state = 1;
 
@@ -48,7 +49,7 @@ public class LevelController{
 
 
 
-    private LevelController() throws URISyntaxException, FontFormatException, IOException {
+    private Game() throws URISyntaxException, FontFormatException, IOException {
 
         keyBoardObserver = new KeyBoardObserver();
 
@@ -61,9 +62,9 @@ public class LevelController{
     }
 
 
-    public static LevelController getInstance() throws URISyntaxException, FontFormatException, IOException {
+    public static Game getInstance() throws URISyntaxException, FontFormatException, IOException {
         if(game == null){
-            game = new LevelController();
+            game = new Game();
         }
         return game;
     }
@@ -75,7 +76,7 @@ public class LevelController{
     //
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
-        console.run(levelController);
+        console.run(game);
     }
 
     public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {

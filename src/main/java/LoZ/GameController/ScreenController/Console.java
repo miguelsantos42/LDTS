@@ -6,7 +6,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
+import LoZ.GameController.Game;
 //Console
 public class Console{
 
@@ -32,31 +33,20 @@ public class Console{
 
     public static Action lastMovement = Action.LEFT;
 
-    private void draw(){
-        try {
-            clear();
-            this.level.draw();
-            refresh();
-            TimeUnit.MILLISECONDS.sleep(100);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-
-    public void run(LevelController levelController) {
+    public void run(Game levelController) {
 
         Thread enemyThread = new Thread(() -> {
             while(!exitThread) {
                 level.enemyAction();
-                draw();
+                level.draw(this);
             }
         });
 
         Thread bulletsThread = new Thread(() -> {
             while(!exitThread) {
                 level.bulletsAction();
-                draw();
+                level.draw(this);
             }
         });
 
@@ -79,16 +69,16 @@ public class Console{
 
 
     public void addKeyBoardListener(KeyBoardObserver obs) {
-        ((AWTTerminalFrame) LevelController.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);
+        ((AWTTerminalFrame) Game.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);
     }
 
     public void clear() {
-        LevelController.getScreen().clear();
+        Game.getScreen().clear();
     }
 
     public void refresh() throws IOException {
-        LevelController.getScreen().refresh();
-        LevelController.getScreen().doResizeIfNecessary();
+        Game.getScreen().refresh();
+        Game.getScreen().doResizeIfNecessary();
     }
 
     private void checkGameStatus() throws IOException {
@@ -103,7 +93,7 @@ public class Console{
     public void close() {
         exitThread = true;
         try {
-            LevelController.getScreen().close();
+            Game.getScreen().close();
         } catch (IOException e) {
             e.printStackTrace();
         }
