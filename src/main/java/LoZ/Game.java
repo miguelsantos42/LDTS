@@ -46,6 +46,10 @@ public class Game {
     /*Constants*/
     public static final int refreshTime = 1000;
 
+    protected static TerminalScreen screen;
+    public static Font font;
+    public static final String fontPath = "square.ttf";
+
 
 
 
@@ -84,9 +88,6 @@ public class Game {
         game.start();
     }
 
-    protected static TerminalScreen screen;
-    public static Font font;
-    public static final String fontPath = "square.ttf";
 
     protected void createTerminal(int sizeFont, TerminalSize terminalSize){
 
@@ -122,30 +123,4 @@ public class Game {
         }
     }
 
-    public void clear() {
-        screen.clear();
-    }
-
-    public void refresh() throws IOException {
-        screen.refresh();
-        screen.doResizeIfNecessary();
-    }
-
-    public static void close() throws IOException {
-
-        screen.close();
-    }
-
-    protected void draw(){
-        try {
-            clear();
-            drawText();
-            refresh();
-            TimeUnit.MILLISECONDS.sleep(20);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void drawText(){}
 }
