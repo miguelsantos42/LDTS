@@ -1,8 +1,11 @@
 package LoZ.GameController.ScreenController;
 
+import LoZ.Game;
 import LoZ.GameController.LevelStateController.Level;
 
+import LoZ.Menu.Play;
 import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -124,12 +127,56 @@ public class Console{
         LevelController.getScreen().doResizeIfNecessary();
     }
 
+    private void gameOver(){
+
+        try{
+            clear();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
+
+            graphics.setBackgroundColor(Game.colorScenario);
+            graphics.setForegroundColor(Game.colorPlayer);
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "GAME OVER");
+
+            //Reminder of how to quit the game
+            graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
+
+            Play.getScreen().refresh();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void gameWin(){
+
+        try{
+            clear();
+            TextGraphics graphics = Play.getScreen().newTextGraphics();
+
+            graphics.setBackgroundColor(Game.colorScenario);
+            graphics.setForegroundColor(Game.colorPlayer);
+            graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(Play.width, Play.height), ' ');
+            graphics.putString(Play.width/2-5,Play.height/2, "YOU WIN!");
+
+            //Reminder of how to quit the game
+            graphics.putString(Play.width-9, Play.height-2, "Q: QUIT");
+
+            Play.getScreen().refresh();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void checkGameStatus() throws IOException {
         if(!this.level.playerIsAlive()){
-            close();
+            exitThread = true;
+            gameOver();
         }
         if(this.level.EnemiesAreDefetead()){
             exitThread = true;
+            gameWin();
         }
     }
 

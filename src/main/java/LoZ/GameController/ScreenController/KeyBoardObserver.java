@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 public class KeyBoardObserver extends KeyAdapter {
 
     private Console console;
+    private KeyBoardObserver listener;
     public KeyBoardObserver() {}
 
     @Override
@@ -29,5 +30,9 @@ public class KeyBoardObserver extends KeyAdapter {
 
     public void setConsole(Console console) {
         this.console = console;
+    }
+
+    public void setListener(KeyBoardObserver listener) {
+        this.listener = listener;
     }
 }
