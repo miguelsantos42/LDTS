@@ -1,6 +1,6 @@
 package LoZ.Objects;
 
-import LoZ.Game;
+import LoZ.GameController.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -8,7 +8,6 @@ import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 abstract public class GameObject {
