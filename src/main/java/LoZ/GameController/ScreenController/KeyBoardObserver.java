@@ -1,14 +1,12 @@
 package LoZ.GameController.ScreenController;
 
-import LoZ.GameController.ScreenController.Console;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 //KeyBoardObserver
 public class KeyBoardObserver extends KeyAdapter {
 
     private Console console;
-    private KeyBoardObserver listener;
+    private Console listener;
     public KeyBoardObserver() {}
 
     @Override
@@ -32,7 +30,7 @@ public class KeyBoardObserver extends KeyAdapter {
         this.console = console;
     }
 
-    public void setListener(KeyBoardObserver listener) {
+    public void setListener(Console listener) {
         this.listener = listener;
     }
 }
