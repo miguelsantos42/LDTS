@@ -3,12 +3,10 @@ package LoZ.GameController.ScreenController;
 import LoZ.Game;
 import LoZ.GameController.LevelStateController.Level;
 
-import LoZ.Menu.Play;
+import LoZ.GameController.Menu.Play;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.io.IOException;

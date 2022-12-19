@@ -1,4 +1,4 @@
-package LoZ.Menu;
+package LoZ.GameController.Menu;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.TerminalScreen;

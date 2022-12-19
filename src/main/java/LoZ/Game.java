@@ -1,11 +1,12 @@
 package LoZ;
 
+import LoZ.GameController.Menu.State;
 import LoZ.GameController.ScreenController.KeyBoardObserver;
 import LoZ.GameController.ScreenController.LevelController;
-import LoZ.Menu.Play;
+import LoZ.GameController.Menu.Play;
 import com.googlecode.lanterna.TextColor;
-import LoZ.Menu.Instructions;
-import LoZ.Menu.Menu;
+import LoZ.GameController.Menu.Instructions;
+import LoZ.GameController.Menu.Menu;
 
 import java.awt.*;
 import java.io.File;
@@ -75,7 +76,7 @@ public class Game{
                 case 4 -> exit = true;
             }
         } while (!exit);
-        LoZ.Menu.State.close();
+        State.close();
     }
 
     public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {

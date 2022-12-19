@@ -1,4 +1,4 @@
-package LoZ.Menu;
+package LoZ.GameController.Menu;
 
 import LoZ.Game;
 import com.googlecode.lanterna.SGR;
