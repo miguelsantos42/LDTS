@@ -106,9 +106,6 @@ public class Level {
         }
     }
 
-    private void drawInfo(){
-    }
-
     public void movePlayerLeft(){
         this.player.moveLeft();
         checkPlayerCollisions();
@@ -246,14 +243,14 @@ public class Level {
 
     public void run() {
         Thread enemyThread = new Thread(() -> {
-            while(console.gameStatus()) {
+            while(console.gameStatus() && console.getState() == Console.ScreenState.LEVEL) {
                 enemyAction();
                 drawn();
             }
         });
 
         Thread bulletsThread = new Thread(() -> {
-            while(console.gameStatus()) {
+            while(console.gameStatus() && console.getState() == Console.ScreenState.LEVEL) {
                 bulletsAction();
                 drawn();
             }
@@ -262,7 +259,7 @@ public class Level {
         enemyThread.start();
         bulletsThread.start();
         try {
-            while (console.gameStatus()){
+            while (console.gameStatus() && console.getState() == Console.ScreenState.LEVEL){
                 Thread.sleep(800);
                 checkGameStatus();
             }
