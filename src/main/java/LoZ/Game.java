@@ -1,55 +1,64 @@
 package LoZ;
 
-import LoZ.GameController.Menu.State;
+import LoZ.GameController.ScreenController.Console;
 import LoZ.GameController.ScreenController.KeyBoardObserver;
-import LoZ.GameController.ScreenController.LevelController;
-import LoZ.GameController.Menu.Play;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
-import LoZ.GameController.Menu.Instructions;
-import LoZ.GameController.Menu.Menu;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-//Game
-public class Game{
+//Play
+public class Game {
+
+
+    public static final int width = 64;
+    public static final int height = 36;
+
+    TerminalSize terminalSize = new TerminalSize(width, height);
+
+    TextGraphics graphics;
+
+    public static Console console;
+
+    public static final TextColor colorScenario = new TextColor.RGB(15,20,45);
+
+    public static TerminalScreen getScreen(){return screen;}
+
+
 
     private static KeyBoardObserver keyBoardObserver;
-    public LevelController levelController;
-    private final Play play;
-    private final Instructions instructions;
-    public static Menu menu;
 
     private static Game game = null;
-    protected static boolean exit;
 
     public static int state = 1;
-    public static Font font;
+
 
     /*Constants*/
     public static final int refreshTime = 1000;
-    public static final String fontPath = "square.ttf";
 
-    /*Colors of the game*/
-    public static final TextColor colorMonster =  new TextColor.RGB(0,200,50);
-    public static final TextColor colorPlayer =  new TextColor.RGB(255, 255, 255);
-    public static final TextColor colorScenario = new TextColor.RGB(15,20,45);
+
+
 
     private Game() throws URISyntaxException, FontFormatException, IOException {
-        /*      Import font of the game     */
-        URL resource = getClass().getClassLoader().getResource(fontPath);
-        File fontFile = new File(resource.toURI());
-        font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-        this.menu = new Menu();
-        this.levelController = new LevelController();
-        this.play = new Play();
-        this.instructions = new Instructions();
 
         keyBoardObserver = new KeyBoardObserver();
+
+        int sizeFont = 20;
+
+        createTerminal(sizeFont, terminalSize);
+        graphics = screen.newTextGraphics();
+        console = new Console(graphics);
+        console.addKeyBoardListener(getKeyBoardObserver());
     }
 
 
@@ -67,20 +76,76 @@ public class Game{
     //
 
     public void start() throws IOException, URISyntaxException, FontFormatException {
-        menu.start();
-        do {
-            switch (state) {
-                case 1 -> menu.run();
-                case 2 -> play.run();
-                case 3 -> instructions.run();
-                case 4 -> exit = true;
-            }
-        } while (!exit);
-        State.close();
+        console.run(game);
     }
 
     public static void main(String[] args) throws URISyntaxException, FontFormatException, IOException {
         game = getInstance();
         game.start();
     }
+
+    protected static TerminalScreen screen;
+    public static Font font;
+    public static final String fontPath = "square.ttf";
+
+    protected void createTerminal(int sizeFont, TerminalSize terminalSize){
+
+        try {
+            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+
+            terminalFactory.setTerminalEmulatorTitle("Legend of Zelda");
+
+            /*      Import font of the game     */
+            URL resource = getClass().getClassLoader().getResource(fontPath);
+            File fontFile = new File(resource.toURI());
+            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+            Font loadedFont = font.deriveFont(Font.PLAIN, sizeFont);
+
+            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
+            terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+            terminalFactory.setForceAWTOverSwing(true);
+
+            Terminal terminal = terminalFactory.createTerminal();
+
+            screen = new TerminalScreen(terminal);
+            screen.setCursorPosition(null);
+            screen.startScreen();
+            screen.doResizeIfNecessary();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clear() {
+        screen.clear();
+    }
+
+    public void refresh() throws IOException {
+        screen.refresh();
+        screen.doResizeIfNecessary();
+    }
+
+    public static void close() throws IOException {
+
+        screen.close();
+    }
+
+    protected void draw(){
+        try {
+            clear();
+            drawText();
+            refresh();
+            TimeUnit.MILLISECONDS.sleep(20);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void drawText(){}
 }

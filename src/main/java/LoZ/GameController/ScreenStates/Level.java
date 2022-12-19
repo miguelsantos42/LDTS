@@ -1,7 +1,6 @@
-package LoZ.GameController.LevelStateController;
+package LoZ.GameController.ScreenStates;
 
 
-import LoZ.GameController.Game;
 import LoZ.GameController.ScreenController.Console;
 import LoZ.Objects.*;
 import LoZ.Objects.Attributes.Life;
@@ -15,7 +14,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static LoZ.GameController.Game.*;
+import static LoZ.Game.*;
 
 
 public class Level {
@@ -49,12 +48,13 @@ public class Level {
 
     Position positionPowerUpFinal= new Position(0,0);
 
-    Boolean exitThread = false;
+    Console console;
 
-    public Level(TextGraphics screen, Console con){
+
+    public Level(TextGraphics screen, Console console){
         Level.screen = screen;
         screenSize = new Size(screen.getSize().getRows(), screen.getSize().getColumns()) ;
-
+        this.console = console;
         //player
         Position playerPosition = new Position(10,10);
         Size playerSize = new Size(3,3);
@@ -88,16 +88,22 @@ public class Level {
 
     }
 
-    public void draw() {
+    public void drawn(){
+        try {
+            console.clear();
+            screen.setBackgroundColor(colorScenario);
+            screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
 
-        screen.setBackgroundColor(colorScenario);
-        screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
-
-        player.draw(screen);
-        enemies.drawEnemies(screen);
-        bullets.drawBullets(screen);
-        player.drawInfo(screen);
-        powerups.drawPowerUps(screen);
+            player.draw(screen);
+            enemies.drawEnemies(screen);
+            bullets.drawBullets(screen);
+            player.drawInfo(screen);
+            powerups.drawPowerUps(screen);
+            console.refresh();
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void drawInfo(){
@@ -206,7 +212,7 @@ public class Level {
         return player.isAlive();
     }
 
-    public void keyPressed(Console.Action action, Console console) {
+    public void keyPressed(Console.Action action) {
 
         switch (action) {
             case LEFT:
@@ -227,7 +233,8 @@ public class Level {
             case DEFFEND:
                 break;
             case QUIT:
-                console.close();
+                console.setState(Console.ScreenState.CLOSE);
+                console.setGameStatus(false);
 
                 break;
         }
@@ -236,57 +243,42 @@ public class Level {
         }
     }
 
-    public void draw(Console console){
-        try {
-            console.clear();
-            draw();
-            console.refresh();
-            TimeUnit.MILLISECONDS.sleep(100);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void run(Game levelController, Console console) {
-
+    public void run() {
         Thread enemyThread = new Thread(() -> {
-            while(!exitThread) {
+            while(console.gameStatus()) {
                 enemyAction();
-                draw(console);
+                drawn();
             }
         });
 
         Thread bulletsThread = new Thread(() -> {
-            while(!exitThread) {
+            while(console.gameStatus()) {
                 bulletsAction();
-                draw(console);
+                drawn();
             }
         });
 
         enemyThread.start();
         bulletsThread.start();
-
-        new Thread(() -> {
-            try {
-
-                while (!exitThread){
-                    Thread.sleep(800);
-                    checkGameStatus(console);
-                }
-            }catch (InterruptedException | IOException e){
-                e.printStackTrace();
+        try {
+            while (console.gameStatus()){
+                Thread.sleep(800);
+                checkGameStatus();
             }
+        }catch (InterruptedException | IOException e){
+            e.printStackTrace();
+        }
 
-        }).start();
     }
 
-    private void checkGameStatus(Console console) throws IOException {
+    private void checkGameStatus() throws IOException {
         if(!playerIsAlive()){
-            exitThread = true;
+            console.setGameStatus(false);
             console.close();
         }
         else if(EnemiesAreDefetead()){
-            exitThread = true;
+            console.setGameStatus(false);
             console.close();
         }
     }

@@ -1,12 +1,12 @@
 package LoZ.GameController.ScreenController;
+import LoZ.GameController.ScreenController.Console;
+import LoZ.Game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 //KeyBoardObserver
 public class KeyBoardObserver extends KeyAdapter {
 
-    private Console console;
-    private Console listener;
     public KeyBoardObserver() {}
 
     @Override
@@ -14,23 +14,51 @@ public class KeyBoardObserver extends KeyAdapter {
 
         super.keyPressed(e);
 
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> console.keyPressed(Console.Action.LEFT);
-            case KeyEvent.VK_RIGHT -> console.keyPressed(Console.Action.RIGHT);
-            case KeyEvent.VK_UP -> console.keyPressed(Console.Action.DOWN);
-            case KeyEvent.VK_DOWN -> console.keyPressed(Console.Action.UP);
-            case KeyEvent.VK_Z -> console.keyPressed(Console.Action.ATTACK);
-            case KeyEvent.VK_SPACE -> console.keyPressed(Console.Action.ATTACK);
-            case KeyEvent.VK_X ->  console.keyPressed(Console.Action.DEFFEND);
-            case KeyEvent.VK_Q ->  console.keyPressed(Console.Action.QUIT);
+
+        switch (Console.state) {
+            case MENU -> menuController(e);
+            case INSTRUCTIONS -> instructionsController(e);
+            case LEVEL -> levelController(e);
         }
     }
 
-    public void setConsole(Console console) {
-        this.console = console;
+
+
+    public void menuController(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP -> Game.console.menu.keyPressed(Console.Action.DOWN);
+            case KeyEvent.VK_DOWN -> Game.console.menu.keyPressed(Console.Action.UP);
+            case KeyEvent.VK_Q -> Game.console.menu.keyPressed(Console.Action.QUIT);
+            case KeyEvent.VK_ENTER -> Game.console.menu.keyPressed(Console.Action.SELECT);
+        }
     }
 
-    public void setListener(Console listener) {
-        this.listener = listener;
+    public void levelController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT -> Game.console.level.keyPressed(Console.Action.LEFT);
+            case KeyEvent.VK_RIGHT -> Game.console.level.keyPressed(Console.Action.RIGHT);
+            case KeyEvent.VK_UP -> Game.console.level.keyPressed(Console.Action.DOWN);
+            case KeyEvent.VK_DOWN -> Game.console.level.keyPressed(Console.Action.UP);
+            case KeyEvent.VK_Z -> Game.console.level.keyPressed(Console.Action.ATTACK);
+            case KeyEvent.VK_SPACE -> Game.console.level.keyPressed(Console.Action.ATTACK);
+            case KeyEvent.VK_X ->  Game.console.level.keyPressed(Console.Action.DEFFEND);
+            case KeyEvent.VK_Q ->  Game.console.level.keyPressed(Console.Action.QUIT);
+        }
     }
+    public void instructionsController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT -> Game.console.instructions.keyPressed(Console.Action.LEFT);
+            case KeyEvent.VK_RIGHT -> Game.console.instructions.keyPressed(Console.Action.RIGHT);
+            case KeyEvent.VK_UP -> Game.console.instructions.keyPressed(Console.Action.DOWN);
+            case KeyEvent.VK_DOWN -> Game.console.instructions.keyPressed(Console.Action.UP);
+            case KeyEvent.VK_Z -> Game.console.instructions.keyPressed(Console.Action.ATTACK);
+            case KeyEvent.VK_SPACE -> Game.console.instructions.keyPressed(Console.Action.ATTACK);
+            case KeyEvent.VK_X ->  Game.console.instructions.keyPressed(Console.Action.DEFFEND);
+            case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Console.Action.QUIT);
+        }
+    }
+
+
+
+
 }

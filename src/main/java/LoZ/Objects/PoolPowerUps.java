@@ -5,9 +5,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
 
-import static LoZ.GameController.Game.height;
-import static LoZ.GameController.Game.width;
-
 public class PoolPowerUps {
 
     private ArrayList<PowerUp> poolPowerUps;

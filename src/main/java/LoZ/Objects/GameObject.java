@@ -1,6 +1,6 @@
 package LoZ.Objects;
 
-import LoZ.GameController.Game;
+import LoZ.Game;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
