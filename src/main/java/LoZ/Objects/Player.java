@@ -69,7 +69,7 @@ public class Player extends GameObject{
         screen.putString(1 , 1, String.valueOf(life.getCurrentLives()));
         screen.putString(1+1 , 1,"/");
         screen.putString(1+2 , 1, String.valueOf(life.getMaximumLives()));
-        screen.putString(1+3 , 1, " lifes");
+        screen.putString(1+3 , 1, " lives");
 
         screen.putString(15 , 1, String.valueOf(score));
         screen.putString(16 , 1, " score");
