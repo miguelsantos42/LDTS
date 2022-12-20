@@ -4,6 +4,7 @@ import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class PowerUp extends GameObject{
 
@@ -30,5 +31,20 @@ public class PowerUp extends GameObject{
 
     }
 
+    @Override
+    public void draw(TextGraphics screen) {
+        if (!life.isAlive()){
+            return;
+        }
+        screen.setForegroundColor(this.color);
+        for (int i = 0; i < size.getWidth(); i++) {
+            for (int j = 0; j < size.getHeight(); j++) {
+                screen.putString(position.getxPos()+i, position.getyPos()+j, "O");
+
+            }
+
+        }
+        screen.putString(position.getxPos(), position.getyPos(), "O");
+    }
 
 }
