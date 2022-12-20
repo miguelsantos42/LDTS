@@ -4,6 +4,7 @@ import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bullet extends GameObject{
 
@@ -94,5 +95,21 @@ public class Bullet extends GameObject{
         this.isEnemyBullet = bullet.isEnemyBullet;
         this.direction = bullet.direction;
         this.sprite = bullet.sprite;
+    }
+
+    @Override
+    public void draw(TextGraphics screen) {
+        if (!life.isAlive()){
+            return;
+        }
+        screen.setForegroundColor(this.color);
+        for (int i = 0; i < size.getWidth(); i++) {
+            for (int j = 0; j < size.getHeight(); j++) {
+                screen.putString(position.getxPos()+i, position.getyPos()+j, "-");
+
+            }
+
+        }
+        screen.putString(position.getxPos(), position.getyPos(), "-");
     }
 }

@@ -41,12 +41,12 @@ abstract public class GameObject {
         screen.setForegroundColor(this.color);
         for (int i = 0; i < size.getWidth(); i++) {
             for (int j = 0; j < size.getHeight(); j++) {
-                screen.putString(position.getxPos()+i, position.getyPos()+j, "a");
+                screen.putString(position.getxPos()+i, position.getyPos()+j, "&");
 
             }
 
         }
-        screen.putString(position.getxPos(), position.getyPos(), "a");
+        screen.putString(position.getxPos(), position.getyPos(), "&");
     }
 
     public void moveRight(int width){
