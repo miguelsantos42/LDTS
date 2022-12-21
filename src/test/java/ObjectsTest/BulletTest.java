@@ -45,14 +45,14 @@ public class BulletTest {
     @MethodSource("streamMoveBullet")
     public void testMoveYBullet(Bullet bullet, Position position) {
         bullet.moveBullet(100, 100);
-        assertEquals(bullet.getPosition().getyPos(), position.getyPos());
+        assertEquals(position.getyPos(), bullet.getPosition().getyPos());
     }
 
     @ParameterizedTest
     @MethodSource("streamMoveBullet")
     public void testMoveXBullet(Bullet bullet, Position position) {
         bullet.moveBullet(100, 100);
-        assertEquals(bullet.getPosition().getxPos(), position.getxPos());
+        assertEquals(position.getxPos(), bullet.getPosition().getxPos());
     }
 
     private static Stream<Arguments> streamMoveBullet() {
@@ -62,10 +62,10 @@ public class BulletTest {
         Bullet enemyBullet4 = new Bullet(new Position(10,10), new Size(1,1), new TextColor.RGB(255, 0, 0), new Life(1), true, Bullet.Direction.UP);
 
         return Stream.of(
-                arguments(enemyBullet1, new Position(9,10)),
-                arguments(enemyBullet2, new Position(11,10)),
-                arguments(enemyBullet3, new Position(10,9)),
-                arguments(enemyBullet4, new Position(10,11))
+                arguments(enemyBullet1, new Position(10,10)),
+                arguments(enemyBullet2, new Position(10,10)),
+                arguments(enemyBullet3, new Position(10,10)),
+                arguments(enemyBullet4, new Position(10,10))
 
         );
     }
