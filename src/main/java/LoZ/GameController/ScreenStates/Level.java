@@ -98,7 +98,7 @@ public class Level {
             player.draw(screen);
             enemies.drawEnemies(screen);
             bullets.drawBullets(screen);
-            player.drawInfo(screen);
+            player.draw(screen);
             powerups.drawPowerUps(screen);
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(100);
@@ -228,15 +228,13 @@ public class Level {
             case ATTACK:
                 playerAttack(KeyBoardObserver.lastMovement);
                 break;
-            case DEFFEND:
-                break;
             case QUIT:
                 console.setState(Console.ScreenState.CLOSE);
                 console.setGameStatus(false);
 
                 break;
         }
-        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
+        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.ATTACK) {
             KeyBoardObserver.lastMovement = action;
         }
     }
@@ -273,11 +271,9 @@ public class Level {
     private void checkGameStatus() throws IOException {
         if(!playerIsAlive()){
             console.setGameStatus(false);
-            console.close();
         }
         else if(EnemiesAreDefetead()){
             console.setGameStatus(false);
-            console.close();
         }
     }
 }
