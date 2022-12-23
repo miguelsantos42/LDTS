@@ -33,6 +33,8 @@ public class KeyBoardObserver extends KeyAdapter {
             case MENU -> menuController(e);
             case INSTRUCTIONS -> instructionsController(e);
             case LEVEL -> levelController(e);
+            case GAMEWIN -> gamewinController(e);
+            case GAMEOVER -> gameoverController(e);
         }
     }
 
@@ -60,6 +62,18 @@ public class KeyBoardObserver extends KeyAdapter {
         }
     }
     public void instructionsController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
+            case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
+        }
+    }
+    public void gamewinController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
+            case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
+        }
+    }
+    public void gameoverController(KeyEvent e){
         switch (e.getKeyCode()) {
             case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
             case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);

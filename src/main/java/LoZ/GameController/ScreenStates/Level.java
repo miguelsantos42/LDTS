@@ -272,12 +272,10 @@ public class Level {
 
     private void checkGameStatus() throws IOException {
         if(!playerIsAlive()){
-            console.setGameStatus(false);
-            console.close();
+            console.setState(Console.ScreenState.GAMEOVER);
         }
         else if(EnemiesAreDefetead()){
-            console.setGameStatus(false);
-            console.close();
+            console.setState(Console.ScreenState.GAMEWIN);
         }
     }
 }
