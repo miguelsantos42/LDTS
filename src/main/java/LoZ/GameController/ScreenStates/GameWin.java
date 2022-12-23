@@ -72,7 +72,7 @@ public class GameWin {
             screen.putString(1, row+4, "Press Q to quit or M to go back to the menu.", SGR.BOLD);
 
             screen.setForegroundColor(gamewinColorNotSelected);
-            screen.putString(screenSize.getWidth() - 19, screenSize.getHeight()-2, "PRESS M TO GO BACK");
+            //screen.putString(screenSize.getWidth() - 19, screenSize.getHeight()-2, "You won with a Score of ", SGR.BOLD);
 
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(20);

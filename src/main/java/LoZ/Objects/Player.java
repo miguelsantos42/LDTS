@@ -2,6 +2,7 @@ package LoZ.Objects;
 
 import LoZ.GameController.ScreenController.Console;
 import LoZ.GameController.ScreenController.KeyBoardObserver;
+import LoZ.GameController.ScreenStates.Level;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -14,8 +15,7 @@ import static java.lang.System.nanoTime;
 
 public class Player extends GameObject{
 
-    Bullet attackType;
-    int score;
+    Bullet attackType;;
 
     double time;
 
@@ -65,7 +65,7 @@ public class Player extends GameObject{
 
     }
 
-    public void drawInfo(TextGraphics screen) {
+    public void drawInfo(TextGraphics screen, int score) {
         screen.setForegroundColor(TextColor.ANSI.RED);
         screen.putString(1 , 1, String.valueOf(life.getCurrentLives()));
         screen.putString(1+1 , 1,"/");

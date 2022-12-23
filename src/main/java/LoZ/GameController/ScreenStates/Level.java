@@ -50,6 +50,7 @@ public class Level {
     Position positionPowerUpFinal= new Position(0,0);
 
     Console console;
+    public int score=0;
 
 
     public Level(TextGraphics screen, Console console){
@@ -98,7 +99,7 @@ public class Level {
             player.draw(screen);
             enemies.drawEnemies(screen);
             bullets.drawBullets(screen);
-            player.drawInfo(screen);
+            player.drawInfo(screen, score);
             powerups.drawPowerUps(screen);
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(100);
@@ -154,6 +155,7 @@ public class Level {
                         {
                             positionPowerUpFinal=enemy.getPosition();
                             this.powerups.addPowerUp(typePowerUp, positionPowerUpFinal);
+                            score=score+1;
                         }
                     }
                 }

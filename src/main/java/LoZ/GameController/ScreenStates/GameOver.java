@@ -73,7 +73,6 @@ public class GameOver {
 
 
             screen.setForegroundColor(gameoverColorNotSelected);
-            screen.putString(screenSize.getWidth() - 19, screenSize.getHeight()-2, "PRESS M TO GO BACK");
 
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(20);
