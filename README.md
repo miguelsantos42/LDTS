@@ -57,7 +57,7 @@ Since the last presentation we have introduced the following features:
 ![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
 
 
-###DESIGN
+### DESIGN
 
 THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
 
