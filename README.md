@@ -61,4 +61,4 @@ Since the last presentation we have introduced the following features:
 
 THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
 
-- **The Pattern**: The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
+- **GAME LOOP Pattern**: The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
