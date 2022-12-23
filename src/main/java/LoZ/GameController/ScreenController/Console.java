@@ -15,16 +15,7 @@ public class Console{
 
 
 
-    static public enum Action{
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT,
-        ATTACK,
-        DEFFEND,
-        QUIT,
-        SELECT
-    }
+
 
     static public enum ScreenState{
         MENU,
@@ -44,7 +35,7 @@ public class Console{
 
     protected boolean runningThread = true;
 
-    public static Action lastMovement = Action.LEFT;
+
     public Console(TextGraphics graphics) {
 
         this.level = new Level(graphics, this);
@@ -75,6 +66,7 @@ public class Console{
                     runningThread = false;
                     close();
                 }
+
             }
         }
         close();

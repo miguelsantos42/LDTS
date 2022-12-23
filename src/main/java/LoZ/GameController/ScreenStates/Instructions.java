@@ -1,6 +1,7 @@
 package LoZ.GameController.ScreenStates;
 
 import LoZ.GameController.ScreenController.Console;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
@@ -21,16 +22,16 @@ public class Instructions {
 
     }
 
-    public void keyPressed(LoZ.GameController.ScreenController.Console.Action action) {
+    public void keyPressed(KeyBoardObserver.Action action) {
 
         switch (action) {
             case QUIT:
-                console.setState(LoZ.GameController.ScreenController.Console.ScreenState.MENU);
+                console.setState(Console.ScreenState.MENU);
                 console.setGameStatus(false);
                 break;
         }
-        if (action != LoZ.GameController.ScreenController.Console.Action.QUIT && action != LoZ.GameController.ScreenController.Console.Action.DEFFEND && action != LoZ.GameController.ScreenController.Console.Action.ATTACK) {
-            LoZ.GameController.ScreenController.Console.lastMovement = action;
+        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
+            KeyBoardObserver.lastMovement = action;
         }
     }
 

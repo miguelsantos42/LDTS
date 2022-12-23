@@ -2,6 +2,7 @@ package LoZ.GameController.ScreenStates;
 
 
 import LoZ.GameController.ScreenController.Console;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
 import LoZ.Objects.*;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
@@ -123,7 +124,7 @@ public class Level {
         checkPlayerCollisions();
     }
 
-    public void playerAttack(Console.Action lastAction){
+    public void playerAttack(KeyBoardObserver.Action lastAction){
         this.player.doAttack(bullets, lastAction);
     }
 
@@ -209,7 +210,7 @@ public class Level {
         return player.isAlive();
     }
 
-    public void keyPressed(Console.Action action) {
+    public void keyPressed(KeyBoardObserver.Action action) {
 
         switch (action) {
             case LEFT:
@@ -225,7 +226,7 @@ public class Level {
                 movePlayerUp();
                 break;
             case ATTACK:
-                playerAttack(Console.lastMovement);
+                playerAttack(KeyBoardObserver.lastMovement);
                 break;
             case DEFFEND:
                 break;
@@ -235,8 +236,8 @@ public class Level {
 
                 break;
         }
-        if (action != Console.Action.QUIT && action != Console.Action.DEFFEND && action != Console.Action.ATTACK) {
-            Console.lastMovement = action;
+        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
+            KeyBoardObserver.lastMovement = action;
         }
     }
 

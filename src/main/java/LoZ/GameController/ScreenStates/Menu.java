@@ -2,6 +2,7 @@ package LoZ.GameController.ScreenStates;
 
 import LoZ.Game;
 import LoZ.GameController.ScreenController.Console;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
 import LoZ.Objects.Attributes.Size;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
@@ -108,7 +109,7 @@ public class Menu{
     }
 
 
-    public void keyPressed(Console.Action action) {
+    public void keyPressed(KeyBoardObserver.Action action) {
         switch (action) {
             case DOWN:
                 moveCursorUp();
@@ -125,8 +126,8 @@ public class Menu{
                 break;
 
         }
-        if (action != Console.Action.QUIT && action != Console.Action.DEFFEND && action != Console.Action.ATTACK) {
-            Console.lastMovement = action;
+        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
+            KeyBoardObserver.lastMovement = action;
         }
     }
 }

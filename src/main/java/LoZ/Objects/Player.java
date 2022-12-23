@@ -1,6 +1,7 @@
 package LoZ.Objects;
 
 import LoZ.GameController.ScreenController.Console;
+import LoZ.GameController.ScreenController.KeyBoardObserver;
 import LoZ.Objects.Attributes.Life;
 import LoZ.Objects.Attributes.Position;
 import LoZ.Objects.Attributes.Size;
@@ -24,7 +25,7 @@ public class Player extends GameObject{
         this.attackType = bulletType;
     }
 
-    public void doAttack(PoolBullets poolBullets, Console.Action action){
+    public void doAttack(PoolBullets poolBullets, KeyBoardObserver.Action action){
         double currentTime = (nanoTime()/1000000000);
         if (currentTime - time < (double) speed/250){
             return;
@@ -33,27 +34,27 @@ public class Player extends GameObject{
         Bullet bullet = new Bullet(attackType);
         bullet.position.setxPos(this.position.getxPos());
         bullet.position.setyPos(this.position.getyPos());
-        if (action==Console.Action.LEFT)
+        if (action==KeyBoardObserver.Action.LEFT)
         {
             bullet.direction = Bullet.Direction.LEFT;
             bullet.position.setxPos(-1);
             bullet.position.setyPos(size.getHeight()/2);
         }
-        else if (action==Console.Action.RIGHT)
+        else if (action==KeyBoardObserver.Action.RIGHT)
         {
             bullet.direction = Bullet.Direction.RIGHT;
             bullet.position.setxPos(this.size.getWidth());
             bullet.position.setyPos(size.getHeight()/2);
         }
 
-        else if (action==Console.Action.DOWN)
+        else if (action==KeyBoardObserver.Action.DOWN)
         {
             bullet.direction = Bullet.Direction.DOWN;
             bullet.position.setyPos(-1);
             bullet.position.setxPos(size.getWidth()/2);
         }
 
-        else if (action==Console.Action.UP)
+        else if (action==KeyBoardObserver.Action.UP)
         {
             bullet.direction = Bullet.Direction.UP;
             bullet.position.setyPos(this.size.getHeight());
