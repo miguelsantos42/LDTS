@@ -52,7 +52,7 @@ Since the last presentation we have introduced the following features:
 
 ### DESIGN
 
-THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
+We are model-view-controller architecture pattern to our code. We could improve the model/view dependency code, since they are sometimes mixed or too much dependents from each other. 
 
 ## **Template Method**:
 Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. We use it on on the pools.
