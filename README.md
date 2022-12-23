@@ -33,6 +33,7 @@ Since the last presentation we have introduced the following features:
 - **Player Attacks** - The game character will shoot a bullet when the Space Bar is pressed;
 - **PowerUps** – Every time the player kills an enemy there is a chance that the monster drops an Upgrade Item that (if picked up) can regenerate the player’s life or give it a PowerUp;
 - **Player's Lives Display** - The Player has 3 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen;
+
 ![image](https://user-images.githubusercontent.com/94482929/209370765-cb4f59f2-bcef-4fe8-b60e-9b47f85ddb09.png)
 
 
