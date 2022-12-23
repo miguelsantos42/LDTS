@@ -64,9 +64,11 @@ THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL
 ## **Template Method**:
 Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. We use it on on the pools.
 
-  ### Problem: we had a simple algorithm and we needed to specialize them all into more specific classes;
+  ### Problem
+  we had a simple algorithm and we needed to specialize them all into more specific classes;
 
-  ### Solution: As we had a base algorithm equal to all moves, we need to specialize for each case. In this way, an enemy moves                     automatically, a bullet is always the same and the Player responds to commands
+  ### Solution
+  As we had a base algorithm equal to all moves, we need to specialize for each case. In this way, an enemy moves                     automatically, a bullet is always the same and the Player responds to commands
 
 ## **Game Loop Pattern**: 
 The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
