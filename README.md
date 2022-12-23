@@ -65,7 +65,7 @@ THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL
 Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. We use it on on the pools.
 
   ### Problem
-  we had a simple algorithm and we needed to specialize them all into more specific classes;
+  We had a simple algorithm and we needed to specialize them all into more specific classes;
 
   ### Solution
   As we had a base algorithm equal to all moves, we need to specialize for each case. In this way, an enemy moves                     automatically, a bullet is always the same and the Player responds to commands
