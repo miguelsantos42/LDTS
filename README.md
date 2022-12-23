@@ -91,3 +91,5 @@ Observer is a behavioral design pattern that lets you define a subscription mech
 - Game class could be called as Lazy class, since could be merged with console.
 - Maybe we could review some message chains, mostly of relation between objects and attributes. 
 
+
+### Tests code coverage:
