@@ -61,7 +61,7 @@ public class KeyBoardObserver extends KeyAdapter {
     }
     public void instructionsController(KeyEvent e){
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_M -> Game.console.menu.keyPressed(Action.SELECT);
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
             case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
         }
     }
