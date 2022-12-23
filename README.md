@@ -56,3 +56,9 @@ Since the last presentation we have introduced the following features:
 
 ![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
 
+
+###DESIGN
+
+THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
+
+- **The Pattern**: The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
