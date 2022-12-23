@@ -64,15 +64,27 @@ THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL
 - **Template Method**:
 Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
 
+## Problem
 
-- **GAME LOOP Pattern**: 
+## Solution
+
+- **Game Loop Pattern**: 
 The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
 
+## Problem
+
+## Solution
 
 - **Singleton Pattern:**
 As the 'Game' class is the main class of the game, we have to ensure that there is only one object of this class. So we implement this pattern in the 'Game' class, to obtain this guarantee.
 
+## Problem
+
+## Solution
 
 - **Observer Pattern:**
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
 
+## Problem
+
+## Solution
