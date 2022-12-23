@@ -32,7 +32,7 @@ Since the last presentation we have introduced the following features:
 - **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player;
 - **Player Attacks** - The game character will shoot a bullet when the Space Bar is pressed;
 - **PowerUps** – Every time the player kills an enemy there is a chance that the monster drops an Upgrade Item that (if picked up) can regenerate the player’s life or give it a PowerUp;
-- **Player's Lives Display** - The Player has 3 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen;
+- **Player's Lives Display** - The Player has 2 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen;
 
 ![image](https://user-images.githubusercontent.com/94482929/209370765-cb4f59f2-bcef-4fe8-b60e-9b47f85ddb09.png)
 
@@ -56,3 +56,9 @@ Since the last presentation we have introduced the following features:
 
 ![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
 
+
+### DESIGN
+
+THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
+
+- **The Pattern**: The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
