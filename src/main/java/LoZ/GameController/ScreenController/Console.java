@@ -23,7 +23,7 @@ public class Console{
         LEVEL,
         CLOSE,
         GAMEOVER,
-        WIN
+        GAMEWIN
     }
 
 

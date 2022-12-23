@@ -22,8 +22,8 @@ public class Instructions {
     private TextGraphics screen;
     Console console;
 
-    private final TextColor menuColorNotSelected = new TextColor.RGB(255, 255, 255);
-    private final TextColor menuColorSelected = new TextColor.RGB(135, 122, 56);
+    private final TextColor instructionsColorNotSelected = new TextColor.RGB(255, 255, 255);
+    private final TextColor instructionsColorSelected = new TextColor.RGB(15, 20, 45);
 
     int column;
     int row;
@@ -50,13 +50,17 @@ public class Instructions {
                 console.setState(Console.ScreenState.MENU);
                 console.setGameStatus(false);
                 break;
+
+            case SELECT:
+                console.setState(Console.ScreenState.MENU);
+                break;
         }
     }
 
     protected void draw(){
         try {
-            screen.setBackgroundColor(menuColorSelected);
-            screen.setForegroundColor(menuColorNotSelected);
+            screen.setBackgroundColor(instructionsColorSelected);
+            screen.setForegroundColor(instructionsColorNotSelected);
 
             screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
 
@@ -69,7 +73,7 @@ public class Instructions {
             screen.putString(3, row+7, "1. PRESS Z TO SHOOT");
             screen.putString(3, row+9, "2. PRESS Arrows TO MOVE");
 
-            screen.setForegroundColor(menuColorNotSelected);
+            screen.setForegroundColor(instructionsColorNotSelected);
             screen.putString(screenSize.getWidth() - 19, screenSize.getHeight()-2, "PRESS M TO GO BACK");
 
             console.refresh();

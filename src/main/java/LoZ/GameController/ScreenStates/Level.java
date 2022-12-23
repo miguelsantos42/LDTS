@@ -228,7 +228,7 @@ public class Level {
             case ATTACK:
                 playerAttack(KeyBoardObserver.lastMovement);
                 break;
-            case DEFFEND:
+            case DEFEND:
                 break;
             case QUIT:
                 console.setState(Console.ScreenState.CLOSE);
@@ -236,7 +236,7 @@ public class Level {
 
                 break;
         }
-        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
+        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFEND && action != KeyBoardObserver.Action.ATTACK) {
             KeyBoardObserver.lastMovement = action;
         }
     }
