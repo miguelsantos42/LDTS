@@ -55,11 +55,13 @@ Since the last presentation we have introduced the following features:
 THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
 
 ## **Template Method**:
-Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. We use it on on the pools.
 
-  ### Problem:
+  ### Problem
+  We had a simple algorithm and we needed to specialize them all into more specific classes;
 
-  ### Solution:
+  ### Solution
+  As we had a base algorithm equal to all moves, we need to specialize for each case. In this way, an enemy moves                     automatically, a bullet is always the same and the Player responds to commands
 
 ## **Game Loop Pattern**: 
 The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
@@ -76,7 +78,7 @@ As the 'Game' class is the main class of the game, we have to ensure that there 
   ### Solution:
 
 ## **Observer Pattern:**
-Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. We use it on Control Class.
 
   ### Problem:
 
