@@ -8,19 +8,39 @@ This project was developed by João Alves (up202006281@fe.up.pt), Matias Vaz (up
 
 ### IMPLEMENTED FEATURES
 
+Since the last presentation we have introduced the following features:
+- **Menu**;
+- **Monsters Attacks**;
+- **Player Attacks**;
+- **PowerUps**;
+
+
+- **Menu** - A menu iniciates the application where the user can choose to play from there, or to read the instructions, and lastly to exit the application;
+
+![image](https://user-images.githubusercontent.com/94482929/209367553-95923012-e6fd-4e31-bd00-b130d5788735.png)
+
+![image](https://user-images.githubusercontent.com/94482929/209367596-9df5d88e-6bf6-482f-8887-0e1803272fec.png)
+
+-	**Instructions** - From the menu of the game, the user is able to choose to see the instructions by pressing Enter when the Instructions are displayed blue;
+
+![image](https://user-images.githubusercontent.com/94482929/209367850-7b45262e-cb6e-4cba-bc9e-2469ea6f20bb.png)
+
 - **Player Moving** - The game character will move to the left when the Left Arrow key is pressed and to the right when the Right Arrow key is pressed. It will move up when Up Arrow key is pressed and will move down when Down Arrow key is pressed; 
 - **Monsters Moving** - The enemies of the game move on its own; 
 - **Game Screen** - The screen for see the game; 
 - **Keyboard control** - The control of the game by the final user; 
+- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player;
+- **Player Attacks** - The game character will shoot a bullet when the Space Bar is pressed;
+- **PowerUps** – Every time the player kills an enemy there is a chance that the monster drops an Upgrade Item that (if picked up) can regenerate the player’s life or give it a PowerUp;
+- **Player's Lives Display** - The Player has 2 lives at the beginning of the game, losing one if the Player gets shot by a Monster. Also, the number of lives remaining are displayed on the bottom left corner of the screen;
+
+![image](https://user-images.githubusercontent.com/94482929/209370765-cb4f59f2-bcef-4fe8-b60e-9b47f85ddb09.png)
+
 
 
 ### PLANNED FEATURES
 
-- **Monsters Attacks** - The enemies will atack on its own, doing damage on the Player;
-- **Player Attacks** - The game character will shoot a bullet when the Space Bar is pressed;
 - **Different Levels** - For now, the game only has one level. In the future, we plan to introduce more;
-- **PowerUps** – Every time the player kills an enemy there is a chance that the monster drops an Upgrade Item that (if picked up) can regenerate the player’s life or give it a PowerUp;
-- **Menu** - A menu to begin the game and have the possibility to go to the screen help;
 - **Help** - A screen to help understand how to play the game;
 
 
@@ -36,3 +56,35 @@ This project was developed by João Alves (up202006281@fe.up.pt), Matias Vaz (up
 
 ![LDTSUML drawio](https://user-images.githubusercontent.com/36213075/204034768-e300cf2f-337c-4b68-8c74-8591a5dac1cb.png)
 
+
+### DESIGN
+
+THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
+
+## **Template Method**:
+Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+
+  ### Problem:
+
+  ### Solution:
+
+## **Game Loop Pattern**: 
+The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
+
+  ### Problem:
+
+  ### Solution:
+
+## **Singleton Pattern:**
+As the 'Game' class is the main class of the game, we have to ensure that there is only one object of this class. So we implement this pattern in the 'Game' class, to obtain this guarantee.
+
+  ### Problem:
+
+  ### Solution:
+
+## **Observer Pattern:**
+Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+
+  ### Problem:
+
+  ### Solution:

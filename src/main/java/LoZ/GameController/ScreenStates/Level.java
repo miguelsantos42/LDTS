@@ -84,7 +84,7 @@ public class Level {
         this.powerups = new PoolPowerUps(typePowerUp);
 
 
-
+        this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
 
 
     }
@@ -98,7 +98,7 @@ public class Level {
             player.draw(screen);
             enemies.drawEnemies(screen);
             bullets.drawBullets(screen);
-            player.draw(screen);
+            player.drawInfo(screen);
             powerups.drawPowerUps(screen);
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(100);
@@ -196,14 +196,6 @@ public class Level {
         }
     }
 
-    private void reset() {
-        player.reset();
-        enemies.reset();
-        bullets.reset();
-        powerups.reset();
-
-    }
-
     public void maybeAddEnemy(){
         if (Math.random()*100 > 96){
             this.enemies.addEnemy(this.typeEnemy, this.player, this.screenSize.getWidth(), this.screenSize.getHeight());
@@ -251,10 +243,6 @@ public class Level {
 
 
     public void run() {
-        reset();
-
-        this.enemies.addEnemy(typeEnemy, player, screenSize.getWidth(), screenSize.getHeight());
-
         Thread enemyThread = new Thread(() -> {
             while(console.gameStatus() && console.getState() == Console.ScreenState.LEVEL) {
                 enemyAction();

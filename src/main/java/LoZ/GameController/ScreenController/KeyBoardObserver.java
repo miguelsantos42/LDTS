@@ -16,7 +16,7 @@ public class KeyBoardObserver extends KeyAdapter {
         LEFT,
         RIGHT,
         ATTACK,
-        DEFFEND,
+        DEFEND,
         QUIT,
         SELECT
     }
@@ -33,6 +33,8 @@ public class KeyBoardObserver extends KeyAdapter {
             case MENU -> menuController(e);
             case INSTRUCTIONS -> instructionsController(e);
             case LEVEL -> levelController(e);
+            case GAMEWIN -> gamewinController(e);
+            case GAMEOVER -> gameoverController(e);
         }
     }
 
@@ -55,19 +57,25 @@ public class KeyBoardObserver extends KeyAdapter {
             case KeyEvent.VK_DOWN -> Game.console.level.keyPressed(Action.UP);
             case KeyEvent.VK_Z -> Game.console.level.keyPressed(Action.ATTACK);
             case KeyEvent.VK_SPACE -> Game.console.level.keyPressed(Action.ATTACK);
-            case KeyEvent.VK_X ->  Game.console.level.keyPressed(Action.DEFFEND);
+            case KeyEvent.VK_X ->  Game.console.level.keyPressed(Action.DEFEND);
             case KeyEvent.VK_Q ->  Game.console.level.keyPressed(Action.QUIT);
         }
     }
     public void instructionsController(KeyEvent e){
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> Game.console.instructions.keyPressed(Action.LEFT);
-            case KeyEvent.VK_RIGHT -> Game.console.instructions.keyPressed(Action.RIGHT);
-            case KeyEvent.VK_UP -> Game.console.instructions.keyPressed(Action.DOWN);
-            case KeyEvent.VK_DOWN -> Game.console.instructions.keyPressed(Action.UP);
-            case KeyEvent.VK_Z -> Game.console.instructions.keyPressed(Action.ATTACK);
-            case KeyEvent.VK_SPACE -> Game.console.instructions.keyPressed(Action.ATTACK);
-            case KeyEvent.VK_X ->  Game.console.instructions.keyPressed(Action.DEFFEND);
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
+            case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
+        }
+    }
+    public void gamewinController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
+            case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
+        }
+    }
+    public void gameoverController(KeyEvent e){
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_M -> Game.console.instructions.keyPressed(Action.SELECT);
             case KeyEvent.VK_Q ->  Game.console.instructions.keyPressed(Action.QUIT);
         }
     }

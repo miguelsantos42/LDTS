@@ -1,9 +1,7 @@
 package LoZ.GameController.ScreenController;
 
-import LoZ.GameController.ScreenStates.Level;
+import LoZ.GameController.ScreenStates.*;
 
-import LoZ.GameController.ScreenStates.Instructions;
-import LoZ.GameController.ScreenStates.Menu;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
@@ -23,13 +21,15 @@ public class Console{
         LEVEL,
         CLOSE,
         GAMEOVER,
-        WIN
+        GAMEWIN
     }
 
 
     public Level level;
     public Menu menu;
     public Instructions instructions;
+    public GameWin gamewin;
+    public GameOver gameover;
 
     static ScreenState state = ScreenState.MENU;
 
@@ -41,6 +41,8 @@ public class Console{
         this.level = new Level(graphics, this);
         this.menu = new Menu(graphics, this);
         this.instructions = new Instructions(graphics, this);
+        this.gamewin = new GameWin(graphics, this);
+        this.gameover = new GameOver(graphics, this);
 
     }
 
@@ -65,6 +67,12 @@ public class Console{
                 case CLOSE -> {
                     runningThread = false;
                     close();
+                }
+                case GAMEWIN -> {
+                    gamewin.run();
+                }
+                case GAMEOVER -> {
+                    gameover.run();
                 }
 
             }

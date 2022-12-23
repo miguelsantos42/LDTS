@@ -17,19 +17,19 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class Instructions {
+public class GameOver {
 
     private TextGraphics screen;
     Console console;
 
-    private final TextColor instructionsColorNotSelected = new TextColor.RGB(255, 255, 255);
-    private final TextColor instructionsColorSelected = new TextColor.RGB(15, 20, 45);
+    private final TextColor gameoverColorNotSelected = new TextColor.RGB(255, 255, 255);
+    private final TextColor gameoverColorSelected = new TextColor.RGB(15, 20, 45);
 
     int column;
     int row;
     Size screenSize;
 
-    public Instructions(TextGraphics screen, Console console){
+    public GameOver(TextGraphics screen, Console console){
         this.screen = screen;
         this.console = console;
 
@@ -38,7 +38,7 @@ public class Instructions {
         row = screenSize.getHeight()/4;
     }
     public void run(){
-        while(console.getState() == Console.ScreenState.INSTRUCTIONS && console.gameStatus()){
+        while(console.getState() == Console.ScreenState.GAMEOVER && console.gameStatus()){
             draw();
         }
     }
@@ -59,27 +59,25 @@ public class Instructions {
 
     protected void draw(){
         try {
-            screen.setBackgroundColor(instructionsColorSelected);
-            screen.setForegroundColor(instructionsColorNotSelected);
+            screen.setBackgroundColor(gameoverColorSelected);
+            screen.setForegroundColor(gameoverColorNotSelected);
 
             screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(screenSize.getWidth(), screenSize.getHeight()), ' ');
 
             /*Actual Instructions*/
 
-            screen.putString(column, row, "INSTRUCTIONS:", SGR.BOLD);
+            screen.putString(column, row, "GAME OVER!", SGR.BOLD);
 
-            screen.putString(2, row+3, "KILL ALL THE ENEMIES TO WIN");
-            screen.putString(1, row+4, "CAREFUL: YOU ONLY HAVE 2 LIVES");
-            screen.putString(3, row+7, "1. PRESS Z TO SHOOT");
-            screen.putString(3, row+9, "2. PRESS Arrows TO MOVE");
+            screen.putString(2, row+3, "You have died.", SGR.BOLD);
+            screen.putString(1, row+4, "Press Q to quit or M to go back to the menu.", SGR.BOLD);
 
-            screen.setForegroundColor(instructionsColorNotSelected);
-            screen.putString(screenSize.getWidth() - 19, screenSize.getHeight()-2, "PRESS M TO GO BACK");
+
+            screen.setForegroundColor(gameoverColorNotSelected);
 
             console.refresh();
             TimeUnit.MILLISECONDS.sleep(20);
         }
-            catch(InterruptedException | IOException e){
+        catch(InterruptedException | IOException e){
             e.printStackTrace();
         }
     }
