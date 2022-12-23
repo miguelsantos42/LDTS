@@ -62,7 +62,7 @@ Since the last presentation we have introduced the following features:
 THE GAME SHOULD WAIT FOR INPUT BY THE USER AND ONLY STOP WHEN A THE ENEMIES KILL THE PLAYER OR WHEN THE PLAY KILL ALL THE ENEMIES
 
 ## **Template Method**:
-Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+Is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. We use it on on the pools.
 
   ### Problem:
 
@@ -83,7 +83,7 @@ As the 'Game' class is the main class of the game, we have to ensure that there 
   ### Solution:
 
 ## **Observer Pattern:**
-Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. We use it on Control Class.
 
   ### Problem:
 
