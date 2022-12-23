@@ -126,8 +126,5 @@ public class Menu{
                 break;
 
         }
-        if (action != KeyBoardObserver.Action.QUIT && action != KeyBoardObserver.Action.DEFFEND && action != KeyBoardObserver.Action.ATTACK) {
-            KeyBoardObserver.lastMovement = action;
-        }
     }
 }

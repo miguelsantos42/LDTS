@@ -50,7 +50,7 @@ public class Console{
         ((AWTTerminalFrame) Game.getScreen().getTerminal()).getComponent(0).addKeyListener(obs);
     }
 
-    public void run(Game game) throws IOException {
+    public void run(Game game){
         while (runningThread) {
             switch (state) {
                 case MENU -> {
