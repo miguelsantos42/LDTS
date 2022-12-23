@@ -73,9 +73,12 @@ The pattern that we decided to apply for this was Game Loop, which mainly descri
 ## **Singleton Pattern:**
 As the 'Game' class is the main class of the game, we have to ensure that there is only one object of this class. So we implement this pattern in the 'Game' class, to obtain this guarantee.
 
-  ### Problem:
+  ### Problem
+  We have a lot of objects created and we need it only one for the all project;
 
-  ### Solution:
+  ### Solution
+  We create a single object for the entire project that is rotated only once and created only once;
+  
 
 ## **Observer Pattern:**
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. We use it on Control Class.
