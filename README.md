@@ -44,13 +44,6 @@ Since the last presentation we have introduced the following features:
 - **Help** - A screen to help understand how to play the game;
 
 
-### DESIGN PATTERNS USED
-
-- **GameObject, Bullet, Enemy and Player** - was used the abstract factory method (game object) to create several child classes to have common atributes and methods. 
-- **Game** - was used the singleton pattern to create a instance for the entire running game. The reason to choose that was because we only want one instance of game running. 
-- **GameScreen, level, menu(planned), help(planned)** - was used the abstract factory method (Game screen) to create several child classes to have common atributes and methods. 
-- **KeyboardObserver** - was used the observer pattern to create a class to listen keyboard pressed keys. The reason to choose that pattern was "When an object should be able to notify other objects without making assumptions about who those objects are."
-
 ### UML for classes 
 **The following UML show the classes diagram**
 
@@ -88,3 +81,11 @@ Observer is a behavioral design pattern that lets you define a subscription mech
   ### Problem:
 
   ### Solution:
+
+### Code Smeels
+
+- Alternative Classes with Different Interfaces in Pools because they have similar functions with differents names, doing more difficult to use that classes
+- We have some dead code across all the files for planned or change code.
+- Game class could be called as Lazy class, since could be merged with console.
+- Maybe we could review some message chains, mostly of relation between objects and attributes. 
+
