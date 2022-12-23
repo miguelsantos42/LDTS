@@ -106,7 +106,7 @@ Observer is a behavioral design pattern that lets you define a subscription mech
 
 ![image](https://user-images.githubusercontent.com/36213075/209405533-57ff4a9a-ac48-495f-94a6-2ae4b867edf0.png)
 
-### Self-Evaluation
+## Self-Evaluation
 | Name           | Contribution  |
 | -------------  | ------------- |
 | João Alves     | 1/3           |
