@@ -123,6 +123,9 @@ abstract public class GameObject {
         return this.position.calculateDistance(otherObject.position);
     }
 
+    public void reset(){
+        instantKill();
+    }
 
     public Size getSize() {
         return size;

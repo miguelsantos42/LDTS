@@ -61,4 +61,12 @@ public class PoolEnemies {
         }
         return false;
     }
+
+    public void reset(){
+        for (Enemy enemy : this.poolEnemy) {
+            if (enemy.isAlive()){
+                enemy.reset();
+            }
+        }
+    }
 }

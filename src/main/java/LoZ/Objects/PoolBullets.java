@@ -49,4 +49,13 @@ public class PoolBullets{
     public ArrayList<Bullet> getPoolBullets(){
         return poolBullets;
     }
+
+    public void reset(){
+        for (Bullet bullet : this.poolBullets) {
+            if (bullet.isAlive()){
+                bullet.reset();
+            }
+        }
+    }
+
 }

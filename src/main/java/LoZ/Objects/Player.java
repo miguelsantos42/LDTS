@@ -19,9 +19,12 @@ public class Player extends GameObject{
 
     double time;
 
-    public Player(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
+    Position initialPosition;
 
+    public Player(Position position, Size size, TextColor textColor, Life life, Bullet bulletType) {
         super(position, size, textColor, life, 10);
+
+        initialPosition = new Position(position);
         this.attackType = bulletType;
     }
 
@@ -65,7 +68,9 @@ public class Player extends GameObject{
 
     }
 
-    public void drawInfo(TextGraphics screen) {
+    @Override
+    public void draw(TextGraphics screen) {
+        super.draw(screen);
         screen.setForegroundColor(TextColor.ANSI.RED);
         screen.putString(1 , 1, String.valueOf(life.getCurrentLives()));
         screen.putString(1+1 , 1,"/");
@@ -75,5 +80,12 @@ public class Player extends GameObject{
         screen.putString(15 , 1, String.valueOf(score));
         screen.putString(16 , 1, " score");
 
+    }
+
+    @Override
+    public void reset(){
+        instantKill();
+        heal();
+        position = new Position(initialPosition);
     }
 }

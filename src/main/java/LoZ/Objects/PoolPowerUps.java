@@ -42,4 +42,13 @@ public class PoolPowerUps {
         return poolPowerUps;
     }
 
+
+    public void reset(){
+        for (PowerUp powerUp : this.poolPowerUps) {
+            if (powerUp.isAlive()){
+                powerUp.reset();
+            }
+        }
+    }
+
 }
