@@ -84,7 +84,7 @@ Observer is a behavioral design pattern that lets you define a subscription mech
 
   ### Solution:
 
-### Code Smeels
+## Code Smeels
 
 - Alternative Classes with Different Interfaces in Pools because they have similar functions with differents names, doing more difficult to use that classes
 - We have some dead code across all the files for planned or change code.
@@ -92,14 +92,14 @@ Observer is a behavioral design pattern that lets you define a subscription mech
 - Maybe we could review some message chains, mostly of relation between objects and attributes. 
 
 
-### Tests code coverage:
+## Tests code coverage:
 
-## Unit Tests
+### Unit Tests
 
 ![image](https://user-images.githubusercontent.com/36213075/209405429-1d272365-23db-4f88-872b-4abbb8d094bd.png)
 
 
-## Mutation Testing
+### Mutation Testing
 
 ![image](https://user-images.githubusercontent.com/36213075/209405533-57ff4a9a-ac48-495f-94a6-2ae4b867edf0.png)
 
