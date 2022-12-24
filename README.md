@@ -67,25 +67,29 @@ Is a behavioral design pattern that defines the skeleton of an algorithm in the 
 The pattern that we decided to apply for this was Game Loop, which mainly describes the problem at hand. Game Loop is a pattern that establishes a program in a loop, constantly waiting for input, updating the internal status and then rendering it.
 
   ### Problem:
+  We need to run process without a before specified end.
 
   ### Solution:
+  Apply that pattern to have a infinite loop until certain criteria (the user decide to go out from the game) be changed. 
 
 ## **Singleton Pattern:**
 As the 'Game' class is the main class of the game, we have to ensure that there is only one object of this class. So we implement this pattern in the 'Game' class, to obtain this guarantee.
 
   ### Problem
-  We have a lot of objects created and we need it only one for the all project;
+  We want only one instance for that class.
 
   ### Solution
-  We create a single object for the entire project that is rotated only once and created only once;
+  We create a  private constructor and used a function to guarentee only one time we will use that constructor if we need to get that object from other classes. 
   
 
 ## **Observer Pattern:**
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. We use it on Control Class.
 
   ### Problem:
+  We need a class to observer possible command from keyboard whenever they happens and do a action after that event. 
 
   ### Solution:
+  Use the observer pattern to be able to whenever a key is pressed change the game state. 
 
 ## Code Smeels
 
@@ -105,6 +109,17 @@ Observer is a behavioral design pattern that lets you define a subscription mech
 ### Mutation Testing
 
 ![image](https://user-images.githubusercontent.com/36213075/209405533-57ff4a9a-ac48-495f-94a6-2ae4b867edf0.png)
+
+## New Features and refactorings after the apresentantion in class
+
+- Power Ups working
+- Menu, instructions and game over and game win screens.
+- Mutation Testing
+- Better separation in Model-View-Controller architeture
+- Better Function names
+- Some refactor related with pools
+- Some refactor related with levels. 
+
 
 ## Self-Evaluation
 | Name           | Contribution  |
